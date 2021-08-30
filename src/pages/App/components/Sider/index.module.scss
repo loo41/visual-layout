@@ -1,0 +1,44 @@
+.slider {
+  display: flex;
+  height: 100%;
+  .body {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    flex-direction: column;
+    .card {
+      flex-direction: column;
+      height: 100%;
+      .title {
+        height: 50px;
+        width: 100%;
+        padding: 0 10px;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #f0f0f0;
+      }
+      .component {
+        flex: 1;
+        overflow: auto;
+      }
+    }
+  }
+}
+
+.menu {
+  width: 50px;
+  height: 100%;
+  border-right: 1px solid #f0f0f0;
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    height: 50px;
+  }
+  img {
+    height: 24px;
+    width: 24px;
+  }
+}

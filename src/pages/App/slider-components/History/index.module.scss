@@ -1,0 +1,39 @@
+@import 'src/theme/_colors.scss';
+
+.container {
+  padding: 10px;
+  .history {
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    border-radius: 5px;
+    span:nth-child(1) {
+      flex: 1;
+    }
+    span:nth-child(2) {
+      font-size: 12px;
+      flex: 1;
+    }
+    span:nth-child(3) {
+      width: 30px;
+      height: 100%;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        height: 16px;
+        width: 16px;
+      }
+    }
+    &:hover {
+      background-color: #f5f5f5;
+      cursor: pointer;
+    }
+  }
+}
+
+.futureHistory {
+  color: map-get($colors, 'disabled');
+}

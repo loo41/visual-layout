@@ -1,0 +1,11 @@
+.container {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  .layoutWarper {
+    height: 300px;
+    width: 50%;
+    padding: 20px;
+  }
+}

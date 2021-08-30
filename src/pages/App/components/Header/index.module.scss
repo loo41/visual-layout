@@ -1,0 +1,6 @@
+@import 'src/theme/_colors.scss';
+
+.header {
+  background-color: map-get($colors, 'primary') !important;
+  height: 35px !important;
+}
