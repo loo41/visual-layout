@@ -12,13 +12,8 @@ const Drawer: React.FC<{}> = () => {
 
   const page = pagesService.getCurrentPage();
 
-  const isShow = !!page?.currentNode.length;
-
   return (
-    <div
-      className={styles.drawer}
-      style={{ display: `${isShow ? 'flex' : 'none'}` }}
-    >
+    <div className={styles.drawer}>
       <Tabs defaultActiveKey="1" style={{ width: '100%' }}>
         <TabPane tab="样式" key="style">
           <Style page={page} />
