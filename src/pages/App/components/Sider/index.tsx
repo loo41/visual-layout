@@ -6,6 +6,7 @@ import styles from './index.module.scss';
 
 const { Sider } = Layout;
 
+// eslint-disable-next-line
 export default () => {
   const menus: Menu[] = useMemo(() => {
     return getSiderMenu();

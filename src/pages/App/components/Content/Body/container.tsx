@@ -18,6 +18,7 @@ const Container: React.FC<{ page: PageService; options: Options }> = ({
         ele.appendChild(page.createView());
       }
     },
+    // eslint-disable-next-line
     [updateSign, page.page, page.currentNode],
   );
 

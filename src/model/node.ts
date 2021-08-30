@@ -1,4 +1,3 @@
-import { throws } from 'assert';
 import _ from 'lodash';
 import { NodeService } from 'src/controller';
 import { Style } from '.';

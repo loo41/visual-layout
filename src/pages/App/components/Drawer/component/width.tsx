@@ -1,7 +1,6 @@
 import { Input, Select } from 'antd';
 import { useEffect } from 'react';
 import { useRef } from 'react';
-import { useMemo } from 'react';
 import { useState } from 'react';
 import { CssProps } from '../config';
 
@@ -23,6 +22,7 @@ const Width: React.FC<CssProps> = ({ style = [], onChange }) => {
     unitValue.current = {
       [unit]: pixel,
     };
+    // eslint-disable-next-line
   }, [style]);
 
   const setStyle = () => {

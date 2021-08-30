@@ -1,4 +1,4 @@
-import { Pages, AST } from 'src/model';
+import { Pages } from 'src/model';
 import PageService from './page';
 import Keyboard from '../keyboard-event';
 import { Options } from '../const';

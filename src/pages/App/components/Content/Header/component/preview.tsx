@@ -1,33 +1,8 @@
 import { EyeOutlined } from '@ant-design/icons';
 import { Checkbox, Popover, Row } from 'antd';
 import { CheckboxValueType } from 'antd/lib/checkbox/Group';
-import { useState } from 'react';
 import { PreviewStyle } from 'src/const';
 import { PagesService } from 'src/controller';
-
-const Styles = [
-  {
-    title: '边框',
-    style: {
-      key: 'border',
-      value: '1px dashed #000000',
-    },
-  },
-  {
-    title: '外边距',
-    css: {
-      key: 'padding',
-      value: '5px',
-    },
-  },
-  {
-    title: '背景色',
-    css: {
-      key: 'background',
-      value: 'white',
-    },
-  },
-];
 
 const Preview: React.FC<{ pagesService: PagesService }> = ({ pagesService }) => {
   const page = pagesService.getCurrentPage();

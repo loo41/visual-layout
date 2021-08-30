@@ -1,12 +1,7 @@
 import revoke from 'src/static/img/revoke.png';
 import forward from 'src/static/img/forward.png';
 import styles from '../index.module.scss';
-import {
-  CodeOutlined,
-  EyeOutlined,
-  ZoomInOutlined,
-  ZoomOutOutlined,
-} from '@ant-design/icons';
+import { CodeOutlined, ZoomInOutlined, ZoomOutOutlined } from '@ant-design/icons';
 import { InputNumber, Tooltip } from 'antd';
 import { Options } from 'src/pages/App/components/Content/index';
 import { PagesService } from 'src/controller';
@@ -90,7 +85,7 @@ const Operation: React.FC<{
           }}
         >
           <Tooltip placement="top" title="后退">
-            <img src={revoke} />
+            <img src={revoke} alt="" />
           </Tooltip>
         </div>
         <div
@@ -99,7 +94,7 @@ const Operation: React.FC<{
           }}
         >
           <Tooltip placement="top" title="前进">
-            <img src={forward} />
+            <img src={forward} alt="" />
           </Tooltip>
         </div>
       </div>

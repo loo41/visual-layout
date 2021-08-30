@@ -12,6 +12,7 @@ export interface Options {
   zoom: number;
 }
 
+// eslint-disable-next-line
 export default () => {
   const { pagesService } = useContext(PagesContext);
 

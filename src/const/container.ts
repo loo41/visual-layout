@@ -1,4 +1,4 @@
-import { AST, Style } from 'src/model';
+import { AST } from 'src/model';
 
 const phone: AST = {
   type: 'div',

@@ -5,7 +5,6 @@ import { PreviewStyle, SelectStyle } from 'src/const';
 import { models } from 'src/const/container';
 import { PagesService } from 'src/controller';
 import Size from './component/size';
-import styles from './index.module.scss';
 
 export interface Values {
   name: string;

@@ -1,10 +1,11 @@
 import { isObject } from 'src/util';
-import { Page, AST, Style, Node } from 'src/model';
+import { Page, AST, Style } from 'src/model';
 import { DocEvent, Doc } from '../browser';
 import { NodeService } from '..';
 import { Options } from '../const';
 
 export interface Update {
+  // eslint-disable-next-line
   ({}: { description?: string; isKeepHistory?: boolean }): void;
 }
 

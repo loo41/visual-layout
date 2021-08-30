@@ -7,7 +7,7 @@ import Style from './Style';
 
 const { TabPane } = Tabs;
 
-const Drawer: React.FC<{}> = ({}) => {
+const Drawer: React.FC<{}> = () => {
   const { pagesService } = useContext(PagesContext);
 
   const page = pagesService.getCurrentPage();
