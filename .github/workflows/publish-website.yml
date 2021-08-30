@@ -21,7 +21,6 @@ jobs:
       - name: Install and Test and Build
         run: |
           npm install
-          npm run test
           npm run build
 
       # 部署到 GitHub Pages
