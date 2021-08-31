@@ -8,13 +8,14 @@ export default class NodeService extends Node {
   }
 
   copy = (node?: NodeService): NodeService => {
-    const { type, styles, children, element, isRoot } = node || this;
+    const { type, styles, children, element, className, isRoot } = node || this;
     return new NodeService(
       {
         type,
         styles,
         element,
         isRoot,
+        className,
         children: children?.map(children => children.copy()) || [],
       },
       this.pageService,
@@ -38,6 +39,10 @@ export default class NodeService extends Node {
     const { id, children } = this;
     // why isSelect (toString can`t change component no`t update)
     return `${id}:${children.map(node => node.toString())}`;
+  };
+
+  setClassName = (className: string) => {
+    this.className = className;
   };
 
   static createNodeService = (target: AST): NodeService => {

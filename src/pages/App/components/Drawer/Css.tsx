@@ -2,6 +2,7 @@ import { Input } from 'antd';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { PageService } from 'src/controller';
+import ClassName from './component/className';
 import styles from './index.module.scss';
 
 const Css: React.FC<{ page: PageService }> = ({ page }) => {
@@ -37,6 +38,7 @@ const Css: React.FC<{ page: PageService }> = ({ page }) => {
 
   return (
     <div>
+      <ClassName page={page} />
       <Input.TextArea
         className={styles.input}
         value={css}

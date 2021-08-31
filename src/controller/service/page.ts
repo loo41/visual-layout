@@ -103,6 +103,11 @@ export default class PageService extends Page {
     this.update({ description: '更新样式' });
   };
 
+  setClassName = (className: string) => {
+    this.currentNode.map(node => node.setClassName(className));
+    this.update({ description: '设置 ClassName' });
+  };
+
   createView = () => {
     const view = this.Doc.create(this.page);
     this.DocEvent.bindContainerEvent(this.page);

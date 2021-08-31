@@ -19,6 +19,8 @@ export default class Page {
   set page(page: NodeService) {
     this._page = page;
     this.clearDeleteNode(this._page);
+    // clear select node
+    this.currentNode = [];
   }
   get page() {
     this.clearDeleteNode(this._page);
