@@ -30,7 +30,7 @@
   - [Ctrl + v] (Paste Select)
   - [Ctrl + Backspace] (Delete Select)
   - [Ctrl + z] (Step Back)
-  - [Ctrl + z] (Step Forward)
+  - [Ctrl + y] (Step Forward)
 - Support Multi Page ✅
 - Support Layout ✅
 - Support History Operation ✅
