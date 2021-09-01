@@ -1,24 +1,47 @@
+import React from 'react';
+import { EventType } from '.';
+import DocEvent from './event';
 import { NodeService } from '..';
+import { getStylesProps } from '../util';
+import { render } from 'src/controller/react';
 
-class Doc {
-  create = (node: NodeService): HTMLElement => {
-    const { type, children } = node;
-    const ele = document.createElement(type);
-    node.innerHTML(ele);
-    this.renderStyles(ele, node);
-    children?.forEach(page => ele.appendChild(this.create(page)));
-    return ele;
-  };
+class Doc extends DocEvent {
+  create = ({
+    node,
+    eventType,
+  }: {
+    node: NodeService;
+    eventType?: EventType;
+  }): React.ReactElement => {
+    const { type, name, className, children, component } = node;
 
-  renderStyles = (ele: HTMLElement, node: NodeService) => {
-    const { styles, isSelect } = node;
-    if (styles?.length) {
-      ele.style.cssText = (node.pageService?.options.previewStyle || [])
-        .concat(isSelect ? node.pageService?.options.selectStyle || [] : [])
-        .concat(styles)
-        .map(({ key, value }) => `${key}: ${value}`)
-        .join(';');
-    }
+    const props =
+      eventType === EventType.container
+        ? {
+            onDrop: this.onDrop(node),
+            onDragOver: this.onDragover(node),
+            onClick: this.onClick(node),
+          }
+        : eventType && this.createContainerEvent(node);
+
+    node.element =
+      type === 'component'
+        ? render(component)
+        : React.createElement(
+            name,
+            { style: getStylesProps(node), className: className, ...props },
+            [
+              ...children?.map(page =>
+                this.create({
+                  node: page,
+                  eventType:
+                    eventType === EventType.container ? eventType : undefined,
+                }),
+              ),
+            ],
+          );
+
+    return node.element;
   };
 }
 

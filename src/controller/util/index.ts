@@ -1,3 +1,5 @@
+import { NodeService } from '..';
+
 const randomStr = (strLen: number = 5) => {
   const str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 
@@ -7,4 +9,22 @@ const randomStr = (strLen: number = 5) => {
     .join('');
 };
 
-export { randomStr };
+const strikeToCamel = (str: string) => {
+  return (str + '').replace(/-\D/g, function (match) {
+    return match.charAt(1).toUpperCase();
+  });
+};
+
+const getStylesProps = (node: NodeService) => {
+  const { styles, isSelect } = node;
+
+  return (node.pageService?.options.previewStyle || [])
+    .concat(isSelect ? node.pageService?.options.selectStyle || [] : [])
+    .concat(styles)
+    .reduce((styles: { [props: string]: string }, style) => {
+      const { key, value } = style;
+      styles[strikeToCamel(key)] = value;
+      return styles;
+    }, {});
+};
+export { randomStr, strikeToCamel, getStylesProps };

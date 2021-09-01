@@ -31,7 +31,7 @@ const getSiderMenu = (): Menu[] => {
       id: 'component',
       icon: <AppstoreOutlined style={{ fontSize: 24 }} />,
       title: '组件',
-      component: <Component test={<Button />} />,
+      component: <Component />,
     },
   ];
 };

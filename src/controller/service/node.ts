@@ -1,21 +1,30 @@
+import React from 'react';
 import { AST, Node, Style } from 'src/model';
 import { NodeOption } from 'src/model/node';
 import { PageService } from '..';
+import { EventType } from '../browser';
 
 export default class NodeService extends Node {
   constructor(Options: NodeOption, public pageService?: PageService) {
     super(Options);
   }
 
+  createElement = ({ eventType }: { eventType: EventType }): React.ReactElement => {
+    return this.create({ node: this, eventType });
+  };
+
   copy = (node?: NodeService): NodeService => {
-    const { type, styles, children, element, className, isRoot } = node || this;
+    const { type, name, styles, children, element, className, component, isRoot } =
+      node || this;
     return new NodeService(
       {
         type,
         styles,
         element,
+        name,
         isRoot,
         className,
+        component,
         children: children?.map(children => children.copy()) || [],
       },
       this.pageService,
@@ -24,10 +33,6 @@ export default class NodeService extends Node {
 
   setStyles = (styles: Style[]) => {
     this.styles = styles;
-  };
-
-  innerHTML = (ele: HTMLElement) => {
-    this.element = ele;
   };
 
   clearEffect = () => {

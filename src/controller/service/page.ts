@@ -1,6 +1,6 @@
 import { isObject } from 'src/util';
 import { Page, AST, Style } from 'src/model';
-import { DocEvent, Doc } from '../browser';
+import { DocEvent, Doc, EventType } from '../browser';
 import { NodeService } from '..';
 import { Options } from '../const';
 
@@ -109,9 +109,7 @@ export default class PageService extends Page {
   };
 
   createView = () => {
-    const view = this.Doc.create(this.page);
-    this.DocEvent.bindContainerEvent(this.page);
-
+    const view = this.page.createElement({ eventType: EventType.container });
     return view;
   };
 

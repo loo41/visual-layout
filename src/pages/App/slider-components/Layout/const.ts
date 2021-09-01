@@ -1,7 +1,8 @@
 import { AST } from 'src/model';
 
 const flexRow: AST = {
-  type: 'div',
+  name: 'div',
+  type: 'label',
   styles: [
     { key: 'display', value: 'flex' },
     {
@@ -15,7 +16,8 @@ const flexRow: AST = {
   ],
   children: new Array(3).fill(0).map(item => {
     return {
-      type: 'div',
+      name: 'div',
+      type: 'label',
       styles: [
         {
           key: 'display',
@@ -42,7 +44,8 @@ const flexRow: AST = {
 };
 
 const flexColum: AST = {
-  type: 'div',
+  name: 'div',
+  type: 'label',
   styles: [
     { key: 'display', value: 'flex' },
     { key: 'flex-direction', value: 'column' },
@@ -57,7 +60,8 @@ const flexColum: AST = {
   ],
   children: new Array(3).fill(0).map(item => {
     return {
-      type: 'div',
+      name: 'div',
+      type: 'label',
       styles: [
         {
           key: 'display',
@@ -84,7 +88,8 @@ const flexColum: AST = {
 };
 
 const mobile: AST = {
-  type: 'div',
+  name: 'div',
+  type: 'label',
   styles: [
     { key: 'padding', value: '50px 0' },
     {
@@ -106,7 +111,8 @@ const mobile: AST = {
   ],
   children: [
     {
-      type: 'div',
+      name: 'div',
+      type: 'label',
       styles: [
         {
           key: 'position',
@@ -132,7 +138,8 @@ const mobile: AST = {
       children: [],
     },
     {
-      type: 'div',
+      name: 'div',
+      type: 'label',
       styles: [
         {
           key: 'flex',
@@ -150,7 +157,8 @@ const mobile: AST = {
       children: [],
     },
     {
-      type: 'div',
+      name: 'div',
+      type: 'label',
       styles: [
         {
           key: 'position',
@@ -179,7 +187,8 @@ const mobile: AST = {
 };
 
 const none: AST = {
-  type: 'div',
+  name: 'div',
+  type: 'label',
   styles: [
     {
       key: 'height',
@@ -196,7 +205,8 @@ const none: AST = {
   ],
   children: [
     {
-      type: 'div',
+      name: 'div',
+      type: 'label',
       styles: [
         {
           key: 'height',
@@ -217,7 +227,8 @@ const none: AST = {
 };
 
 const scroll: AST = {
-  type: 'div',
+  name: 'div',
+  type: 'label',
   styles: [
     {
       key: 'height',
@@ -234,7 +245,8 @@ const scroll: AST = {
   ],
   children: [
     {
-      type: 'div',
+      name: 'div',
+      type: 'label',
       styles: [
         {
           key: 'height',

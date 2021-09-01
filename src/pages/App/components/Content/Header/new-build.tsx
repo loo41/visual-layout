@@ -36,7 +36,8 @@ export const CreateModal: React.FC<{ pagesService: PagesService }> = ({
     pagesService.cerate({
       name: values.name,
       page: {
-        type: 'div',
+        name: 'div',
+        type: 'label',
         styles: [
           {
             key: 'height',
@@ -49,6 +50,10 @@ export const CreateModal: React.FC<{ pagesService: PagesService }> = ({
           {
             key: 'background',
             value: 'white',
+          },
+          {
+            key: 'overflow',
+            value: 'auto',
           },
         ],
         children: [],
