@@ -4,18 +4,8 @@ import { PagesContext } from 'src/context';
 
 export type Component = {
   name: string;
-  // @ts-ignore
   children?: Component[] | string;
-  [props: string]:
-    | Component
-    | Component[]
-    | string
-    | boolean
-    | symbol
-    | null
-    | undefined
-    | number
-    | bigint;
+  [props: string]: any;
 };
 
 export function Container({ component }: { component: Component }) {
@@ -37,8 +27,9 @@ export function Container({ component }: { component: Component }) {
         },
         [key, value],
       ) => {
-        props[key] =
-          value && typeof value === 'object' ? render(value as Component) : value;
+        const isComponent = value && typeof value === 'object' && value?.name;
+
+        props[key] = isComponent ? render(value) : value;
         return props;
       },
       {},
