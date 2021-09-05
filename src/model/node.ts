@@ -9,6 +9,7 @@ export type NodeOption = AST & {
   isRoot?: boolean;
   children?: NodeService[];
   id?: number;
+  content?: string;
 };
 class Node extends Doc {
   public type: 'label' | symbol;
@@ -35,6 +36,7 @@ class Node extends Doc {
       element,
       className,
       component,
+      content,
       id,
       isRoot = false,
     } = Option;
@@ -45,6 +47,7 @@ class Node extends Doc {
     this.element = element;
     this.isRoot = isRoot;
     this.component = component;
+    this.content = content;
     this.id = id || Node.Random();
 
     if (className) {

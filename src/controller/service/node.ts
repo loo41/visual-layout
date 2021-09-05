@@ -15,8 +15,17 @@ export default class NodeService extends Node {
   };
 
   copy = (node?: NodeService): NodeService => {
-    const { type, name, styles, children, element, className, component, isRoot } =
-      node || this;
+    const {
+      type,
+      name,
+      styles,
+      children,
+      element,
+      content,
+      className,
+      component,
+      isRoot,
+    } = node || this;
     return new NodeService(
       {
         type,
@@ -26,6 +35,7 @@ export default class NodeService extends Node {
         isRoot,
         className,
         component,
+        content,
         children: children?.map(children => children.copy()) || [],
       },
       this.pageService,
