@@ -2,5 +2,20 @@
 
 .header {
   background-color: map-get($colors, 'primary') !important;
-  height: 35px !important;
+  height: 40px !important;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  .item {
+    display: flex;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    &:hover {
+      border-radius: 5px;
+      border: 1px solid map-get($colors, 'border');
+    }
+  }
 }
