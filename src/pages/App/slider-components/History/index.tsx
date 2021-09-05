@@ -42,6 +42,7 @@ const History: React.FC<{}> = () => {
     return page?.history.future
       .slice()
       .filter(_ => _)
+      .reverse()
       .map(history => (
         <HistoryList
           className={styles.futureHistory}

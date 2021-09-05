@@ -23,7 +23,7 @@ class HistoryService extends History {
   return = (_id: number) => {
     const index = this.history.findIndex(({ id }) => id === _id);
     if (index !== -1) {
-      this.future.push(...this.history.slice(index));
+      this.future.unshift(...this.history.slice(index));
       this.history = this.history.slice(0, index);
     }
   };
@@ -31,8 +31,8 @@ class HistoryService extends History {
   recovery = (_id: number) => {
     const index = this.future.findIndex(({ id }) => id === _id);
     if (index !== -1) {
-      this.history.push(...this.future.slice(index));
-      this.future = this.future.slice(0, index);
+      this.history.push(...this.future.slice(0, index + 1));
+      this.future = this.future.slice(index + 1);
     }
   };
 
@@ -40,7 +40,7 @@ class HistoryService extends History {
     while (step > 0) {
       const future = this.history.pop();
       if (future) {
-        this.future.push(future);
+        this.future.unshift(future);
       }
       step--;
     }
@@ -48,9 +48,9 @@ class HistoryService extends History {
 
   forward = (step: number = 1) => {
     while (step > 0) {
-      const history = this.future.pop();
-      if (history) {
-        this.history.push(history);
+      const future = this.future.shift();
+      if (future) {
+        this.history.push(future);
       }
       step--;
     }
