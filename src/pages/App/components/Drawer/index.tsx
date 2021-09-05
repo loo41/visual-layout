@@ -6,7 +6,7 @@ import styles from './index.module.scss';
 import ComponentEdit from './component-edit';
 import { COMPONENT } from 'src/model';
 import Attribute from './attribute';
-import { ColumnWidthOutlined, MenuFoldOutlined } from '@ant-design/icons';
+import { ColumnWidthOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
