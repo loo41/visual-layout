@@ -146,6 +146,10 @@ const mobile: AST = {
           value: '1',
         },
         {
+          key: 'min-height',
+          value: '60px',
+        },
+        {
           key: 'overflow',
           value: 'auto',
         },
@@ -256,6 +260,62 @@ const scroll: AST = {
           key: 'width',
           value: '100%',
         },
+        {
+          key: 'background',
+          value: '#f5f5f5',
+        },
+      ],
+      children: [],
+    },
+  ],
+};
+
+const position: AST = {
+  name: 'div',
+  type: 'label',
+  styles: [
+    {
+      key: 'height',
+      value: '100%',
+    },
+    {
+      key: 'width',
+      value: '100%',
+    },
+    {
+      key: 'position',
+      value: 'relative',
+    },
+  ],
+  children: [
+    {
+      name: 'div',
+      type: 'label',
+      styles: [
+        {
+          key: 'position',
+          value: 'absolute',
+        },
+        {
+          key: 'width',
+          value: '50px',
+        },
+        {
+          key: 'height',
+          value: '50px',
+        },
+        {
+          key: 'top',
+          value: '10px',
+        },
+        {
+          key: 'left',
+          value: '10px',
+        },
+        {
+          key: 'background',
+          value: '#f5f5f5',
+        },
       ],
       children: [],
     },
@@ -264,24 +324,43 @@ const scroll: AST = {
 
 const LayoutAST = [
   {
-    title: 'Flex 横向',
-    layout: flexRow,
+    title: '基础',
+    children: [
+      {
+        title: '空 DIV',
+        layout: none,
+      },
+      {
+        title: '滚动',
+        layout: scroll,
+      },
+      {
+        title: 'Position',
+        layout: position,
+      },
+    ],
   },
   {
-    title: 'Flex 纵向',
-    layout: flexColum,
+    title: 'Flex',
+    children: [
+      {
+        title: 'Flex 横向',
+        layout: flexRow,
+      },
+      {
+        title: 'Flex 纵向',
+        layout: flexColum,
+      },
+    ],
   },
   {
-    title: '移动端上下 Padding',
-    layout: mobile,
-  },
-  {
-    title: '滚动',
-    layout: scroll,
-  },
-  {
-    title: '空盒子',
-    layout: none,
+    title: '移动端',
+    children: [
+      {
+        title: '头部/底部: Padding',
+        layout: mobile,
+      },
+    ],
   },
 ];
 

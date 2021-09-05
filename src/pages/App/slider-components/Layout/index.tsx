@@ -1,12 +1,13 @@
 import { AST } from 'src/model';
 import { useContext } from 'react';
 import styles from './index.module.scss';
-import { LayoutAST } from 'src/pages/App/slider-components/Layout/const';
 import { PagesContext } from 'src/context';
 import _ from 'lodash';
 import { Tooltip } from 'antd';
 import { PageService } from 'src/controller';
 import { EventType } from 'src/controller/browser';
+import Collapse from 'src/pages/components/Collapse';
+import { LayoutAST } from './const';
 
 const Layout: React.FC<{}> = () => {
   const { pagesService } = useContext(PagesContext);
@@ -15,10 +16,22 @@ const Layout: React.FC<{}> = () => {
 
   return (
     <div className={styles.container}>
-      {LayoutAST.map((layout, index) => (
-        <div key={index} className={styles.layoutWarper}>
-          <Item layout={layout} page={page} />
-        </div>
+      {LayoutAST.map(({ children, title }) => (
+        <Collapse
+          header={
+            <div className={styles.header}>
+              <span>{title}</span>
+            </div>
+          }
+        >
+          <div key={title} className={styles.layoutWarper}>
+            {children.map(layout => (
+              <div key={layout.title} className={styles.item}>
+                <Item layout={layout} page={page} />
+              </div>
+            ))}
+          </div>
+        </Collapse>
       ))}
     </div>
   );
