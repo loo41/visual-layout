@@ -17,9 +17,7 @@ const Header: React.FC<{
         <div className={styles.pages}>
           {Object.values(pagesService.getPages()).map(({ name, id }) => {
             const style = {
-              border: `1px solid ${
-                id === pagesService.currentId ? 'rgb(145, 213, 255)' : ''
-              }`,
+              border: `1px solid ${id === pagesService.currentId ? '#1890ff' : ''}`,
             };
             return (
               <div key={id} className={styles.page} style={style}>

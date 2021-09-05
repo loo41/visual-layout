@@ -5,6 +5,15 @@
   display: flex;
   justify-content: flex-end;
   cursor: pointer;
+  div {
+    width: 50px;
+    height: 20px;
+    border-radius: 5px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .flexWarper {

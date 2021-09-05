@@ -234,17 +234,19 @@ const Flex: React.FC<CssProps> = ({ style = [], onChange }) => {
   return (
     <div className={styles.flexContainer}>
       <div className={styles.clear}>
-        <Tooltip placement="right" title="清空">
-          <ClearOutlined
-            onClick={() => {
-              onChange?.([
-                ...style.filter(
-                  css => !config.map(({ key }) => key).includes(css.key),
-                ),
-              ]);
-            }}
-          />
-        </Tooltip>
+        <div>
+          <Tooltip placement="right" title="清空">
+            <ClearOutlined
+              onClick={() => {
+                onChange?.([
+                  ...style.filter(
+                    css => !config.map(({ key }) => key).includes(css.key),
+                  ),
+                ]);
+              }}
+            />
+          </Tooltip>
+        </div>
       </div>
       {config.map(({ title, key, getValue, items }) => (
         <div className={styles.flexWarper} key={key}>
@@ -256,7 +258,7 @@ const Flex: React.FC<CssProps> = ({ style = [], onChange }) => {
               const selectStyle =
                 value === getValue({ style })
                   ? {
-                      border: `1px solid rgb(145, 213, 255)`,
+                      border: `1px solid #1890ff`,
                     }
                   : {};
               return (
