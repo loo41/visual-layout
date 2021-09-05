@@ -30,7 +30,7 @@ const Drawer: React.FC<{}> = () => {
   return (
     <div
       className={styles.drawer}
-      style={{ display: isShow ? 'block' : 'none', width: width }}
+      style={{ display: isShow ? 'flex' : 'none', width: width }}
     >
       <div className={styles.slider}>
         <Tooltip placement="bottom" title="宽度">
@@ -50,7 +50,7 @@ const Drawer: React.FC<{}> = () => {
           }}
         />
       </div>
-      <Tabs style={{ width: '100%', marginTop: 10 }}>
+      <Tabs className={styles.tabs}>
         {isComponentDisable && (
           <>
             <TabPane tab="属性" key="style">
@@ -62,7 +62,7 @@ const Drawer: React.FC<{}> = () => {
           </>
         )}
         {!isComponentDisable && (
-          <TabPane tab="组件" key="component">
+          <TabPane tab="组件" key="component" className="tests">
             <ComponentEdit page={page} />
           </TabPane>
         )}

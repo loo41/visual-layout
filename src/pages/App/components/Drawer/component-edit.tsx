@@ -10,7 +10,6 @@ const ComponentEdit: React.FC<{ page: PageService }> = ({ page }) => {
   const updateComponent = (code: string) => {
     clear();
     timer.current = window.setTimeout(() => {
-      debugger;
       if (isTrueComponent(code)) {
         page?.setComponent(JSON.parse(code));
       }
@@ -49,7 +48,7 @@ const ComponentEdit: React.FC<{ page: PageService }> = ({ page }) => {
 
   return (
     <MonacoEditor
-      height="88vh"
+      height="100%"
       language="javascript"
       theme="vs"
       value={value}

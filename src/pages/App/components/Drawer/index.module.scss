@@ -28,3 +28,13 @@
     margin-right: 5px;
   }
 }
+
+.tabs {
+  flex: 1;
+  padding-top: 10px !important;
+  :global {
+    .ant-tabs-content {
+      height: 100% !important;
+    }
+  }
+}
