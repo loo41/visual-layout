@@ -1,9 +1,30 @@
+@import 'src/theme/_colors.scss';
+
 .drawer {
   width: 300px;
   background-color: white;
   padding: 20px;
+  position: relative;
 }
 
 .input {
   font-size: 12px;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0px;
+  background-color: map-get($colors, 'background');
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  margin-bottom: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  cursor: pointer;
+  span {
+    margin-right: 5px;
+  }
 }

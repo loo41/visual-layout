@@ -56,6 +56,7 @@ const ComponentEdit: React.FC<{ page: PageService }> = ({ page }) => {
       options={{
         language: 'json',
         scrollBeyondLastLine: false,
+        automaticLayout: true,
       }}
       onChange={code => updateComponent(code)}
     />
