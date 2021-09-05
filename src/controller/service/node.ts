@@ -3,6 +3,7 @@ import { AST, Node, Style } from 'src/model';
 import { NodeOption } from 'src/model/node';
 import { PageService } from '..';
 import { EventType } from '../browser';
+import { Component } from 'src/controller/react/container';
 
 export default class NodeService extends Node {
   constructor(Options: NodeOption, public pageService?: PageService) {
@@ -33,6 +34,14 @@ export default class NodeService extends Node {
 
   setStyles = (styles: Style[]) => {
     this.styles = styles;
+  };
+
+  setContent = (content: string) => {
+    this.content = content;
+  };
+
+  setComponent = (component: Component) => {
+    this.component = component;
   };
 
   clearEffect = () => {

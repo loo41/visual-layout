@@ -1,0 +1,18 @@
+@import 'src/theme/_colors.scss';
+
+.header {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background-color: map-get($colors, 'background');
+  height: 40px;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px 0;
+  .icon {
+    width: 25px;
+  }
+  .content {
+    flex: 1;
+  }
+}

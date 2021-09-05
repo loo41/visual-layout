@@ -1,8 +1,9 @@
 import { isObject } from 'src/util';
 import { Page, AST, Style } from 'src/model';
-import { DocEvent, Doc, EventType } from '../browser';
+import { EventType } from '../browser';
 import { NodeService } from '..';
 import { Options } from '../const';
+import { Component } from 'src/controller/react/container';
 
 export interface Update {
   // eslint-disable-next-line
@@ -11,8 +12,6 @@ export interface Update {
 
 export default class PageService extends Page {
   public update: Update;
-  public Doc: Doc;
-  public DocEvent: DocEvent;
   public options: Options;
   public updateSign: boolean = false;
   constructor(options: Options) {
@@ -21,8 +20,6 @@ export default class PageService extends Page {
     this.id = options.id;
     this.name = options.name;
     this.update = this.bindUpdate(options.update);
-    this.Doc = new Doc();
-    this.DocEvent = new DocEvent();
 
     this.setPage(this.createNode(options.page, true));
   }
@@ -103,9 +100,19 @@ export default class PageService extends Page {
     this.update({ description: '更新样式' });
   };
 
+  setContent = (content: string) => {
+    this.currentNode.map(node => node.setContent(content));
+    this.update({ description: '添加内容' });
+  };
+
+  setComponent = (component: Component) => {
+    this.currentNode.map(node => node.setComponent(component));
+    this.update({ description: '更新组件' });
+  };
+
   setClassName = (className: string) => {
     this.currentNode.map(node => node.setClassName(className));
-    this.update({ description: '设置 ClassName' });
+    this.update({ description: '设置Class' });
   };
 
   createView = () => {

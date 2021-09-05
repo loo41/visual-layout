@@ -1,4 +1,3 @@
-import { useCallback } from 'react';
 import { PageService } from 'src/controller';
 import { Options } from '..';
 import styles from './index.module.scss';

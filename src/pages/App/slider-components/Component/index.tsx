@@ -1,4 +1,4 @@
-import { Button, Menu } from 'antd';
+import { Button, Cascader, Menu, Pagination, Steps } from 'antd';
 import _ from 'lodash';
 import React, { useContext } from 'react';
 import { PagesContext } from 'src/context';
@@ -13,6 +13,9 @@ const Components: React.FC<{}> = () => {
 
   pagesService.components.set('Button', Button);
   pagesService.components.set('Menu', Menu);
+  pagesService.components.set('Pagination', Pagination);
+  pagesService.components.set('Steps', Steps);
+  pagesService.components.set('Cascader', Cascader);
 
   const page = pagesService.getCurrentPage();
 

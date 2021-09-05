@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import styles from './index.module.scss';
 import React from 'react';
 import { getDoubleTime } from 'src/util';
-import { HistorySet } from 'src/model';
+import { HistoryLog } from 'src/model';
 import { RedoOutlined, UndoOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
 
@@ -75,7 +75,7 @@ const HistoryList = ({
   renderSpanIcon,
   className,
 }: {
-  history: HistorySet;
+  history: HistoryLog;
   renderSpanIcon: (id: number) => React.ReactNode;
   className?: string;
 }) => {

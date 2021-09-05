@@ -2,6 +2,7 @@ import { Input, Select } from 'antd';
 import { useEffect } from 'react';
 import { useRef } from 'react';
 import { useState } from 'react';
+import styles from '../index.module.scss';
 import { CssProps } from '../config';
 
 const { Option } = Select;
@@ -26,20 +27,22 @@ const Width: React.FC<CssProps> = ({ style = [], onChange }) => {
   }, [style]);
 
   const setStyle = () => {
-    if (width.value !== `${value}${option}`) {
+    if (width?.value !== `${value}${option}`) {
       onChange?.([
-        ...style.filter(css => css.key !== KEY),
         {
           key: KEY,
           value: `${value}${option}`,
         },
+        ...style.filter(css => css.key !== KEY),
       ]);
     }
   };
 
   return (
-    <div>
+    <div className={styles.container}>
+      <h4 style={{ width: 50 }}>宽度</h4>
       <Input
+        style={{ width: 150 }}
         addonAfter={
           <Select
             defaultValue="px"

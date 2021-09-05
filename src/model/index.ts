@@ -14,17 +14,19 @@ export interface Style {
   title?: string;
 }
 
+export const COMPONENT = Symbol.for('Component');
+
 export interface AST {
   name: string;
-  type: 'label' | 'component';
-  styles: Style[];
+  type: 'label' | symbol;
   children: AST[];
+  styles?: Style[];
   element?: React.ReactElement;
   component?: Component;
   className?: string;
 }
 
-export interface HistorySet {
+export interface HistoryLog {
   id: number;
   time: Date;
   node: NodeService;

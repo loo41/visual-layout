@@ -1,11 +1,11 @@
-import { HistorySet } from '.';
+import { HistoryLog } from '.';
 
 const MAX_HISTORY = 100;
 
 class History {
-  private _history: HistorySet[] = [];
-  private _future: HistorySet[] = [];
-  set history(history: HistorySet[]) {
+  private _history: HistoryLog[] = [];
+  private _future: HistoryLog[] = [];
+  set history(history: HistoryLog[]) {
     this._history = history;
     while (this.history.length > MAX_HISTORY) {
       this._history.shift();
@@ -14,7 +14,7 @@ class History {
   get history() {
     return this._history;
   }
-  set future(future: HistorySet[]) {
+  set future(future: HistoryLog[]) {
     this._future = future;
     while (this._future.length > MAX_HISTORY) {
       this._future.shift();

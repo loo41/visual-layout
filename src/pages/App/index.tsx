@@ -8,14 +8,14 @@ import { PagesProvider } from 'src/context';
 function App() {
   return (
     <PagesProvider>
-      <Layout style={{ height: '100vh' }}>
-        <Header></Header>
+      <Layout style={{ height: 'calc(100vh - 35px)' }}>
         <Layout>
           <Sider />
           <Content />
           <Drawer />
         </Layout>
       </Layout>
+      <Header></Header>
     </PagesProvider>
   );
 }

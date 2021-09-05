@@ -1,8 +1,8 @@
-import { HistorySet } from 'src/model';
+import { HistoryLog } from 'src/model';
 import History from 'src/model/history';
 
 class HistoryService extends History {
-  keep = (rest: Omit<HistorySet, 'id' | 'time'>) => {
+  keep = (rest: Omit<HistoryLog, 'id' | 'time'>) => {
     const history = {
       id: new Date().getMilliseconds(),
       time: new Date(),
@@ -38,9 +38,9 @@ class HistoryService extends History {
 
   backOff = (step: number = 1) => {
     while (step > 0) {
-      const history = this.history.pop();
-      if (history) {
-        this.future.push(history);
+      const future = this.history.pop();
+      if (future) {
+        this.future.push(future);
       }
       step--;
     }
@@ -56,7 +56,7 @@ class HistoryService extends History {
     }
   };
 
-  current = (): HistorySet => {
+  current = (): HistoryLog => {
     return this.history[this.history.length - 1];
   };
 }

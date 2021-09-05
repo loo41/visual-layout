@@ -15,6 +15,9 @@ const strikeToCamel = (str: string) => {
   });
 };
 
+const isFunction = (obj: any) =>
+  Object.prototype.toString.call(obj) === '[object Function]';
+
 const getStylesProps = (node: NodeService) => {
   const { styles, isSelect } = node;
 
@@ -27,4 +30,5 @@ const getStylesProps = (node: NodeService) => {
       return styles;
     }, {});
 };
-export { randomStr, strikeToCamel, getStylesProps };
+
+export { randomStr, strikeToCamel, getStylesProps, isFunction };

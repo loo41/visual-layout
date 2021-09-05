@@ -4,7 +4,6 @@ import {
   LayoutOutlined,
   AppstoreOutlined,
 } from '@ant-design/icons';
-import { Button } from 'antd';
 
 export interface Menu {
   icon: React.ReactNode;
@@ -18,13 +17,13 @@ const getSiderMenu = (): Menu[] => {
     {
       id: 'layout',
       icon: <LayoutOutlined style={{ fontSize: 24 }} />,
-      title: '常见布局',
+      title: '布局',
       component: <LayoutComponent />,
     },
     {
       id: 'history',
       icon: <HistoryOutlined style={{ fontSize: 24 }} />,
-      title: '历史记录',
+      title: '历史',
       component: <History />,
     },
     {

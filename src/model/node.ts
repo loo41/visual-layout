@@ -1,23 +1,27 @@
 import _ from 'lodash';
-import { type } from 'os';
 import { NodeService } from 'src/controller';
 import { Doc } from 'src/controller/browser';
 import { Component } from 'src/controller/react/container';
 import { randomStr } from 'src/controller/util';
 import { AST, Style } from '.';
 
-export type NodeOption = AST & { isRoot?: boolean; children?: NodeService[] };
+export type NodeOption = AST & {
+  isRoot?: boolean;
+  children?: NodeService[];
+  id?: number;
+};
 class Node extends Doc {
-  public type: 'label' | 'component';
+  public type: 'label' | symbol;
   public name: string;
-  private _styles: Style[];
   public children: NodeService[];
-  public element?: React.ReactElement;
   public isDelete: boolean = false;
   public isSelect: boolean = false;
+  public element?: React.ReactElement;
   public isRoot?: boolean = false;
+  private _styles?: Style[];
   public className?: string;
   public component?: Component;
+  public content?: string;
   public id?: number;
   private static random: number = 1;
   private static classNames: string[] = [];
@@ -31,6 +35,7 @@ class Node extends Doc {
       element,
       className,
       component,
+      id,
       isRoot = false,
     } = Option;
     this.type = type;
@@ -40,7 +45,7 @@ class Node extends Doc {
     this.element = element;
     this.isRoot = isRoot;
     this.component = component;
-    this.id = Node.Random();
+    this.id = id || Node.Random();
 
     if (className) {
       this.className = className;

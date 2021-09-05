@@ -1,4 +1,3 @@
-import { type } from 'os';
 import { PageService } from 'src/controller';
 
 export type Components = Map<string, unknown>;

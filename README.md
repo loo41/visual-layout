@@ -34,7 +34,7 @@
 - Support Multi Page ✅
 - Support Layout ✅
 - Support History Operation ✅
-- Support Visual Component
+- Support Visual Component ✅
 - Support Visual Styles
 - Support Export Code
 - Support Css unit (Rem, Vw)

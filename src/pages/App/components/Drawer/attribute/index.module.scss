@@ -1,0 +1,17 @@
+@import 'src/theme/_colors.scss';
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 50px;
+  border-bottom: 1px solid map-get($colors, 'border');
+  flex-wrap: wrap;
+  padding: 10px 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -1,11 +1,12 @@
 import React from 'react';
 import { DragEleId } from 'src/const';
+import { COMPONENT } from 'src/model';
 import { NodeService } from '..';
 
 class DocEvent {
   private static dragData: { [props: string]: NodeService } = {};
 
-  onDrop = (node: NodeService) => (ev: DragEvent) => {
+  onDrop = (node: NodeService) => (ev: React.DragEvent) => {
     ev.preventDefault();
     ev.stopPropagation();
     const id = ev.dataTransfer?.getData(DragEleId);
@@ -21,14 +22,15 @@ class DocEvent {
     }
   };
 
-  onDragover = (node: NodeService) => (ev: DragEvent) => {
+  onDragover = (node: NodeService) => (ev: React.DragEvent) => {
     ev.preventDefault();
     if (ev.dataTransfer?.dropEffect) {
       ev.dataTransfer.dropEffect = 'move';
     }
   };
 
-  onClick = (node: NodeService) => (ev: MouseEvent) => {
+  onClick = (node: NodeService) => (ev: React.MouseEvent) => {
+    ev.stopPropagation();
     // some node click return
     if (
       node.pageService?.currentNode.map(node => node.toString()).join(';') ===
@@ -36,7 +38,11 @@ class DocEvent {
     ) {
       return;
     }
-    ev.stopPropagation();
+
+    if (node.type !== COMPONENT && ev.currentTarget !== ev.target) {
+      // component no click event
+    }
+
     node.pageService?.setCurrentNode([node]);
   };
 
@@ -45,7 +51,7 @@ class DocEvent {
     return {
       id,
       draggable: true,
-      onDragStart: (ev: DragEvent) => {
+      onDragStart: (ev: React.DragEvent) => {
         // fix self drag
         Reflect.set(DocEvent.dragData, id, node.copy());
         ev.dataTransfer?.setData(DragEleId, id);

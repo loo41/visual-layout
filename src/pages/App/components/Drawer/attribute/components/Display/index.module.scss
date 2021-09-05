@@ -1,0 +1,43 @@
+@import 'src/pages/App/components/Drawer/attribute/index.module.scss';
+@import 'src/theme/_colors.scss';
+
+.clear {
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+
+.flexWarper {
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0;
+  font-size: 12px;
+  .flexItem {
+    display: flex;
+    height: 25px;
+    margin-top: 5px;
+    font-size: 16px;
+    div {
+      flex: 1;
+      background-color: white;
+      margin: 0 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border-radius: 5px;
+      img {
+        height: 16px;
+        width: 16px;
+      }
+    }
+  }
+}
+
+.flexContainer {
+  width: 100%;
+  padding: 10px;
+  background: map-get($colors, 'background');
+  margin-top: 10px;
+  border-radius: 5px;
+}
