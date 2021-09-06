@@ -4,7 +4,7 @@ import History from 'src/model/history';
 class HistoryService extends History {
   keep = (rest: Omit<HistoryLog, 'id' | 'time'>) => {
     const history = {
-      id: new Date().getMilliseconds(),
+      id: this.id,
       time: new Date(),
       ...rest,
     };
