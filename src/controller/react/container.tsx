@@ -33,13 +33,17 @@ export function Container<T extends Args>({
 
     const Component = components.get(name.split('.')[0]);
 
-    // support two level component
-    const C = /\./.test(name) ? (Component as any)?.[name.split('.')[1]] : Component;
+    // support HTML label
+    const C = /^[A-Z]/.test(name)
+      ? /\./.test(name) // support two level component
+        ? (Component as any)?.[name.split('.')[1]]
+        : Component
+      : name;
 
     const props = Object.entries(rest).reduce(
       (props: { [props: string]: unknown }, [key, value]) => {
         const isComponent =
-          value && typeof value === 'object' && (value as Component)?.name;
+          value && typeof value === 'object' && (value as Component)?._name;
 
         props[key] = isComponent ? render(value as Component) : value;
         return props;
@@ -58,7 +62,8 @@ export function Container<T extends Args>({
     };
 
     if (!C) {
-      return new Error(`${name} component not found`);
+      console.error(`${name} component not found`);
+      return <></>;
     }
 
     // component? component: string
