@@ -18,13 +18,14 @@ const Layout: React.FC<{}> = () => {
     <div className={styles.container}>
       {LayoutAST.map(({ children, title }) => (
         <Collapse
+          key={title}
           header={
             <div className={styles.header}>
               <span>{title}</span>
             </div>
           }
         >
-          <div key={title} className={styles.layoutWarper}>
+          <div className={styles.layoutWarper}>
             {children.map(layout => (
               <div key={layout.title} className={styles.item}>
                 <Item layout={layout} page={page} />
