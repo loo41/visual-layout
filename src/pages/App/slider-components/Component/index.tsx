@@ -1,4 +1,4 @@
-import { Button, Cascader, Menu, Pagination, Steps } from 'antd';
+import * as components from 'antd';
 import _ from 'lodash';
 import React, { useContext } from 'react';
 import { PagesContext } from 'src/context';
@@ -11,11 +11,7 @@ import styles from './index.module.scss';
 const Components: React.FC<{}> = () => {
   const { pagesService } = useContext(PagesContext);
 
-  pagesService.components.set('Button', Button);
-  pagesService.components.set('Menu', Menu);
-  pagesService.components.set('Pagination', Pagination);
-  pagesService.components.set('Steps', Steps);
-  pagesService.components.set('Cascader', Cascader);
+  pagesService.registerComponents(components);
 
   const page = pagesService.getCurrentPage();
 

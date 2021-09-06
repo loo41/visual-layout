@@ -61,4 +61,9 @@ export default class PagesService extends Pages {
   getCurrentPage = (): PageService => {
     return Object.values(this.pages).filter(({ id }) => id === this.currentId)[0];
   };
+  registerComponents = (components: { [props: string]: unknown }) => {
+    for (const [key, value] of Object.entries(components)) {
+      this.components.set(key, value);
+    }
+  };
 }
