@@ -3,19 +3,18 @@ import { NodeService } from 'src/controller';
 import { Doc } from 'src/controller/browser';
 import { Component } from 'src/controller/react/container';
 import { randomStr } from 'src/controller/util';
-import { AST, Pages, Style } from '.';
+import { AST, Style } from '.';
 
 export type NodeOption = AST & {
   isRoot?: boolean;
   children?: NodeService[];
   id?: number;
   content?: string;
-  [Pages.COMPONENT_NAME]?: string;
 };
 
 class Node extends Doc {
-  public type: 'label' | symbol;
-  public [Pages.NODE_NAME]: string;
+  public type: 'element' | 'Component';
+  public _name: string;
   public children: NodeService[];
   public isDelete: boolean = false;
   public isSelect: boolean = false;
@@ -34,6 +33,7 @@ class Node extends Doc {
       type,
       styles,
       children,
+      _name,
       element,
       className,
       component,
@@ -42,7 +42,7 @@ class Node extends Doc {
       isRoot = false,
     } = Option;
     this.type = type;
-    this[Pages.NODE_NAME] = Option[Pages.NODE_NAME];
+    this._name = _name;
     this._styles = styles;
     this.children = children;
     this.element = element;

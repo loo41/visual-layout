@@ -14,8 +14,8 @@ export interface Style {
   title?: string;
 }
 export interface AST {
-  [Pages.NODE_NAME]: string;
-  type: 'label' | symbol;
+  _name: string;
+  type: 'element' | 'Component';
   children: AST[];
   styles?: Style[];
   element?: React.ReactElement;

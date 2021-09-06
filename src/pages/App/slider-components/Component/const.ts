@@ -1,68 +1,68 @@
 import _ from 'lodash';
-import { AST, Pages } from 'src/model';
+import { AST } from 'src/model';
 
 export const Components: AST[] = [
   {
-    [Pages.NODE_NAME]: '',
-    type: Pages.COMPONENT,
+    _name: '',
+    type: 'Component',
     styles: [],
     children: [],
     component: {
-      [Pages.COMPONENT_NAME]: 'Button',
+      _name: 'Button',
       type: 'primary',
       children: 'Button',
     },
   },
   {
-    [Pages.NODE_NAME]: '',
-    type: Pages.COMPONENT,
+    _name: '',
+    type: 'Component',
     styles: [],
     children: [],
     component: {
-      [Pages.COMPONENT_NAME]: 'Menu',
+      _name: 'Menu',
       children: [
         {
-          [Pages.COMPONENT_NAME]: 'Menu.Item',
+          _name: 'Menu.Item',
           children: 'Navigation One',
         },
         {
-          [Pages.COMPONENT_NAME]: 'Menu.Item',
+          _name: 'Menu.Item',
           children: 'Navigation Two',
         },
         {
-          [Pages.COMPONENT_NAME]: 'Menu.Item',
+          _name: 'Menu.Item',
           children: 'Navigation Three',
         },
       ],
     },
   },
   {
-    [Pages.NODE_NAME]: '',
-    type: Pages.COMPONENT,
+    _name: '',
+    type: 'Component',
     styles: [],
     children: [],
     component: {
-      [Pages.COMPONENT_NAME]: 'Pagination',
+      _name: 'Pagination',
       defaultCurrent: 1,
       total: 50,
     },
   },
   {
-    [Pages.NODE_NAME]: '',
-    type: Pages.COMPONENT,
+    _name: '',
+    type: 'Component',
     styles: [],
     children: [],
     component: {
-      [Pages.COMPONENT_NAME]: 'Steps',
+      _name: 'Steps',
       current: 1,
       children: [
         {
-          [Pages.COMPONENT_NAME]: 'Steps.Step',
+          _name: 'Steps.Step',
           title: 'Finished',
           description: 'This is a description.',
         },
         {
-          [Pages.COMPONENT_NAME]: 'Steps.Step',
+          _name: 'Steps.Step',
           title: 'In Progress',
           description: 'This is a description.',
         },
@@ -70,12 +70,12 @@ export const Components: AST[] = [
     },
   },
   {
-    [Pages.NODE_NAME]: '',
-    type: Pages.COMPONENT,
+    _name: '',
+    type: 'Component',
     styles: [],
     children: [],
     component: {
-      [Pages.COMPONENT_NAME]: 'Cascader',
+      _name: 'Cascader',
       options: [
         {
           value: 'zhejiang',
@@ -116,8 +116,8 @@ export const Components: AST[] = [
 ];
 
 const container: AST = {
-  [Pages.NODE_NAME]: 'div',
-  type: 'label',
+  _name: 'div',
+  type: 'element',
   styles: [],
   children: [],
 };

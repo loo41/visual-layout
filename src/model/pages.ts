@@ -6,7 +6,4 @@ export default class Pages {
   public idx: number = 1;
   public currentId?: string;
   public components: Map<string, unknown> = new Map();
-  static readonly COMPONENT = Symbol.for('Component');
-  static readonly COMPONENT_NAME = Symbol.for('Name');
-  static readonly NODE_NAME = Symbol.for('Name');
 }

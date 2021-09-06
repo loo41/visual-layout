@@ -2,10 +2,9 @@ import React from 'react';
 import { useContext } from 'react';
 import { PagesContext } from 'src/context';
 import { isFunction } from 'src/controller/util';
-import { Pages } from 'src/model';
 
 export type Component = {
-  [Pages.COMPONENT_NAME]: string;
+  _name: string;
   children?: Component[] | string;
   [props: string]: unknown;
 };
@@ -30,7 +29,7 @@ export function Container<T extends Args>({
   function render<T extends Args>(component: Component, args?: T): React.ReactNode {
     const { children, ...rest } = component;
 
-    const name = component[Pages.COMPONENT_NAME];
+    const name = component._name;
 
     const Component = components.get(name.split('.')[0]);
 

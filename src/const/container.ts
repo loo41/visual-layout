@@ -1,8 +1,8 @@
-import { AST, Pages } from 'src/model';
+import { AST } from 'src/model';
 
 const phone: AST = {
-  [Pages.NODE_NAME]: 'div',
-  type: 'label',
+  _name: 'div',
+  type: 'element',
   styles: [
     {
       key: 'height',

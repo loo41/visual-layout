@@ -1,14 +1,9 @@
 import React from 'react';
-import { AST, Node, Pages, Style } from 'src/model';
+import { AST, Node, Style } from 'src/model';
 import { NodeOption } from 'src/model/node';
 import { PageService } from '..';
 import { EventType } from '../browser';
 import { Component } from 'src/controller/react/container';
-
-export type JSONComponent = Omit<Component, 'children'> & {
-  _name: string;
-  children?: JSONComponent[] | string;
-};
 
 export default class NodeService extends Node {
   constructor(Options: NodeOption, public pageService?: PageService) {
@@ -26,6 +21,7 @@ export default class NodeService extends Node {
       children,
       element,
       content,
+      _name,
       className,
       component,
       isRoot,
@@ -35,7 +31,7 @@ export default class NodeService extends Node {
         type,
         styles,
         element,
-        [Pages.NODE_NAME]: (node || this)[Pages.NODE_NAME],
+        _name,
         isRoot,
         className,
         component,
@@ -67,23 +63,6 @@ export default class NodeService extends Node {
     const { id, children } = this;
     // why isSelect (toString can`t change component no`t update)
     return `${id}:${children.map(node => node.toString())}`;
-  };
-
-  componentToJSON = (Component?: Component): JSONComponent | undefined => {
-    const component = Component || this.component;
-
-    return (
-      component && {
-        _name: component[Pages.COMPONENT_NAME],
-        ...component,
-        children:
-          typeof component?.children === 'string'
-            ? component?.children
-            : (component?.children
-                ?.map(child => this.componentToJSON(child))
-                .filter(_ => _) as JSONComponent[]),
-      }
-    );
   };
 
   setClassName = (className: string) => {

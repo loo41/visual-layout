@@ -1,8 +1,8 @@
-import { AST, Pages } from 'src/model';
+import { AST } from 'src/model';
 
 const flexRow: AST = {
-  [Pages.NODE_NAME]: 'div',
-  type: 'label',
+  _name: 'div',
+  type: 'element',
   styles: [
     { key: 'display', value: 'flex' },
     {
@@ -16,8 +16,8 @@ const flexRow: AST = {
   ],
   children: new Array(3).fill(0).map(item => {
     return {
-      [Pages.NODE_NAME]: 'div',
-      type: 'label',
+      _name: 'div',
+      type: 'element',
       styles: [
         {
           key: 'display',
@@ -44,8 +44,8 @@ const flexRow: AST = {
 };
 
 const flexColum: AST = {
-  [Pages.NODE_NAME]: 'div',
-  type: 'label',
+  _name: 'div',
+  type: 'element',
   styles: [
     { key: 'display', value: 'flex' },
     { key: 'flex-direction', value: 'column' },
@@ -60,8 +60,8 @@ const flexColum: AST = {
   ],
   children: new Array(3).fill(0).map(item => {
     return {
-      [Pages.NODE_NAME]: 'div',
-      type: 'label',
+      _name: 'div',
+      type: 'element',
       styles: [
         {
           key: 'display',
@@ -88,8 +88,8 @@ const flexColum: AST = {
 };
 
 const mobile: AST = {
-  [Pages.NODE_NAME]: 'div',
-  type: 'label',
+  _name: 'div',
+  type: 'element',
   styles: [
     { key: 'padding', value: '50px 0' },
     {
@@ -111,8 +111,8 @@ const mobile: AST = {
   ],
   children: [
     {
-      [Pages.NODE_NAME]: 'div',
-      type: 'label',
+      _name: 'div',
+      type: 'element',
       styles: [
         {
           key: 'position',
@@ -138,8 +138,8 @@ const mobile: AST = {
       children: [],
     },
     {
-      [Pages.NODE_NAME]: 'div',
-      type: 'label',
+      _name: 'div',
+      type: 'element',
       styles: [
         {
           key: 'flex',
@@ -161,8 +161,8 @@ const mobile: AST = {
       children: [],
     },
     {
-      [Pages.NODE_NAME]: 'div',
-      type: 'label',
+      _name: 'div',
+      type: 'element',
       styles: [
         {
           key: 'position',
@@ -191,8 +191,8 @@ const mobile: AST = {
 };
 
 const none: AST = {
-  [Pages.NODE_NAME]: 'div',
-  type: 'label',
+  _name: 'div',
+  type: 'element',
   styles: [
     {
       key: 'height',
@@ -209,8 +209,8 @@ const none: AST = {
   ],
   children: [
     {
-      [Pages.NODE_NAME]: 'div',
-      type: 'label',
+      _name: 'div',
+      type: 'element',
       styles: [
         {
           key: 'height',
@@ -231,8 +231,8 @@ const none: AST = {
 };
 
 const scroll: AST = {
-  [Pages.NODE_NAME]: 'div',
-  type: 'label',
+  _name: 'div',
+  type: 'element',
   styles: [
     {
       key: 'height',
@@ -249,8 +249,8 @@ const scroll: AST = {
   ],
   children: [
     {
-      [Pages.NODE_NAME]: 'div',
-      type: 'label',
+      _name: 'div',
+      type: 'element',
       styles: [
         {
           key: 'height',
@@ -271,8 +271,8 @@ const scroll: AST = {
 };
 
 const position: AST = {
-  [Pages.NODE_NAME]: 'div',
-  type: 'label',
+  _name: 'div',
+  type: 'element',
   styles: [
     {
       key: 'height',
@@ -289,8 +289,8 @@ const position: AST = {
   ],
   children: [
     {
-      [Pages.NODE_NAME]: 'div',
-      type: 'label',
+      _name: 'div',
+      type: 'element',
       styles: [
         {
           key: 'position',
