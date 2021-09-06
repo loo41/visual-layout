@@ -2,16 +2,29 @@ import { PageService } from 'src/controller';
 import MonacoEditor from 'react-monaco-editor';
 import { Component } from 'src/controller/react/container';
 import { useRef } from 'react';
+import { injectionName, recoverySymbol } from 'src/util';
+
+export type JSONComponent = Omit<Component, 'children'> & {
+  name: string;
+  children?: JSONComponent[] | string;
+};
 
 const ComponentEdit: React.FC<{ page: PageService }> = ({ page }) => {
   const timer = useRef<number>();
-  const value = JSON.stringify(page?.currentNode[0]?.component, null, 2) || '';
+
+  const component: JSONComponent | {} =
+    (page?.currentNode[0]?.component &&
+      injectionName(page?.currentNode[0]?.component)) ||
+    {};
+
+  const value = JSON.stringify(component, null, 2) || '';
 
   const updateComponent = (code: string) => {
     clear();
     timer.current = window.setTimeout(() => {
       if (isTrueComponent(code)) {
-        page?.setComponent(JSON.parse(code));
+        const component = JSON.parse(code);
+        page?.setComponent(recoverySymbol(component));
       }
     }, 3000);
 
