@@ -113,6 +113,184 @@ export const Components: AST[] = [
       placeholder: 'Please select',
     },
   },
+  {
+    _name: '',
+    type: 'Component',
+    styles: [],
+    children: [],
+    component: {
+      _name: 'Checkbox.Group',
+      options: ['Apple', 'Pear', 'Orange'],
+    },
+  },
+  {
+    _name: '',
+    type: 'Component',
+    styles: [],
+    children: [],
+    component: {
+      _name: 'DatePicker',
+    },
+  },
+  {
+    _name: '',
+    type: 'Component',
+    styles: [],
+    children: [],
+    component: {
+      _name: 'Input',
+      placeholder: 'Basic usage',
+    },
+  },
+  {
+    _name: '',
+    type: 'Component',
+    styles: [],
+    children: [],
+    component: {
+      _name: 'InputNumber',
+      defaultValue: 10,
+    },
+  },
+  {
+    _name: '',
+    type: 'Component',
+    styles: [],
+    children: [],
+    component: {
+      _name: 'Mentions',
+      placeholder: 'Mentions',
+      children: [
+        {
+          _name: 'Mentions.Option',
+          value: 'afc163',
+          children: 'afc163',
+        },
+        {
+          _name: 'Mentions.Option',
+          value: 'zombieJ',
+          children: 'zombieJ',
+        },
+        {
+          _name: 'Mentions.Option',
+          value: 'yesmeck',
+          children: 'yesmeck',
+        },
+      ],
+    },
+  },
+  {
+    _name: '',
+    type: 'Component',
+    styles: [],
+    children: [],
+    component: {
+      _name: 'Radio',
+      children: 'Radio',
+    },
+  },
+  {
+    _name: '',
+    type: 'Component',
+    styles: [],
+    children: [],
+    component: {
+      _name: 'Rate',
+    },
+  },
+  {
+    _name: '',
+    type: 'Component',
+    styles: [],
+    children: [],
+    component: {
+      _name: 'Select',
+      defaultValue: 'lucy',
+      children: [
+        {
+          _name: 'Select.Option',
+          value: 'jack',
+          children: 'jack',
+        },
+        {
+          _name: 'Select.Option',
+          value: 'lucy',
+          children: 'lucy',
+        },
+        {
+          _name: 'Select.Option',
+          value: 'Disabled',
+          children: 'Disabled',
+          disabled: true,
+        },
+      ],
+    },
+  },
+  {
+    _name: '',
+    type: 'Component',
+    styles: [],
+    children: [],
+    component: {
+      _name: 'Slider',
+      defaultValue: 30,
+    },
+  },
+  {
+    _name: '',
+    type: 'Component',
+    styles: [],
+    children: [],
+    component: {
+      _name: 'Switch',
+      defaultChecked: true,
+    },
+  },
+  {
+    _name: '',
+    type: 'Component',
+    styles: [],
+    children: [],
+    component: {
+      _name: 'TimePicker',
+    },
+  },
+  {
+    _name: '',
+    type: 'Component',
+    styles: [],
+    children: [],
+    component: {
+      _name: 'Avatar',
+      size: 32,
+    },
+  },
+  {
+    _name: '',
+    type: 'Component',
+    styles: [],
+    children: [],
+    component: {
+      _name: 'Badge',
+      count: 5,
+      children: [
+        {
+          _name: 'Avatar',
+          size: 32,
+        },
+      ],
+    },
+  },
+  {
+    _name: '',
+    type: 'Component',
+    styles: [],
+    children: [],
+    component: {
+      _name: 'Avatar',
+      src: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    },
+  },
 ];
 
 const container: AST = {
