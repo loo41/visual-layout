@@ -2,7 +2,7 @@ import { PagesContext } from 'src/context';
 import { useContext } from 'react';
 import styles from './index.module.scss';
 import React from 'react';
-import { getDoubleTime } from 'src/util';
+import { formatTime } from 'src/util';
 import { HistoryLog } from 'src/model';
 import { RedoOutlined, UndoOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
@@ -80,14 +80,6 @@ const HistoryList = ({
   renderSpanIcon: (id: number) => React.ReactNode;
   className?: string;
 }) => {
-  const formatTime = (time: Date): React.ReactNode => {
-    return `${time.getFullYear()}/${
-      time.getMonth() + 1
-    }/${time.getDate()}  ${time.getHours()}:${getDoubleTime(
-      time.getMinutes(),
-    )}:${getDoubleTime(time.getSeconds())}`;
-  };
-
   const { id, time, description } = history;
   return (
     <div className={`${styles.history} ${className}`}>
