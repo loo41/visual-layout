@@ -15,7 +15,7 @@ export type NodeOption = AST & {
 
 class Node extends Doc {
   public type: 'label' | symbol;
-  public [Pages.COMPONENT_NAME]: string;
+  public [Pages.NODE_NAME]: string;
   public children: NodeService[];
   public isDelete: boolean = false;
   public isSelect: boolean = false;
@@ -42,7 +42,7 @@ class Node extends Doc {
       isRoot = false,
     } = Option;
     this.type = type;
-    this[Pages.COMPONENT_NAME] = Option[Pages.COMPONENT_NAME];
+    this[Pages.NODE_NAME] = Option[Pages.NODE_NAME];
     this._styles = styles;
     this.children = children;
     this.element = element;

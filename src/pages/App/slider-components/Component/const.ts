@@ -3,7 +3,7 @@ import { AST, Pages } from 'src/model';
 
 export const Components: AST[] = [
   {
-    [Pages.COMPONENT_NAME]: '',
+    [Pages.NODE_NAME]: '',
     type: Pages.COMPONENT,
     styles: [],
     children: [],
@@ -14,7 +14,7 @@ export const Components: AST[] = [
     },
   },
   {
-    [Pages.COMPONENT_NAME]: '',
+    [Pages.NODE_NAME]: '',
     type: Pages.COMPONENT,
     styles: [],
     children: [],
@@ -37,7 +37,7 @@ export const Components: AST[] = [
     },
   },
   {
-    [Pages.COMPONENT_NAME]: '',
+    [Pages.NODE_NAME]: '',
     type: Pages.COMPONENT,
     styles: [],
     children: [],
@@ -48,7 +48,7 @@ export const Components: AST[] = [
     },
   },
   {
-    [Pages.COMPONENT_NAME]: '',
+    [Pages.NODE_NAME]: '',
     type: Pages.COMPONENT,
     styles: [],
     children: [],
@@ -70,7 +70,7 @@ export const Components: AST[] = [
     },
   },
   {
-    [Pages.COMPONENT_NAME]: '',
+    [Pages.NODE_NAME]: '',
     type: Pages.COMPONENT,
     styles: [],
     children: [],
@@ -116,7 +116,7 @@ export const Components: AST[] = [
 ];
 
 const container: AST = {
-  [Pages.COMPONENT_NAME]: 'div',
+  [Pages.NODE_NAME]: 'div',
   type: 'label',
   styles: [],
   children: [],

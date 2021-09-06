@@ -14,7 +14,7 @@ export interface Style {
   title?: string;
 }
 export interface AST {
-  [Pages.COMPONENT_NAME]: string;
+  [Pages.NODE_NAME]: string;
   type: 'label' | symbol;
   children: AST[];
   styles?: Style[];

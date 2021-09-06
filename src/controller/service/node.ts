@@ -30,7 +30,7 @@ export default class NodeService extends Node {
         type,
         styles,
         element,
-        [Pages.COMPONENT_NAME]: (node || this)[Pages.COMPONENT_NAME],
+        [Pages.NODE_NAME]: (node || this)[Pages.NODE_NAME],
         isRoot,
         className,
         component,
