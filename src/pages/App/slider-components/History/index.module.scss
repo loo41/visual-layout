@@ -2,6 +2,8 @@
 
 .container {
   padding: 10px;
+  height: 100%;
+  overflow: scroll;
   .history {
     height: 30px;
     display: flex;
