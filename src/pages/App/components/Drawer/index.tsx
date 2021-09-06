@@ -1,7 +1,7 @@
 import { InputNumber, Tabs, Tooltip } from 'antd';
 import { useContext } from 'react';
 import { PagesContext } from 'src/context';
-import Css from './css';
+import CssEdit from './css-edit';
 import styles from './index.module.scss';
 import ComponentEdit from './component-edit';
 import { COMPONENT } from 'src/model';
@@ -57,7 +57,7 @@ const Drawer: React.FC<{}> = () => {
               <Attribute page={page} />
             </TabPane>
             <TabPane tab="CSS" key="css">
-              <Css page={page} />
+              <CssEdit page={page} />
             </TabPane>
           </>
         )}
