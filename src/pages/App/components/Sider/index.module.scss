@@ -4,9 +4,10 @@
   .body {
     height: 100%;
     width: 100%;
-    overflow: auto;
+    display: flex;
     flex-direction: column;
     .card {
+      display: flex;
       flex-direction: column;
       height: 100%;
       .title {
@@ -16,10 +17,10 @@
         display: flex;
         align-items: center;
         border-bottom: 1px solid #f0f0f0;
+        margin-bottom: 0;
       }
       .component {
-        flex: 1;
-        overflow: auto;
+        height: calc(100% - 50px);
       }
     }
   }
