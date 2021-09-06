@@ -2,20 +2,14 @@ import { PageService } from 'src/controller';
 import MonacoEditor from 'react-monaco-editor';
 import { Component } from 'src/controller/react/container';
 import { useRef } from 'react';
-import { injectionName, recoverySymbol } from 'src/util';
-
-export type JSONComponent = Omit<Component, 'children'> & {
-  name: string;
-  children?: JSONComponent[] | string;
-};
+import { recoverySymbol } from 'src/util';
+import { JSONComponent } from 'src/controller/service/node';
 
 const ComponentEdit: React.FC<{ page: PageService }> = ({ page }) => {
   const timer = useRef<number>();
 
   const component: JSONComponent | {} =
-    (page?.currentNode[0]?.component &&
-      injectionName(page?.currentNode[0]?.component)) ||
-    {};
+    page?.currentNode[0]?.componentToJSON() || {};
 
   const value = JSON.stringify(component, null, 2) || '';
 
@@ -42,7 +36,7 @@ const ComponentEdit: React.FC<{ page: PageService }> = ({ page }) => {
 
       const isComponent = (component: Component): boolean => {
         return !!(
-          (component.name || component.name === '') &&
+          (component._name || component._name === '') &&
           ((component.children && typeof component.children === 'string'
             ? true
             : Array.isArray(component.children)
