@@ -8,7 +8,7 @@ export const Components: AST[] = [
     styles: [],
     children: [],
     component: {
-      name: 'Button',
+      [Pages.COMPONENT_NAME]: 'Button',
       type: 'primary',
       children: 'Button',
     },
@@ -19,18 +19,18 @@ export const Components: AST[] = [
     styles: [],
     children: [],
     component: {
-      name: 'Menu',
+      [Pages.COMPONENT_NAME]: 'Menu',
       children: [
         {
-          name: 'Menu.Item',
+          [Pages.COMPONENT_NAME]: 'Menu.Item',
           children: 'Navigation One',
         },
         {
-          name: 'Menu.Item',
+          [Pages.COMPONENT_NAME]: 'Menu.Item',
           children: 'Navigation Two',
         },
         {
-          name: 'Menu.Item',
+          [Pages.COMPONENT_NAME]: 'Menu.Item',
           children: 'Navigation Three',
         },
       ],
@@ -42,7 +42,7 @@ export const Components: AST[] = [
     styles: [],
     children: [],
     component: {
-      name: 'Pagination',
+      [Pages.COMPONENT_NAME]: 'Pagination',
       defaultCurrent: 1,
       total: 50,
     },
@@ -53,16 +53,16 @@ export const Components: AST[] = [
     styles: [],
     children: [],
     component: {
-      name: 'Steps',
+      [Pages.COMPONENT_NAME]: 'Steps',
       current: 1,
       children: [
         {
-          name: 'Steps.Step',
+          [Pages.COMPONENT_NAME]: 'Steps.Step',
           title: 'Finished',
           description: 'This is a description.',
         },
         {
-          name: 'Steps.Step',
+          [Pages.COMPONENT_NAME]: 'Steps.Step',
           title: 'In Progress',
           description: 'This is a description.',
         },
@@ -75,7 +75,7 @@ export const Components: AST[] = [
     styles: [],
     children: [],
     component: {
-      name: 'Cascader',
+      [Pages.COMPONENT_NAME]: 'Cascader',
       options: [
         {
           value: 'zhejiang',
