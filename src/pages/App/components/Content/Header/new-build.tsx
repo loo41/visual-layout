@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { PreviewStyle, SelectStyle } from 'src/const';
 import { models } from 'src/const/container';
 import { PagesService } from 'src/controller';
+import { Pages } from 'src/model';
 import Size from './component/size';
 
 export interface Values {
@@ -36,7 +37,7 @@ export const CreateModal: React.FC<{ pagesService: PagesService }> = ({
     pagesService.cerate({
       name: values.name,
       page: {
-        name: 'div',
+        [Pages.COMPONENT_NAME]: 'div',
         type: 'label',
         styles: [
           {

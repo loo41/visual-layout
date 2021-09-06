@@ -13,11 +13,8 @@ export interface Style {
   value: string;
   title?: string;
 }
-
-export const COMPONENT = Symbol.for('Component');
-
 export interface AST {
-  name: string;
+  [Pages.COMPONENT_NAME]: string;
   type: 'label' | symbol;
   children: AST[];
   styles?: Style[];

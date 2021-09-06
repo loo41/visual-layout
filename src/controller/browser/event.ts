@@ -1,6 +1,6 @@
 import React from 'react';
 import { DragEleId } from 'src/const';
-import { COMPONENT } from 'src/model';
+import { Pages } from 'src/model';
 import { NodeService } from '..';
 
 class DocEvent {
@@ -39,7 +39,7 @@ class DocEvent {
       return;
     }
 
-    if (node.type !== COMPONENT && ev.currentTarget !== ev.target) {
+    if (node.type !== Pages.COMPONENT && ev.currentTarget !== ev.target) {
       // component no click event
     }
 

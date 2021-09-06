@@ -4,7 +4,7 @@ import { PagesContext } from 'src/context';
 import CssEdit from './css-edit';
 import styles from './index.module.scss';
 import ComponentEdit from './component-edit';
-import { COMPONENT } from 'src/model';
+import { Pages } from 'src/model';
 import Attribute from './attribute';
 import { ColumnWidthOutlined } from '@ant-design/icons';
 import { useState } from 'react';
@@ -20,7 +20,7 @@ const Drawer: React.FC<{}> = () => {
 
   const page = pagesService.getCurrentPage();
 
-  const isComponentDisable = page?.currentNode[0]?.type !== COMPONENT;
+  const isComponentDisable = page?.currentNode[0]?.type !== Pages.COMPONENT;
   const isShow = page?.currentNode.length;
 
   useEffect(() => {

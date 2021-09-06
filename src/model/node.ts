@@ -3,17 +3,19 @@ import { NodeService } from 'src/controller';
 import { Doc } from 'src/controller/browser';
 import { Component } from 'src/controller/react/container';
 import { randomStr } from 'src/controller/util';
-import { AST, Style } from '.';
+import { AST, Pages, Style } from '.';
 
 export type NodeOption = AST & {
   isRoot?: boolean;
   children?: NodeService[];
   id?: number;
   content?: string;
+  [Pages.COMPONENT_NAME]?: string;
 };
+
 class Node extends Doc {
   public type: 'label' | symbol;
-  public name: string;
+  public [Pages.COMPONENT_NAME]: string;
   public children: NodeService[];
   public isDelete: boolean = false;
   public isSelect: boolean = false;
@@ -30,7 +32,6 @@ class Node extends Doc {
     super();
     const {
       type,
-      name,
       styles,
       children,
       element,
@@ -41,7 +42,7 @@ class Node extends Doc {
       isRoot = false,
     } = Option;
     this.type = type;
-    this.name = name;
+    this[Pages.COMPONENT_NAME] = Option[Pages.COMPONENT_NAME];
     this._styles = styles;
     this.children = children;
     this.element = element;

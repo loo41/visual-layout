@@ -1,5 +1,5 @@
 import React from 'react';
-import { AST, Node, Style } from 'src/model';
+import { AST, Node, Pages, Style } from 'src/model';
 import { NodeOption } from 'src/model/node';
 import { PageService } from '..';
 import { EventType } from '../browser';
@@ -17,7 +17,6 @@ export default class NodeService extends Node {
   copy = (node?: NodeService): NodeService => {
     const {
       type,
-      name,
       styles,
       children,
       element,
@@ -31,7 +30,7 @@ export default class NodeService extends Node {
         type,
         styles,
         element,
-        name,
+        [Pages.COMPONENT_NAME]: (node || this)[Pages.COMPONENT_NAME],
         isRoot,
         className,
         component,

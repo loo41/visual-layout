@@ -1,13 +1,10 @@
 import _ from 'lodash';
-import { AST, COMPONENT } from 'src/model';
-import * as any from 'antd';
-
-console.log('any', any);
+import { AST, Pages } from 'src/model';
 
 export const Components: AST[] = [
   {
-    name: '',
-    type: COMPONENT,
+    [Pages.COMPONENT_NAME]: '',
+    type: Pages.COMPONENT,
     styles: [],
     children: [],
     component: {
@@ -17,8 +14,8 @@ export const Components: AST[] = [
     },
   },
   {
-    name: '',
-    type: COMPONENT,
+    [Pages.COMPONENT_NAME]: '',
+    type: Pages.COMPONENT,
     styles: [],
     children: [],
     component: {
@@ -40,8 +37,8 @@ export const Components: AST[] = [
     },
   },
   {
-    name: '',
-    type: COMPONENT,
+    [Pages.COMPONENT_NAME]: '',
+    type: Pages.COMPONENT,
     styles: [],
     children: [],
     component: {
@@ -51,8 +48,8 @@ export const Components: AST[] = [
     },
   },
   {
-    name: '',
-    type: COMPONENT,
+    [Pages.COMPONENT_NAME]: '',
+    type: Pages.COMPONENT,
     styles: [],
     children: [],
     component: {
@@ -73,8 +70,8 @@ export const Components: AST[] = [
     },
   },
   {
-    name: '',
-    type: COMPONENT,
+    [Pages.COMPONENT_NAME]: '',
+    type: Pages.COMPONENT,
     styles: [],
     children: [],
     component: {
@@ -119,7 +116,7 @@ export const Components: AST[] = [
 ];
 
 const container: AST = {
-  name: 'div',
+  [Pages.COMPONENT_NAME]: 'div',
   type: 'label',
   styles: [],
   children: [],

@@ -1,7 +1,7 @@
-import { AST } from 'src/model';
+import { AST, Pages } from 'src/model';
 
 const phone: AST = {
-  name: 'div',
+  [Pages.COMPONENT_NAME]: 'div',
   type: 'label',
   styles: [
     {

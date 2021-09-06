@@ -1,7 +1,7 @@
-import { AST } from 'src/model';
+import { AST, Pages } from 'src/model';
 
 const flexRow: AST = {
-  name: 'div',
+  [Pages.COMPONENT_NAME]: 'div',
   type: 'label',
   styles: [
     { key: 'display', value: 'flex' },
@@ -16,7 +16,7 @@ const flexRow: AST = {
   ],
   children: new Array(3).fill(0).map(item => {
     return {
-      name: 'div',
+      [Pages.COMPONENT_NAME]: 'div',
       type: 'label',
       styles: [
         {
@@ -44,7 +44,7 @@ const flexRow: AST = {
 };
 
 const flexColum: AST = {
-  name: 'div',
+  [Pages.COMPONENT_NAME]: 'div',
   type: 'label',
   styles: [
     { key: 'display', value: 'flex' },
@@ -60,7 +60,7 @@ const flexColum: AST = {
   ],
   children: new Array(3).fill(0).map(item => {
     return {
-      name: 'div',
+      [Pages.COMPONENT_NAME]: 'div',
       type: 'label',
       styles: [
         {
@@ -88,7 +88,7 @@ const flexColum: AST = {
 };
 
 const mobile: AST = {
-  name: 'div',
+  [Pages.COMPONENT_NAME]: 'div',
   type: 'label',
   styles: [
     { key: 'padding', value: '50px 0' },
@@ -111,7 +111,7 @@ const mobile: AST = {
   ],
   children: [
     {
-      name: 'div',
+      [Pages.COMPONENT_NAME]: 'div',
       type: 'label',
       styles: [
         {
@@ -138,7 +138,7 @@ const mobile: AST = {
       children: [],
     },
     {
-      name: 'div',
+      [Pages.COMPONENT_NAME]: 'div',
       type: 'label',
       styles: [
         {
@@ -161,7 +161,7 @@ const mobile: AST = {
       children: [],
     },
     {
-      name: 'div',
+      [Pages.COMPONENT_NAME]: 'div',
       type: 'label',
       styles: [
         {
@@ -191,7 +191,7 @@ const mobile: AST = {
 };
 
 const none: AST = {
-  name: 'div',
+  [Pages.COMPONENT_NAME]: 'div',
   type: 'label',
   styles: [
     {
@@ -209,7 +209,7 @@ const none: AST = {
   ],
   children: [
     {
-      name: 'div',
+      [Pages.COMPONENT_NAME]: 'div',
       type: 'label',
       styles: [
         {
@@ -231,7 +231,7 @@ const none: AST = {
 };
 
 const scroll: AST = {
-  name: 'div',
+  [Pages.COMPONENT_NAME]: 'div',
   type: 'label',
   styles: [
     {
@@ -249,7 +249,7 @@ const scroll: AST = {
   ],
   children: [
     {
-      name: 'div',
+      [Pages.COMPONENT_NAME]: 'div',
       type: 'label',
       styles: [
         {
@@ -271,7 +271,7 @@ const scroll: AST = {
 };
 
 const position: AST = {
-  name: 'div',
+  [Pages.COMPONENT_NAME]: 'div',
   type: 'label',
   styles: [
     {
@@ -289,7 +289,7 @@ const position: AST = {
   ],
   children: [
     {
-      name: 'div',
+      [Pages.COMPONENT_NAME]: 'div',
       type: 'label',
       styles: [
         {

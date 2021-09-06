@@ -4,7 +4,7 @@ import DocEvent from './event';
 import { NodeService } from '..';
 import { getStylesProps } from '../util';
 import { render } from 'src/controller/react';
-import { COMPONENT } from 'src/model';
+import { Pages } from 'src/model';
 
 class Doc extends DocEvent {
   create = ({
@@ -14,7 +14,7 @@ class Doc extends DocEvent {
     node: NodeService;
     eventType?: EventType;
   }): React.ReactElement => {
-    const { type, name, className, children, content, component } = node;
+    const { type, className, children, content, component } = node;
 
     const props =
       eventType === EventType.container
@@ -26,7 +26,7 @@ class Doc extends DocEvent {
         : eventType && this.createContainerEvent(node);
 
     node.element =
-      type === COMPONENT
+      type === Pages.COMPONENT
         ? component
           ? render(
               component,
@@ -36,7 +36,7 @@ class Doc extends DocEvent {
             )
           : React.createElement('')
         : React.createElement(
-            name,
+            node[Pages.COMPONENT_NAME],
             { style: getStylesProps(node), className: className, ...props },
             [
               content,
