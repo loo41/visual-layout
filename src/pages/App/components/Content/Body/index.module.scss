@@ -3,6 +3,7 @@
   min-width: 100%;
   background-color: rgb(240, 242, 245);
   padding: 20px;
+  display: flex;
   overflow: auto;
   transform-origin: 0 0;
 
@@ -10,7 +11,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: auto;
+    flex: 1;
   }
 }
 
