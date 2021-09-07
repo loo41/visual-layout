@@ -18,8 +18,7 @@ export default class Keyboard {
       });
       this.pagesService.getCurrentPage().update({ description: '复制元素' });
     });
-    keyboard.bind('ctrl + backspace', e => {
-      console.log(e);
+    keyboard.bind('ctrl + backspace', () => {
       console.log('Delete');
       const currentNode = this.pagesService.getCurrentPage().currentNode;
       if (currentNode.some(({ isRoot }) => isRoot)) {
