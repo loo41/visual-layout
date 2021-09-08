@@ -5,6 +5,12 @@ import { cloneDeep } from 'src/util';
 import { PagesService } from 'src/controller';
 import { PreviewStyle, SelectStyle } from 'src/const';
 
+export const Options = {
+  page: cloneDeep(phone),
+  selectStyle: SelectStyle,
+  previewStyle: PreviewStyle,
+};
+
 const pagesService = new PagesService();
 export const PagesContext = createContext<{
   pagesService: PagesService;
@@ -22,11 +28,7 @@ export const PagesProvider: React.FC<{}> = ({ children }) => {
   });
 
   useEffect(() => {
-    pagesService.cerate({
-      page: cloneDeep(phone),
-      selectStyle: SelectStyle,
-      previewStyle: PreviewStyle,
-    });
+    pagesService.cerate(Options);
   }, []);
 
   return (

@@ -1,4 +1,5 @@
 import { NodeService } from '..';
+import { EventType } from '../browser';
 
 const randomStr = (strLen: number = 5) => {
   const str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
@@ -18,10 +19,15 @@ const strikeToCamel = (str: string) => {
 const isFunction = (obj: any) =>
   Object.prototype.toString.call(obj) === '[object Function]';
 
-const getStylesProps = (node: NodeService) => {
+const getStylesProps = (node: NodeService, eventType?: EventType) => {
   const { styles, isSelect } = node;
 
-  return (node.pageService?.options.previewStyle || [])
+  const previewStyle =
+    node.pageService?.options.previewStyle.filter(
+      ({ isCanUse }) => !eventType || eventType === EventType.layout || isCanUse,
+    ) || [];
+
+  return previewStyle
     .concat(isSelect ? node.pageService?.options.selectStyle || [] : [])
     .concat(styles)
     .reduce((styles: { [props: string]: string }, style) => {

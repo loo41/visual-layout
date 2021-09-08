@@ -36,7 +36,11 @@ class Doc extends DocEvent {
           : React.createElement('')
         : React.createElement(
             node._name,
-            { style: getStylesProps(node), className: className, ...props },
+            {
+              style: getStylesProps(node, eventType),
+              className: className,
+              ...props,
+            },
             [
               content,
               ...children?.map(page =>

@@ -33,7 +33,11 @@ export default class PagesService extends Pages {
         name: options.name || id,
         selectStyle: options.selectStyle || [],
         page: options.page,
-        previewStyle: options.previewStyle || [],
+        previewStyle:
+          options.previewStyle.map(option => ({
+            ...option,
+            isCanUse: true,
+          })) || [],
       }),
     );
     this.currentId = id;

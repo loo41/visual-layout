@@ -12,16 +12,19 @@ const PreviewStyle = [
     key: 'border',
     value: '1px dashed #000000',
     title: '虚线边框',
+    isCanUse: true,
   },
   {
     key: 'padding',
     value: '5px',
     title: '外边距',
+    isCanUse: true,
   },
   {
     key: 'background',
     value: 'white',
     title: '白色背景',
+    isCanUse: true,
   },
 ];
 export { DragEleId, SelectStyle, PreviewStyle };
