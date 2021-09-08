@@ -36,7 +36,7 @@ export default class PagesService extends Pages {
         previewStyle:
           options.previewStyle.map(option => ({
             ...option,
-            isCanUse: true,
+            isCanUse: option?.isCanUse ?? true,
           })) || [],
       }),
     );
