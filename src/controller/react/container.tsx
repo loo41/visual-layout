@@ -2,10 +2,9 @@ import React from 'react';
 import { useContext } from 'react';
 import { PagesContext } from 'src/context';
 import { isFunction } from 'src/controller/util';
+import { AST } from 'src/model';
 
 export type Component = {
-  _name: string;
-  children?: Component[] | string;
   [props: string]: unknown;
 };
 
@@ -19,33 +18,31 @@ export function Container<T extends Args>({
   component,
   args,
 }: {
-  component: Component;
+  component: AST;
   args?: T;
 }) {
   const { pagesService } = useContext(PagesContext);
 
   const components = pagesService.components;
 
-  function render<T extends Args>(component: Component, args?: T): React.ReactNode {
-    const { children, ...rest } = component;
+  function render<T extends Args>(component: AST, args?: T): React.ReactNode {
+    const { _name, children, ...rest } = component;
 
-    const name = component._name;
-
-    const Component = components.get(name.split('.')[0]);
+    const Component = components.get(_name.split('.')[0]);
 
     // support HTML label
-    const C = /^[A-Z]/.test(name)
-      ? /\./.test(name) // support two level component
-        ? (Component as any)?.[name.split('.')[1]]
+    const C = /^[A-Z]/.test(_name)
+      ? /\./.test(_name) // support two level component
+        ? (Component as any)?.[_name.split('.')[1]]
         : Component
-      : name;
+      : _name;
 
-    const props = Object.entries(rest).reduce(
+    const props = Object.entries(rest.component || {}).reduce(
       (props: { [props: string]: unknown }, [key, value]) => {
         const isComponent =
-          value && typeof value === 'object' && (value as Component)?._name;
+          value && typeof value === 'object' && (value as AST)?._name;
 
-        props[key] = isComponent ? render(value as Component) : value;
+        props[key] = isComponent ? render(value as AST) : value;
         return props;
       },
       {},
@@ -62,16 +59,21 @@ export function Container<T extends Args>({
     };
 
     if (!C) {
-      console.error(`${name} component not found`);
+      console.error(`${_name} component not found`);
       return <></>;
     }
+
+    // element no children error
+
+    const childrenElement =
+      typeof children === 'string'
+        ? children
+        : children?.map(child => render(child));
 
     // component? component: string
     return (
       <C {...props} onClickCapture={onClickCapture}>
-        {typeof children === 'string'
-          ? children
-          : children?.map(child => render(child))}
+        {childrenElement}
       </C>
     );
   }
@@ -79,6 +81,6 @@ export function Container<T extends Args>({
   return <>{render(component, args)}</>;
 }
 
-export function render<T extends Args>(component: Component, args?: T) {
+export function render<T extends Args>(component: AST, args?: T) {
   return component ? <Container component={component} args={args} /> : <></>;
 }

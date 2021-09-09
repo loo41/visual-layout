@@ -1,5 +1,6 @@
 import { NodeService } from 'src/controller';
 import HistoryService from 'src/controller/service/history';
+import { isString } from 'src/controller/util';
 import { AST } from '.';
 
 export default class Page {
@@ -34,9 +35,11 @@ export default class Page {
       }
       return null;
     } else {
-      node.children = node.children
-        .map(node => this.clearDeleteNode(node))
-        .filter(_ => _) as NodeService[];
+      node.children = isString(node.children)
+        ? node.children
+        : (node.children
+            ?.map(node => this.clearDeleteNode(node))
+            .filter(_ => _) as NodeService[]);
       return node;
     }
   };

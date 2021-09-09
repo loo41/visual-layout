@@ -1,11 +1,11 @@
 import { PageService } from 'src/controller';
 import MonacoEditor from 'react-monaco-editor';
-import { Component } from 'src/controller/react/container';
 import { useRef } from 'react';
 import { Alert } from 'antd';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { formatTime } from 'src/util';
+import { JSONComponent } from 'src/model';
 
 const ComponentEdit: React.FC<{ page: PageService }> = ({ page }) => {
   const [errorMessage, setErrorMessage] = useState<string>('');
@@ -13,7 +13,7 @@ const ComponentEdit: React.FC<{ page: PageService }> = ({ page }) => {
   const timer = useRef<number>();
   const messageTimer = useRef<number>();
 
-  const component = page?.currentNode[0]?.component || {};
+  const component = page?.currentNode[0]?.getComponentConfig();
 
   const value = JSON.stringify(component, null, 2) || '';
 
@@ -45,17 +45,20 @@ const ComponentEdit: React.FC<{ page: PageService }> = ({ page }) => {
 
   const isTrueComponent = (code: string) => {
     try {
-      const component: Component = JSON.parse(code);
+      const component: JSONComponent = JSON.parse(code);
 
-      const isComponent = (component: Component): boolean => {
-        if (
-          (component._name || component._name === '') &&
-          ((component.children && typeof component.children === 'string'
+      const isComponent = (component: JSONComponent): boolean => {
+        const isTrueChildren =
+          (component.children && typeof component.children === 'string'
             ? true
             : Array.isArray(component.children)
             ? component.children.every(child => isComponent(child))
-            : false) ||
-            !component?.children)
+            : false) || !component?.children;
+
+        if (
+          component._name &&
+          isTrueChildren &&
+          ['Element', 'Component'].includes(component._type)
         ) {
           setErrorMessage('');
           return true;

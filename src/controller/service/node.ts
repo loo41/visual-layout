@@ -1,9 +1,10 @@
 import React from 'react';
-import { AST, Node, Style } from 'src/model';
-import { NodeOption } from 'src/model/node';
+import { AST, JSONComponent, Node, Style } from 'src/model';
+import { NodeOption } from 'src/model';
 import { PageService } from '..';
 import { EventType } from '../browser';
 import { Component } from 'src/controller/react/container';
+import { isString } from 'src/controller/util';
 
 export default class NodeService extends Node {
   constructor(Options: NodeOption, public pageService?: PageService) {
@@ -36,7 +37,9 @@ export default class NodeService extends Node {
         className,
         component,
         content,
-        children: children?.map(children => children.copy()) || [],
+        children: isString(children)
+          ? children
+          : children?.map(children => children.copy()),
       },
       this.pageService,
     );
@@ -50,19 +53,53 @@ export default class NodeService extends Node {
     this.content = content;
   };
 
-  setComponent = (component: Component) => {
-    this.component = component;
+  setComponent = (component: JSONComponent) => {
+    const { _name, children, _type, ...props } = component;
+    this._name = _name;
+    this.component = props;
+    this.type = _type;
+
+    const newNodeService = (options: JSONComponent): NodeService => {
+      const { _name, children, _type, ...rest } = options;
+      return new NodeService({
+        _name: options._name,
+        type: _type,
+        component: rest,
+        children: isString(children)
+          ? children
+          : children?.map(child => newNodeService(child)),
+      });
+    };
+
+    this.children = isString(children)
+      ? children
+      : children?.map(child => newNodeService(child));
+  };
+
+  getComponentConfig = (node: NodeService = this): Component => {
+    return {
+      _name: node._name,
+      _type: node.type,
+      ...node.component,
+      children: isString(node.children)
+        ? node.children
+        : node.children?.map(child => this.getComponentConfig(child)),
+    };
   };
 
   clearEffect = () => {
     this.isSelect = false;
-    this.children.forEach(node => node.clearEffect());
+    if (!isString(this.children)) {
+      this.children?.forEach(node => node.clearEffect());
+    }
   };
 
   toString = (): string => {
     const { id, children } = this;
     // why isSelect (toString can`t change component no`t update)
-    return `${id}:${children.map(node => node.toString())}`;
+    return `${id}:${
+      isString(children) ? children : children?.map(node => node.toString())
+    }`;
   };
 
   setClassName = (className: string) => {
@@ -72,7 +109,9 @@ export default class NodeService extends Node {
   static createNodeService = (target: AST): NodeService => {
     return new NodeService({
       ...target,
-      children: target.children.map(node => NodeService.createNodeService(node)),
+      children: isString(target.children)
+        ? target.children
+        : target.children?.map(node => NodeService.createNodeService(node)),
     });
   };
 }

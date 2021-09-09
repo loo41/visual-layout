@@ -3,79 +3,81 @@ import { AST } from 'src/model';
 
 export const Components: AST[] = [
   {
-    _name: '',
+    _name: 'Button',
     type: 'Component',
     styles: [],
-    children: [],
+    children: 'Button',
     component: {
-      _name: 'Button',
       type: 'primary',
-      children: 'Button',
     },
   },
   {
-    _name: '',
+    _name: 'Menu',
+    type: 'Component',
+    styles: [],
+    children: [
+      {
+        type: 'Component',
+        _name: 'Menu.Item',
+        children: 'Navigation One',
+      },
+      {
+        type: 'Component',
+        _name: 'Menu.Item',
+        children: 'Navigation Two',
+      },
+      {
+        type: 'Component',
+        _name: 'Menu.Item',
+        children: 'Navigation Three',
+      },
+    ],
+    component: {},
+  },
+  {
+    _name: 'Pagination',
     type: 'Component',
     styles: [],
     children: [],
     component: {
-      _name: 'Menu',
-      children: [
-        {
-          _name: 'Menu.Item',
-          children: 'Navigation One',
-        },
-        {
-          _name: 'Menu.Item',
-          children: 'Navigation Two',
-        },
-        {
-          _name: 'Menu.Item',
-          children: 'Navigation Three',
-        },
-      ],
-    },
-  },
-  {
-    _name: '',
-    type: 'Component',
-    styles: [],
-    children: [],
-    component: {
-      _name: 'Pagination',
       defaultCurrent: 1,
       total: 50,
     },
   },
   {
-    _name: '',
+    _name: 'Steps',
     type: 'Component',
     styles: [],
-    children: [],
-    component: {
-      _name: 'Steps',
-      current: 1,
-      children: [
-        {
-          _name: 'Steps.Step',
+    children: [
+      {
+        _name: 'Steps.Step',
+        type: 'Component',
+        children: [],
+        component: {
           title: 'Finished',
           description: 'This is a description.',
         },
-        {
-          _name: 'Steps.Step',
+      },
+      {
+        _name: 'Steps.Step',
+        type: 'Component',
+        children: [],
+        component: {
           title: 'In Progress',
           description: 'This is a description.',
         },
-      ],
+      },
+    ],
+    component: {
+      current: 1,
     },
   },
   {
-    _name: '',
+    _name: 'Cascader',
     type: 'Component',
     styles: [],
-    children: [],
+    children: null,
     component: {
-      _name: 'Cascader',
       options: [
         {
           value: 'zhejiang',
@@ -114,180 +116,182 @@ export const Components: AST[] = [
     },
   },
   {
-    _name: '',
+    _name: 'Checkbox.Group',
     type: 'Component',
     styles: [],
-    children: [],
+    children: null,
     component: {
-      _name: 'Checkbox.Group',
       options: ['Apple', 'Pear', 'Orange'],
     },
   },
   {
-    _name: '',
+    _name: 'DatePicker',
     type: 'Component',
     styles: [],
     children: [],
-    component: {
-      _name: 'DatePicker',
-    },
   },
   {
-    _name: '',
+    _name: 'Input',
     type: 'Component',
     styles: [],
-    children: [],
+    children: null,
     component: {
-      _name: 'Input',
       placeholder: 'Basic usage',
     },
   },
   {
-    _name: '',
+    _name: 'InputNumber',
     type: 'Component',
     styles: [],
-    children: [],
+    children: null,
     component: {
-      _name: 'InputNumber',
       defaultValue: 10,
     },
   },
   {
-    _name: '',
+    _name: 'Mentions',
     type: 'Component',
     styles: [],
-    children: [],
-    component: {
-      _name: 'Mentions',
-      placeholder: 'Mentions',
-      children: [
-        {
-          _name: 'Mentions.Option',
+    children: [
+      {
+        _name: 'Mentions.Option',
+        type: 'Component',
+        children: [],
+        component: {
           value: 'afc163',
           children: 'afc163',
         },
-        {
-          _name: 'Mentions.Option',
+      },
+      {
+        _name: 'Mentions.Option',
+        type: 'Component',
+        children: [],
+        component: {
           value: 'zombieJ',
           children: 'zombieJ',
         },
-        {
-          _name: 'Mentions.Option',
+      },
+      {
+        _name: 'Mentions.Option',
+        type: 'Component',
+        children: [],
+        component: {
           value: 'yesmeck',
           children: 'yesmeck',
         },
-      ],
+      },
+    ],
+    component: {
+      placeholder: 'Mentions',
     },
   },
   {
-    _name: '',
+    _name: 'Radio',
     type: 'Component',
     styles: [],
-    children: [],
-    component: {
-      _name: 'Radio',
-      children: 'Radio',
-    },
+    children: 'Radio',
   },
   {
-    _name: '',
+    _name: 'Rate',
     type: 'Component',
     styles: [],
     children: [],
-    component: {
-      _name: 'Rate',
-    },
   },
   {
-    _name: '',
+    _name: 'Select',
     type: 'Component',
     styles: [],
-    children: [],
-    component: {
-      _name: 'Select',
-      defaultValue: 'lucy',
-      children: [
-        {
-          _name: 'Select.Option',
+    children: [
+      {
+        _name: 'Select.Option',
+        type: 'Component',
+        children: [],
+        component: {
           value: 'jack',
           children: 'jack',
         },
-        {
-          _name: 'Select.Option',
+      },
+      {
+        _name: 'Select.Option',
+        type: 'Component',
+        children: [],
+        component: {
           value: 'lucy',
           children: 'lucy',
         },
-        {
-          _name: 'Select.Option',
+      },
+      {
+        _name: 'Select.Option',
+        type: 'Component',
+        children: [],
+        component: {
+          disabled: true,
           value: 'Disabled',
           children: 'Disabled',
-          disabled: true,
         },
-      ],
+      },
+    ],
+    component: {
+      defaultValue: 'lucy',
     },
   },
   {
-    _name: '',
+    _name: 'Slider',
     type: 'Component',
     styles: [],
     children: [],
     component: {
-      _name: 'Slider',
       defaultValue: 30,
     },
   },
   {
-    _name: '',
+    _name: 'Switch',
     type: 'Component',
     styles: [],
     children: [],
     component: {
-      _name: 'Switch',
       defaultChecked: true,
     },
   },
   {
-    _name: '',
+    _name: 'TimePicker',
     type: 'Component',
     styles: [],
     children: [],
-    component: {
-      _name: 'TimePicker',
-    },
   },
   {
-    _name: '',
+    _name: 'Avatar',
     type: 'Component',
     styles: [],
     children: [],
     component: {
-      _name: 'Avatar',
       size: 32,
     },
   },
   {
-    _name: '',
+    _name: 'Badge',
     type: 'Component',
     styles: [],
-    children: [],
-    component: {
-      _name: 'Badge',
-      count: 5,
-      children: [
-        {
-          _name: 'Avatar',
+    children: [
+      {
+        _name: 'Avatar',
+        type: 'Component',
+        children: [],
+        component: {
           size: 32,
         },
-      ],
+      },
+    ],
+    component: {
+      count: 5,
     },
   },
   {
-    _name: '',
+    _name: 'Avatar',
     type: 'Component',
     styles: [],
     children: [],
     component: {
-      _name: 'Avatar',
       src: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
     },
   },
@@ -295,7 +299,7 @@ export const Components: AST[] = [
 
 const container: AST = {
   _name: 'div',
-  type: 'element',
+  type: 'Element',
   styles: [],
   children: [],
 };

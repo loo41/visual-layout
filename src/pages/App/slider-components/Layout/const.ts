@@ -2,7 +2,7 @@ import { AST } from 'src/model';
 
 const flexRow: AST = {
   _name: 'div',
-  type: 'element',
+  type: 'Element',
   styles: [
     { key: 'display', value: 'flex' },
     {
@@ -17,7 +17,7 @@ const flexRow: AST = {
   children: new Array(3).fill(0).map(item => {
     return {
       _name: 'div',
-      type: 'element',
+      type: 'Element',
       styles: [
         {
           key: 'display',
@@ -45,7 +45,7 @@ const flexRow: AST = {
 
 const flexColum: AST = {
   _name: 'div',
-  type: 'element',
+  type: 'Element',
   styles: [
     { key: 'display', value: 'flex' },
     { key: 'flex-direction', value: 'column' },
@@ -61,7 +61,7 @@ const flexColum: AST = {
   children: new Array(3).fill(0).map(item => {
     return {
       _name: 'div',
-      type: 'element',
+      type: 'Element',
       styles: [
         {
           key: 'display',
@@ -89,7 +89,7 @@ const flexColum: AST = {
 
 const mobile: AST = {
   _name: 'div',
-  type: 'element',
+  type: 'Element',
   styles: [
     { key: 'padding', value: '50px 0' },
     {
@@ -112,7 +112,7 @@ const mobile: AST = {
   children: [
     {
       _name: 'div',
-      type: 'element',
+      type: 'Element',
       styles: [
         {
           key: 'position',
@@ -139,7 +139,7 @@ const mobile: AST = {
     },
     {
       _name: 'div',
-      type: 'element',
+      type: 'Element',
       styles: [
         {
           key: 'flex',
@@ -162,7 +162,7 @@ const mobile: AST = {
     },
     {
       _name: 'div',
-      type: 'element',
+      type: 'Element',
       styles: [
         {
           key: 'position',
@@ -192,7 +192,7 @@ const mobile: AST = {
 
 const none: AST = {
   _name: 'div',
-  type: 'element',
+  type: 'Element',
   styles: [
     {
       key: 'height',
@@ -210,7 +210,7 @@ const none: AST = {
   children: [
     {
       _name: 'div',
-      type: 'element',
+      type: 'Element',
       styles: [
         {
           key: 'height',
@@ -232,7 +232,7 @@ const none: AST = {
 
 const scroll: AST = {
   _name: 'div',
-  type: 'element',
+  type: 'Element',
   styles: [
     {
       key: 'height',
@@ -250,7 +250,7 @@ const scroll: AST = {
   children: [
     {
       _name: 'div',
-      type: 'element',
+      type: 'Element',
       styles: [
         {
           key: 'height',
@@ -272,7 +272,7 @@ const scroll: AST = {
 
 const position: AST = {
   _name: 'div',
-  type: 'element',
+  type: 'Element',
   styles: [
     {
       key: 'height',
@@ -290,7 +290,7 @@ const position: AST = {
   children: [
     {
       _name: 'div',
-      type: 'element',
+      type: 'Element',
       styles: [
         {
           key: 'position',

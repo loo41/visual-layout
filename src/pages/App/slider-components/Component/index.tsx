@@ -1,7 +1,7 @@
 import { SearchOutlined } from '@ant-design/icons';
 import * as components from 'antd';
 import _ from 'lodash';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
 import { PagesContext } from 'src/context';
 import { PageService } from 'src/controller';
@@ -14,7 +14,10 @@ const Components: React.FC<{}> = () => {
   const [value, setValue] = useState('');
   const { pagesService } = useContext(PagesContext);
 
-  pagesService.registerComponents(components);
+  useEffect(() => {
+    pagesService.registerComponents(components);
+    // eslint-disable-next-line
+  }, []);
 
   const page = pagesService.getCurrentPage();
 
@@ -32,14 +35,12 @@ const Components: React.FC<{}> = () => {
           return (
             !value ||
             !component.children ||
-            component.children.every(child => {
-              return (
-                !child.component ||
-                new RegExp(`${_.escapeRegExp(value)}`, 'ig').test(
-                  child.component?._name,
-                )
-              );
-            })
+            (typeof component.children !== 'string' &&
+              component.children.every(child => {
+                return new RegExp(`${_.escapeRegExp(value)}`, 'ig').test(
+                  child._name,
+                );
+              }))
           );
         }).map((ast, index) => (
           <Component key={index} ast={ast} page={page} />
@@ -54,7 +55,14 @@ const Component: React.FC<{ ast: AST; page: PageService }> = ({ ast, page }) => 
   const DOM = node?.createElement({ eventType: EventType.layout });
 
   return (
-    <components.Tooltip placement="right" title={ast.children[0]?.component?._name}>
+    <components.Tooltip
+      placement="right"
+      title={
+        typeof ast.children?.[0] === 'string'
+          ? ast.children[0]
+          : ast.children?.[0]._name
+      }
+    >
       <div>{DOM}</div>
     </components.Tooltip>
   );

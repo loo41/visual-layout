@@ -1,5 +1,6 @@
 import React from 'react';
 import { DragEleId } from 'src/const';
+import { isString } from 'src/controller/util';
 import { NodeService } from '..';
 
 class DocEvent {
@@ -15,7 +16,15 @@ class DocEvent {
         Reflect.deleteProperty(DocEvent.dragData, id);
         // up merge
         node.styles.push(...nodeService.styles);
-        node.children.push(...nodeService.children);
+
+        if (!isString(node.children)) {
+          node.children?.push(
+            // @ts-ignore
+            ...(isString(nodeService.children)
+              ? [nodeService.children]
+              : nodeService.children?.filter(_ => _)),
+          );
+        }
       }
       node.pageService?.update({ description: '添加元素' });
     }

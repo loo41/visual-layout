@@ -2,7 +2,7 @@ import { AST } from 'src/model';
 
 const phone: AST = {
   _name: 'div',
-  type: 'element',
+  type: 'Element',
   styles: [
     {
       key: 'height',

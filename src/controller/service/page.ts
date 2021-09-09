@@ -1,9 +1,9 @@
 import { isObject } from 'src/util';
-import { Page, AST, Style } from 'src/model';
+import { Page, AST, Style, JSONComponent } from 'src/model';
 import { EventType } from '../browser';
 import { NodeService } from '..';
 import { Options } from '../const';
-import { Component } from 'src/controller/react/container';
+import { isString } from 'src/controller/util';
 
 export interface Update {
   // eslint-disable-next-line
@@ -37,7 +37,9 @@ export default class PageService extends Page {
       {
         ...target,
         isRoot,
-        children: target.children.map(node => this.createNode(node)),
+        children: isString(target.children)
+          ? target.children
+          : target.children?.map(node => this.createNode(node)),
       },
       this,
     );
@@ -105,7 +107,7 @@ export default class PageService extends Page {
     this.update({ description: '添加内容' });
   };
 
-  setComponent = (component: Component) => {
+  setComponent = (component: JSONComponent) => {
     this.currentNode.map(node => node.setComponent(component));
     this.update({ description: '更新组件' });
   };

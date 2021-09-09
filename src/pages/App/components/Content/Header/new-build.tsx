@@ -37,7 +37,7 @@ export const CreateModal: React.FC<{ pagesService: PagesService }> = ({
       name: values.name,
       page: {
         _name: 'div',
-        type: 'element',
+        type: 'Element',
         styles: [
           {
             key: 'height',

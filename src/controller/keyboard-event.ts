@@ -1,5 +1,6 @@
 import keyboard from 'keyboardjs';
 import { NodeService, PagesService } from '.';
+import { isString } from 'src/controller/util';
 
 export default class Keyboard {
   private copyNode: NodeService[] = [];
@@ -14,7 +15,8 @@ export default class Keyboard {
     keyboard.bind('ctrl + v', () => {
       console.log('Paste');
       this.pagesService.getCurrentPage().currentNode.forEach(node => {
-        node.children.push(...this.copyNode.map(node => node.copy()));
+        !isString(node.children) &&
+          node.children?.push(...this.copyNode.map(node => node.copy()));
       });
       this.pagesService.getCurrentPage().update({ description: '复制元素' });
     });
