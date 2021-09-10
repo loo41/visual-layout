@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { formatTime } from 'src/util';
 import { JSONComponent } from 'src/model';
+import { isString } from 'lodash';
 
 const ComponentEdit: React.FC<{ page: PageService }> = ({ page }) => {
   const [errorMessage, setErrorMessage] = useState<string>('');
@@ -52,7 +53,9 @@ const ComponentEdit: React.FC<{ page: PageService }> = ({ page }) => {
           (component.children && typeof component.children === 'string'
             ? true
             : Array.isArray(component.children)
-            ? component.children.every(child => isComponent(child))
+            ? component.children.every(
+                child => isString(child) || isComponent(child),
+              )
             : false) || !component?.children;
 
         if (

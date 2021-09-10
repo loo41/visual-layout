@@ -15,15 +15,16 @@ export interface Style {
 }
 
 export type Children<T = AST> = T[] | string | null;
+
 export type JSONComponent = Pick<AST, '_name'> & {
-  children: Children<JSONComponent>;
+  children: Children<JSONComponent | string>;
   _type: 'Element' | 'Component';
 } & Component;
 
 export interface AST {
   _name: string;
   type: 'Element' | 'Component';
-  children?: Children;
+  children?: Children<AST | string>;
   styles?: Style[];
   element?: React.ReactElement;
   component?: Component;
@@ -32,7 +33,7 @@ export interface AST {
 
 export type NodeOption = AST & {
   isRoot?: boolean;
-  children?: Children<NodeService>;
+  children?: Children<NodeService | string>;
   id?: number;
   content?: string;
 };

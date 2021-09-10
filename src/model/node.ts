@@ -7,7 +7,7 @@ import { Children, NodeOption, Style } from '.';
 class Node extends Doc {
   public type: 'Element' | 'Component';
   public _name: string;
-  public children?: Children<NodeService>;
+  public children?: Children<NodeService | string>;
   public isDelete: boolean = false;
   public isSelect: boolean = false;
   public element?: React.ReactElement;

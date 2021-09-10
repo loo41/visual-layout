@@ -14,7 +14,7 @@ class Doc extends DocEvent {
     node: NodeService;
     eventType?: EventType;
   }): React.ReactElement => {
-    const { type, className, children, content } = node;
+    const { type, className, children } = node;
 
     const props =
       eventType === EventType.container
@@ -58,18 +58,24 @@ class Doc extends DocEvent {
               className: className,
               ...props,
             },
-            [
-              content,
-              isString(children)
-                ? children
-                : children?.map(page =>
-                    this.create({
-                      node: page,
-                      eventType:
-                        eventType === EventType.container ? eventType : undefined,
-                    }),
-                  ),
-            ],
+
+            isString(children)
+              ? children
+              : children
+                  ?.map(child =>
+                    isString(child)
+                      ? child
+                      : child
+                      ? this.create({
+                          node: child,
+                          eventType:
+                            eventType === EventType.container
+                              ? eventType
+                              : undefined,
+                        })
+                      : null,
+                  )
+                  .filter(_ => _),
           );
 
     return node.element;

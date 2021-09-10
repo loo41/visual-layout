@@ -1,3 +1,4 @@
+import { isString } from 'lodash';
 import React from 'react';
 import { useContext } from 'react';
 import { PagesContext } from 'src/context';
@@ -68,7 +69,7 @@ export function Container<T extends Args>({
     const childrenElement =
       typeof children === 'string'
         ? children
-        : children?.map(child => render(child));
+        : children?.map(child => (isString(child) ? child : render(child)));
 
     // component? component: string
     return (

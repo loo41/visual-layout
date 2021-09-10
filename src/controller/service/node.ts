@@ -5,6 +5,7 @@ import { PageService } from '..';
 import { EventType } from '../browser';
 import { Component } from 'src/controller/react/container';
 import { isString } from 'src/controller/util';
+import { isNull } from 'lodash';
 
 export default class NodeService extends Node {
   constructor(Options: NodeOption, public pageService?: PageService) {
@@ -39,7 +40,9 @@ export default class NodeService extends Node {
         content,
         children: isString(children)
           ? children
-          : children?.map(children => children.copy()),
+          : children?.map(children =>
+              isString(children) ? children : children.copy(),
+            ),
       },
       this.pageService,
     );
@@ -50,7 +53,19 @@ export default class NodeService extends Node {
   };
 
   setContent = (content: string) => {
-    this.content = content;
+    if (Array.isArray(this.children)) {
+      if (isString(this.children[0])) {
+        this.children[0] = content;
+      } else {
+        this.children?.unshift(content);
+      }
+    } else {
+      if (!isNull(this.children)) {
+        this.children = [content];
+      } else {
+        console.error(`Error: ${this._name} can not add content`);
+      }
+    }
   };
 
   setComponent = (component: JSONComponent) => {
@@ -67,13 +82,15 @@ export default class NodeService extends Node {
         component: rest,
         children: isString(children)
           ? children
-          : children?.map(child => newNodeService(child)),
+          : children?.map(child =>
+              isString(child) ? child : newNodeService(child),
+            ),
       });
     };
 
     this.children = isString(children)
       ? children
-      : children?.map(child => newNodeService(child));
+      : children?.map(child => (isString(child) ? child : newNodeService(child)));
   };
 
   getComponentConfig = (node: NodeService = this): Component => {
@@ -83,14 +100,16 @@ export default class NodeService extends Node {
       ...node.component,
       children: isString(node.children)
         ? node.children
-        : node.children?.map(child => this.getComponentConfig(child)),
+        : node.children?.map(child =>
+            isString(child) ? child : this.getComponentConfig(child),
+          ),
     };
   };
 
   clearEffect = () => {
     this.isSelect = false;
     if (!isString(this.children)) {
-      this.children?.forEach(node => node.clearEffect());
+      this.children?.forEach(node => !isString(node) && node.clearEffect());
     }
   };
 
@@ -111,7 +130,9 @@ export default class NodeService extends Node {
       ...target,
       children: isString(target.children)
         ? target.children
-        : target.children?.map(node => NodeService.createNodeService(node)),
+        : target.children?.map(node =>
+            isString(node) ? node : NodeService.createNodeService(node),
+          ),
     });
   };
 }

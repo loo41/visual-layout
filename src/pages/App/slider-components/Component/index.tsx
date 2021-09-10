@@ -1,6 +1,6 @@
 import { SearchOutlined } from '@ant-design/icons';
 import * as components from 'antd';
-import _ from 'lodash';
+import _, { isString } from 'lodash';
 import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
 import { PagesContext } from 'src/context';
@@ -38,7 +38,7 @@ const Components: React.FC<{}> = () => {
             (typeof component.children !== 'string' &&
               component.children.every(child => {
                 return new RegExp(`${_.escapeRegExp(value)}`, 'ig').test(
-                  child._name,
+                  isString(child) ? child : child._name,
                 );
               }))
           );

@@ -38,7 +38,7 @@ export default class Page {
       node.children = isString(node.children)
         ? node.children
         : (node.children
-            ?.map(node => this.clearDeleteNode(node))
+            ?.map(node => (isString(node) ? node : this.clearDeleteNode(node)))
             .filter(_ => _) as NodeService[]);
       return node;
     }

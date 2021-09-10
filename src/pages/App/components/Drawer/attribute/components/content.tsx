@@ -1,4 +1,5 @@
 import { Input } from 'antd';
+import { isString } from 'lodash';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { PageService } from 'src/controller';
@@ -9,15 +10,20 @@ const Content: React.FC<{ page: PageService }> = ({ page }) => {
 
   useEffect(() => {
     if (page) {
-      setValue(page.currentNode[0]?.content || '');
+      const children = page.currentNode[0]?.children;
+      const content = isString(children)
+        ? children
+        : isString(children?.[0])
+        ? children?.[0] || ''
+        : '';
+
+      setValue(content);
     }
     // eslint-disable-next-line
   }, [page?.currentNode, page?.currentNode[0]?.content]);
 
-  const updateClass = () => {
-    if (value !== page.currentNode[0]?.content) {
-      page.setContent(value);
-    }
+  const updateContent = () => {
+    page.setContent(value);
   };
 
   return (
@@ -26,7 +32,7 @@ const Content: React.FC<{ page: PageService }> = ({ page }) => {
         placeholder="文本内容"
         onChange={e => setValue(e.target.value)}
         value={value}
-        onBlur={() => updateClass()}
+        onBlur={() => updateContent()}
       />
     </div>
   );

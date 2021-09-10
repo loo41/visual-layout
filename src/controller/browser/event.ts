@@ -19,10 +19,9 @@ class DocEvent {
 
         if (!isString(node.children)) {
           node.children?.push(
-            // @ts-ignore
-            ...(isString(nodeService.children)
+            ...((isString(nodeService.children)
               ? [nodeService.children]
-              : nodeService.children?.filter(_ => _)),
+              : nodeService.children?.filter(_ => _)) || []),
           );
         }
       }

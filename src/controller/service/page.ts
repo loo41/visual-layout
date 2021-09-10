@@ -39,7 +39,9 @@ export default class PageService extends Page {
         isRoot,
         children: isString(target.children)
           ? target.children
-          : target.children?.map(node => this.createNode(node)),
+          : target.children?.map(node =>
+              isString(node) ? node : this.createNode(node),
+            ),
       },
       this,
     );
