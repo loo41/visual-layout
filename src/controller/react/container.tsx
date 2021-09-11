@@ -83,5 +83,10 @@ export function Container<T extends Args>({
 }
 
 export function render<T extends Args>(component: AST, args?: T) {
-  return component ? <Container component={component} args={args} /> : <></>;
+  try {
+    return component ? <Container component={component} args={args} /> : <></>;
+  } catch (err) {
+    console.error(`组件渲染错误，请检查相关属性是否正确。${err.message}`);
+    return <></>;
+  }
 }
