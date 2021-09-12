@@ -18,13 +18,16 @@ class DocEvent {
         // up merge
         node.styles.push(...nodeService.styles);
 
-        const children = isString(node.children) ? [node.children] : node.children;
+        const children = isString(node.children)
+          ? [node.children]
+          : node.children || [];
 
-        children?.push(
-          ...((isString(nodeService.children)
-            ? [nodeService.children]
-            : nodeService.children?.filter(_ => _)) || []),
-        );
+        !isNull(children) &&
+          children?.push(
+            ...((isString(nodeService.children)
+              ? [nodeService.children]
+              : nodeService.children?.filter(_ => _)) || []),
+          );
 
         if (!isNull(node.children)) {
           node.children = children;
@@ -43,20 +46,24 @@ class DocEvent {
   };
 
   onClick = (node: NodeService) => (ev: React.MouseEvent) => {
-    ev.stopPropagation();
-    // some node click return
-    if (
-      NodeService.pageService?.currentNode.map(node => node.toString()).join(';') ===
-      node.toString()
-    ) {
-      return;
-    }
+    try {
+      ev.stopPropagation();
+      // some node click return
+      if (
+        NodeService.pageService?.currentNode
+          .map(node => node.toString())
+          .join(';') === node.toString()
+      ) {
+        return;
+      }
 
-    if (node.type !== 'Component' && ev.currentTarget !== ev.target) {
-      // component no click event
+      if (node.type !== 'Component' && ev.currentTarget !== ev.target) {
+        // component no click event
+      }
+      NodeService.pageService?.setCurrentNode([node]);
+    } catch (err) {
+      console.error(`onClick Event Error ${err?.message}`);
     }
-
-    NodeService.pageService?.setCurrentNode([node]);
   };
 
   createContainerEvent = (node: NodeService) => {

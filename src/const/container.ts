@@ -6,11 +6,15 @@ const phone: AST = {
   styles: [
     {
       key: 'height',
-      value: '854px',
+      value: '800px',
     },
     {
       key: 'width',
-      value: '480px',
+      value: '1280px',
+    },
+    {
+      key: 'background',
+      value: 'white',
     },
   ],
   children: [],

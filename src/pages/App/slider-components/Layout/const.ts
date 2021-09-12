@@ -43,7 +43,7 @@ const flexRow: AST = {
   }),
 };
 
-const flexColum: AST = {
+const flexCol: AST = {
   _name: 'div',
   type: 'Element',
   styles: [
@@ -322,18 +322,213 @@ const position: AST = {
   ],
 };
 
+const componentLayout: AST = {
+  _name: 'div',
+  type: 'Element',
+  styles: [],
+  children: [
+    {
+      _name: 'Layout',
+      type: 'Component',
+      styles: [],
+      children: [
+        {
+          _name: 'Layout.Header',
+          type: 'Component',
+          styles: [],
+          hasCanChild: true,
+          children: 'Header',
+        },
+        {
+          _name: 'Layout.Content',
+          type: 'Component',
+          styles: [],
+          hasCanChild: true,
+          children: 'Content',
+        },
+        {
+          _name: 'Layout.Footer',
+          type: 'Component',
+          styles: [],
+          hasCanChild: true,
+          children: 'Footer',
+        },
+      ],
+      component: {
+        style: { height: '100%' },
+      },
+    },
+  ],
+};
+
+const componentSliderLayout: AST = {
+  _name: 'div',
+  type: 'Element',
+  styles: [],
+  children: [
+    {
+      _name: 'Layout',
+      type: 'Component',
+      styles: [],
+      children: [
+        {
+          _name: 'Layout.Sider',
+          type: 'Component',
+          styles: [],
+          hasCanChild: true,
+          children: 'Sider',
+        },
+        {
+          _name: 'Layout',
+          type: 'Component',
+          styles: [],
+          hasCanChild: true,
+          children: [
+            {
+              _name: 'Layout.Header',
+              type: 'Component',
+              styles: [],
+              hasCanChild: true,
+              children: 'Header',
+            },
+            {
+              _name: 'Layout.Content',
+              type: 'Component',
+              styles: [],
+              hasCanChild: true,
+              children: 'Content',
+            },
+            {
+              _name: 'Layout.Footer',
+              type: 'Component',
+              styles: [],
+              hasCanChild: true,
+              children: 'Footer',
+            },
+          ],
+        },
+      ],
+      component: {
+        style: { height: '100%' },
+      },
+    },
+  ],
+};
+
+const componentGrid: AST = {
+  _name: 'div',
+  type: 'Element',
+  styles: [
+    {
+      key: 'height',
+      value: '100%',
+    },
+    {
+      key: 'width',
+      value: '100%',
+    },
+  ],
+  children: [
+    {
+      _name: 'Row',
+      type: 'Component',
+      hasCanChild: true,
+      styles: [],
+      component: {
+        gutter: 6,
+      },
+      children: [
+        {
+          _name: 'Col',
+          type: 'Component',
+          styles: [],
+          component: {
+            span: 8,
+          },
+          children: [{ _name: 'div', type: 'Element', styles: [], children: [] }],
+        },
+        {
+          _name: 'Col',
+          type: 'Component',
+          styles: [],
+          component: {
+            span: 8,
+          },
+          children: [{ _name: 'div', type: 'Element', styles: [], children: [] }],
+        },
+        {
+          _name: 'Col',
+          type: 'Component',
+          styles: [],
+          component: {
+            span: 8,
+          },
+          children: [{ _name: 'div', type: 'Element', styles: [], children: [] }],
+        },
+      ],
+    },
+  ],
+};
+
+const Card: AST = {
+  _name: 'div',
+  type: 'Element',
+  styles: [],
+  children: [
+    {
+      _name: 'Card',
+      type: 'Component',
+      component: {
+        title: 'Title',
+      },
+      hasCanChild: true,
+      styles: [],
+      children: [
+        {
+          _name: 'div',
+          type: 'Element',
+          styles: [],
+          children: 'children',
+        },
+      ],
+    },
+  ],
+};
+
 const LayoutAST = [
+  {
+    title: '组件',
+    children: [
+      {
+        title: 'Layout',
+        layout: componentLayout,
+      },
+      {
+        title: 'Layout-Slider',
+        layout: componentSliderLayout,
+      },
+      {
+        title: 'Card',
+        layout: Card,
+      },
+      {
+        title: 'Grid',
+        layout: componentGrid,
+      },
+    ],
+  },
   {
     title: '基础',
     children: [
       {
-        title: '空 DIV',
+        title: 'DIV',
         layout: none,
       },
       {
-        title: '滚动',
+        title: 'Scroll',
         layout: scroll,
       },
+
       {
         title: 'Position',
         layout: position,
@@ -344,12 +539,12 @@ const LayoutAST = [
     title: 'Flex',
     children: [
       {
-        title: 'Flex 横向',
+        title: 'Flex Row',
         layout: flexRow,
       },
       {
-        title: 'Flex 纵向',
-        layout: flexColum,
+        title: 'Flex Col',
+        layout: flexCol,
       },
     ],
   },
@@ -357,7 +552,7 @@ const LayoutAST = [
     title: '移动端',
     children: [
       {
-        title: '头部/底部: Padding',
+        title: 'Mobile',
         layout: mobile,
       },
     ],

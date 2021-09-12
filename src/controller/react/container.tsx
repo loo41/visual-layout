@@ -1,4 +1,4 @@
-import { isString } from 'lodash';
+import { isFunction, isString } from 'lodash';
 import React from 'react';
 import { useContext } from 'react';
 import { PagesContext } from 'src/context';
@@ -10,6 +10,7 @@ export type Component = {
 
 export type Event<T> = (node: NodeService) => (ev: T) => void;
 export interface Rest {
+  onClick: Event<React.MouseEvent<Element, MouseEvent>>;
   onDrop: Event<React.DragEvent<Element>>;
   onDragOver: Event<React.DragEvent<Element>>;
 }
@@ -19,7 +20,7 @@ export function Container({ component, ...props }: Props) {
 
   const components = pagesService.components;
 
-  const { create } = props;
+  const { create, getStyles } = props;
 
   function render(node: NodeService, args?: Rest): React.ReactNode {
     const { _name, type, children, hasCanChild, component } = node;
@@ -53,8 +54,17 @@ export function Container({ component, ...props }: Props) {
       return <></>;
     }
 
-    // element no children error
+    // proxy onClick event
+    const onClick = (ev: React.MouseEvent<HTMLElement>) => {
+      if (props?.onClick && isFunction(props?.onClick)) {
+        (props.onClick as any)?.(ev);
+      }
+      if (args?.onClick) {
+        args.onClick?.(node)?.(ev);
+      }
+    };
 
+    // element no children error
     const childrenElement =
       typeof children === 'string'
         ? children
@@ -73,8 +83,10 @@ export function Container({ component, ...props }: Props) {
               onDrop: (e: React.DragEvent<Element>) => {
                 args?.onDrop(node)?.(e);
               },
+              style: getStyles(node),
             }
           : {})}
+        onClick={onClick}
       >
         {childrenElement}
       </C>
@@ -88,6 +100,7 @@ export interface Props {
   component: NodeService;
   props?: Rest;
   create: (node: NodeService) => React.ReactElement;
+  getStyles: (node: NodeService) => { [props: string]: string };
 }
 
 export function render({ component, ...rest }: Props) {

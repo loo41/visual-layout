@@ -3,37 +3,6 @@ import { AST } from 'src/model';
 
 export const Components: AST[] = [
   {
-    _name: 'Layout',
-    type: 'Component',
-    styles: [],
-    children: [
-      {
-        _name: 'Layout.Header',
-        type: 'Component',
-        styles: [],
-        hasCanChild: true,
-        children: 'Header',
-      },
-      {
-        _name: 'Layout.Content',
-        type: 'Component',
-        styles: [],
-        hasCanChild: true,
-        children: 'Content',
-      },
-      {
-        _name: 'Layout.Footer',
-        type: 'Component',
-        styles: [],
-        hasCanChild: true,
-        children: 'Footer',
-      },
-    ],
-    component: {
-      style: { height: '100%' },
-    },
-  },
-  {
     _name: 'Button',
     type: 'Component',
     styles: [],

@@ -26,7 +26,7 @@ class Doc extends DocEvent {
         }
       : eventType && this.createContainerEvent(node);
 
-    const getStyles = () => {
+    const getStyles = (node: NodeService) => {
       const { styles, isSelect } = node;
 
       const previewStyle =
@@ -66,17 +66,19 @@ class Doc extends DocEvent {
         ? render({
             component: node,
             props: {
+              onClick: this.onClick,
               onDrop: this.onDrop,
               onDragOver: this.onDragOver,
             },
             create: (node: NodeService) => {
               return this.create({ node, eventType });
             },
+            getStyles,
           })
         : React.createElement(
             node._name,
             {
-              style: getStyles(),
+              style: getStyles(node),
               className: className,
               ...props,
             },

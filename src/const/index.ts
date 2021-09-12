@@ -20,11 +20,5 @@ const PreviewStyle = [
     title: '外边距',
     isCanUse: true,
   },
-  {
-    key: 'background',
-    value: 'white',
-    title: '白色背景',
-    isCanUse: true,
-  },
 ];
 export { DragEleId, SelectStyle, PreviewStyle };
