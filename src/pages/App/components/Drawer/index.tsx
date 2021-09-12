@@ -19,7 +19,6 @@ const Drawer: React.FC<{}> = () => {
 
   const page = pagesService.getCurrentPage();
 
-  const isComponentDisable = page?.currentNode[0]?.type !== 'Component';
   const isShow = page?.currentNode.length;
 
   useEffect(() => {
@@ -50,21 +49,17 @@ const Drawer: React.FC<{}> = () => {
         />
       </div>
       <Tabs className={styles.tabs}>
-        {isComponentDisable && (
-          <>
-            <TabPane tab="属性" key="style">
-              <Attribute page={page} />
-            </TabPane>
-            <TabPane tab="CSS" key="css">
-              <CssEdit page={page} />
-            </TabPane>
-          </>
-        )}
-        {!isComponentDisable && (
+        <>
+          <TabPane tab="属性" key="style">
+            <Attribute page={page} />
+          </TabPane>
           <TabPane tab="组件" key="component" className="tests">
             <ComponentEdit page={page} />
           </TabPane>
-        )}
+          <TabPane tab="CSS" key="css">
+            <CssEdit page={page} />
+          </TabPane>
+        </>
       </Tabs>
     </div>
   );

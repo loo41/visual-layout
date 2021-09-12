@@ -16,7 +16,10 @@ export interface Style {
 
 export type Children<T = AST> = T[] | string | null;
 
-export type JSONComponent = Pick<AST, '_name'> & {
+export type JSONComponent = Pick<
+  AST,
+  '_name' | 'styles' | 'className' | 'hasCanChild'
+> & {
   children: Children<JSONComponent | string>;
   _type: 'Element' | 'Component';
 } & Component;
@@ -29,6 +32,7 @@ export interface AST {
   element?: React.ReactElement;
   component?: Component;
   className?: string;
+  hasCanChild?: boolean;
 }
 
 export type NodeOption = AST & {

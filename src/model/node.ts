@@ -2,11 +2,11 @@ import _ from 'lodash';
 import { NodeService } from 'src/controller';
 import { Doc } from 'src/controller/browser';
 import { Component } from 'src/controller/react/container';
-import { randomStr } from 'src/controller/util';
 import { Children, NodeOption, Style } from '.';
 class Node extends Doc {
   public type: 'Element' | 'Component';
   public _name: string;
+  public hasCanChild?: boolean;
   public children?: Children<NodeService | string>;
   public isDelete: boolean = false;
   public isSelect: boolean = false;
@@ -15,7 +15,6 @@ class Node extends Doc {
   private _styles?: Style[];
   public className?: string;
   public component?: Component;
-  public content?: string;
   public id?: number;
   private static random: number = 1;
   private static classNames: string[] = [];
@@ -29,8 +28,8 @@ class Node extends Doc {
       element,
       className,
       component,
-      content,
       id,
+      hasCanChild,
       isRoot = false,
     } = Option;
     this.type = type;
@@ -40,20 +39,9 @@ class Node extends Doc {
     this.element = element;
     this.isRoot = isRoot;
     this.component = component;
-    this.content = content;
     this.id = id || Node.Random();
-
-    if (className) {
-      this.className = className;
-    } else {
-      let className = randomStr();
-      while (Node.classNames.includes(className)) {
-        className = randomStr();
-      }
-
-      Node.classNames.push(className);
-      this.className = className;
-    }
+    this.hasCanChild = hasCanChild;
+    this.className = className;
   }
 
   static Random() {

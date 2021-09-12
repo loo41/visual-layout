@@ -16,25 +16,25 @@ class Doc extends DocEvent {
   }): React.ReactElement => {
     const { type, className, children } = node;
 
-    const props =
-      eventType === EventType.container
-        ? {
-            onDrop: this.onDrop(node),
-            onDragOver: this.onDragover(node),
-            onClick: this.onClick(node),
-          }
-        : eventType && this.createContainerEvent(node);
+    const iscContainer = eventType === EventType.container;
+
+    const props = iscContainer
+      ? {
+          onDrop: this.onDrop(node),
+          onDragOver: this.onDragOver(node),
+          onClick: this.onClick(node),
+        }
+      : eventType && this.createContainerEvent(node);
 
     const getStyles = () => {
       const { styles, isSelect } = node;
 
       const previewStyle =
-        node.pageService?.options.previewStyle.filter(
-          ({ isCanUse }) => !eventType || eventType === EventType.layout || isCanUse,
+        NodeService.pageService?.options.previewStyle.filter(
+          ({ isCanUse }) => !eventType || !iscContainer || isCanUse,
         ) || [];
-
       return previewStyle
-        .concat(isSelect ? node.pageService?.options.selectStyle || [] : [])
+        .concat(isSelect ? NodeService.pageService?.options.selectStyle || [] : [])
         .concat(styles)
         .reduce((styles: { [props: string]: string }, style) => {
           const { key, value } = style;
@@ -43,14 +43,36 @@ class Doc extends DocEvent {
         }, {});
     };
 
+    const getChildren = () => {
+      return isString(children)
+        ? children
+        : children
+            ?.map(child => {
+              if (child) {
+                return isString(child)
+                  ? child
+                  : this.create({
+                      node: child,
+                      eventType: iscContainer ? eventType : undefined,
+                    });
+              }
+              return undefined;
+            })
+            .filter(_ => _);
+    };
+
     node.element =
       type === 'Component'
-        ? render(
-            node,
-            eventType === EventType.container
-              ? { onClick: this.onClick(node) }
-              : undefined,
-          )
+        ? render({
+            component: node,
+            props: {
+              onDrop: this.onDrop,
+              onDragOver: this.onDragOver,
+            },
+            create: (node: NodeService) => {
+              return this.create({ node, eventType });
+            },
+          })
         : React.createElement(
             node._name,
             {
@@ -58,24 +80,7 @@ class Doc extends DocEvent {
               className: className,
               ...props,
             },
-
-            isString(children)
-              ? children
-              : children
-                  ?.map(child =>
-                    isString(child)
-                      ? child
-                      : child
-                      ? this.create({
-                          node: child,
-                          eventType:
-                            eventType === EventType.container
-                              ? eventType
-                              : undefined,
-                        })
-                      : null,
-                  )
-                  .filter(_ => _),
+            getChildren(),
           );
 
     return node.element;

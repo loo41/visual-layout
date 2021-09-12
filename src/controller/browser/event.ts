@@ -1,3 +1,4 @@
+import { isNull } from 'lodash';
 import React from 'react';
 import { DragEleId } from 'src/const';
 import { isString } from 'src/controller/util';
@@ -17,19 +18,24 @@ class DocEvent {
         // up merge
         node.styles.push(...nodeService.styles);
 
-        if (!isString(node.children)) {
-          node.children?.push(
-            ...((isString(nodeService.children)
-              ? [nodeService.children]
-              : nodeService.children?.filter(_ => _)) || []),
-          );
+        const children = isString(node.children) ? [node.children] : node.children;
+
+        children?.push(
+          ...((isString(nodeService.children)
+            ? [nodeService.children]
+            : nodeService.children?.filter(_ => _)) || []),
+        );
+
+        if (!isNull(node.children)) {
+          node.children = children;
         }
       }
-      node.pageService?.update({ description: '添加元素' });
+
+      NodeService.pageService?.update({ description: '添加元素' });
     }
   };
 
-  onDragover = (node: NodeService) => (ev: React.DragEvent) => {
+  onDragOver = (node: NodeService) => (ev: React.DragEvent) => {
     ev.preventDefault();
     if (ev.dataTransfer?.dropEffect) {
       ev.dataTransfer.dropEffect = 'move';
@@ -40,7 +46,7 @@ class DocEvent {
     ev.stopPropagation();
     // some node click return
     if (
-      node.pageService?.currentNode.map(node => node.toString()).join(';') ===
+      NodeService.pageService?.currentNode.map(node => node.toString()).join(';') ===
       node.toString()
     ) {
       return;
@@ -50,7 +56,7 @@ class DocEvent {
       // component no click event
     }
 
-    node.pageService?.setCurrentNode([node]);
+    NodeService.pageService?.setCurrentNode([node]);
   };
 
   createContainerEvent = (node: NodeService) => {

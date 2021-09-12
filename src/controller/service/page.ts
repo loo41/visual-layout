@@ -20,6 +20,7 @@ export default class PageService extends Page {
     this.id = options.id;
     this.name = options.name;
     this.update = this.bindUpdate(options.update);
+    NodeService.pageService = this;
 
     this.setPage(this.createNode(options.page, true));
   }
@@ -33,18 +34,15 @@ export default class PageService extends Page {
   }
 
   createNode = (target: AST, isRoot?: boolean): NodeService => {
-    return new NodeService(
-      {
-        ...target,
-        isRoot,
-        children: isString(target.children)
-          ? target.children
-          : target.children?.map(node =>
-              isString(node) ? node : this.createNode(node),
-            ),
-      },
-      this,
-    );
+    return new NodeService({
+      ...target,
+      isRoot,
+      children: isString(target.children)
+        ? target.children
+        : target.children?.map(node =>
+            isString(node) ? node : this.createNode(node),
+          ),
+    });
   };
 
   bindUpdate = (update: () => void): Update => {

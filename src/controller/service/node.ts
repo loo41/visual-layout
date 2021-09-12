@@ -1,5 +1,5 @@
 import React from 'react';
-import { AST, JSONComponent, Node, Style } from 'src/model';
+import { JSONComponent, Node, Style } from 'src/model';
 import { NodeOption } from 'src/model';
 import { PageService } from '..';
 import { EventType } from '../browser';
@@ -8,7 +8,9 @@ import { isString } from 'src/controller/util';
 import { isNull } from 'lodash';
 
 export default class NodeService extends Node {
-  constructor(Options: NodeOption, public pageService?: PageService) {
+  public static pageService?: PageService;
+  // eslint-disable-next-line
+  constructor(Options: NodeOption) {
     super(Options);
   }
 
@@ -22,30 +24,27 @@ export default class NodeService extends Node {
       styles,
       children,
       element,
-      content,
       _name,
       className,
       component,
       isRoot,
+      hasCanChild,
     } = node || this;
-    return new NodeService(
-      {
-        type,
-        styles,
-        element,
-        _name,
-        isRoot,
-        className,
-        component,
-        content,
-        children: isString(children)
-          ? children
-          : children?.map(children =>
-              isString(children) ? children : children.copy(),
-            ),
-      },
-      this.pageService,
-    );
+    return new NodeService({
+      type,
+      styles,
+      element,
+      _name,
+      isRoot,
+      className,
+      component,
+      hasCanChild,
+      children: isString(children)
+        ? children
+        : children?.map(children =>
+            isString(children) ? children : children.copy(),
+          ),
+    });
   };
 
   setStyles = (styles: Style[]) => {
@@ -69,16 +68,24 @@ export default class NodeService extends Node {
   };
 
   setComponent = (component: JSONComponent) => {
-    const { _name, children, _type, ...props } = component;
+    const { _name, children, _type, styles, className, hasCanChild, ...props } =
+      component;
     this._name = _name;
     this.component = props;
     this.type = _type;
+    this.styles = styles || [];
+    this.className = className;
+    this.hasCanChild = hasCanChild;
 
     const newNodeService = (options: JSONComponent): NodeService => {
-      const { _name, children, _type, ...rest } = options;
+      const { _name, children, _type, styles, className, hasCanChild, ...rest } =
+        options;
       return new NodeService({
         _name: options._name,
         type: _type,
+        styles: styles,
+        className: className,
+        hasCanChild: hasCanChild,
         component: rest,
         children: isString(children)
           ? children
@@ -97,6 +104,9 @@ export default class NodeService extends Node {
     return {
       _name: node._name,
       _type: node.type,
+      styles: node.styles,
+      className: node.className,
+      hasCanChild: node.hasCanChild,
       ...node.component,
       children: isString(node.children)
         ? node.children
@@ -123,16 +133,5 @@ export default class NodeService extends Node {
 
   setClassName = (className: string) => {
     this.className = className;
-  };
-
-  static createNodeService = (target: AST): NodeService => {
-    return new NodeService({
-      ...target,
-      children: isString(target.children)
-        ? target.children
-        : target.children?.map(node =>
-            isString(node) ? node : NodeService.createNodeService(node),
-          ),
-    });
   };
 }

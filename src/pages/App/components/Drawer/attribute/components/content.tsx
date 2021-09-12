@@ -20,7 +20,7 @@ const Content: React.FC<{ page: PageService }> = ({ page }) => {
       setValue(content);
     }
     // eslint-disable-next-line
-  }, [page?.currentNode, page?.currentNode[0]?.content]);
+  }, [page?.currentNode[0]]);
 
   const updateContent = () => {
     page.setContent(value);
