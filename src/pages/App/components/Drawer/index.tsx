@@ -5,7 +5,7 @@ import CssEdit from './css-edit';
 import styles from './index.module.scss';
 import ComponentEdit from './component-edit';
 import Attribute from './attribute';
-import { ColumnWidthOutlined } from '@ant-design/icons';
+import { CloseSquareOutlined, ColumnWidthOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
@@ -15,11 +15,15 @@ const DrawerWidth = 'drawer-width';
 
 const Drawer: React.FC<{}> = () => {
   const [width, setWidth] = useState(300);
+  const [isShow, setShow] = useState(false);
   const { pagesService } = useContext(PagesContext);
 
   const page = pagesService.getCurrentPage();
 
-  const isShow = page?.currentNode.length;
+  useEffect(() => {
+    setShow(!!page?.currentNode[0]);
+    // eslint-disable-next-line
+  }, [page?.currentNode, page?.currentNode[0]]);
 
   useEffect(() => {
     setWidth(Number(localStorage.getItem(DrawerWidth) ?? 300));
@@ -30,23 +34,28 @@ const Drawer: React.FC<{}> = () => {
       className={styles.drawer}
       style={{ display: isShow ? 'flex' : 'none', width: width }}
     >
-      <div className={styles.slider}>
-        <Tooltip placement="bottom" title="宽度">
-          <span>
-            <ColumnWidthOutlined />
-          </span>
-        </Tooltip>
-        <InputNumber
-          min={300}
-          value={width}
-          size="small"
-          style={{ width: 60 }}
-          max={500}
-          onChange={value => {
-            setWidth(value);
-            localStorage.setItem(DrawerWidth, String(value));
-          }}
-        />
+      <div className={styles.header}>
+        <div className={styles.slider}>
+          <Tooltip placement="bottom" title="宽度">
+            <span>
+              <ColumnWidthOutlined />
+            </span>
+          </Tooltip>
+          <InputNumber
+            min={300}
+            value={width}
+            size="small"
+            style={{ width: 60 }}
+            max={500}
+            onChange={value => {
+              setWidth(value);
+              localStorage.setItem(DrawerWidth, String(value));
+            }}
+          />
+        </div>
+        <div className={styles.close} onClick={() => setShow(false)}>
+          <CloseSquareOutlined />
+        </div>
       </div>
       <Tabs className={styles.tabs}>
         <>
