@@ -3,7 +3,7 @@
   height: 100%;
   .body {
     height: 100%;
-    width: 100%;
+    width: calc(100% - 50px);
     display: flex;
     flex-direction: column;
     .card {

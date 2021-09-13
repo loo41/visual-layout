@@ -15,9 +15,8 @@ class Node extends Doc {
   private _styles?: Style[];
   public className?: string;
   public component?: Component;
-  public id?: number;
+  public id: number;
   private static random: number = 1;
-  private static classNames: string[] = [];
   constructor(Option: NodeOption) {
     super();
     const {

@@ -1,8 +1,9 @@
-import { LayoutComponent, History, Component } from './slider-components';
+import { LayoutComponent, History, Component, NodeTree } from './slider-components';
 import {
   HistoryOutlined,
   LayoutOutlined,
   AppstoreOutlined,
+  ApartmentOutlined,
 } from '@ant-design/icons';
 
 export interface Menu {
@@ -21,16 +22,22 @@ const getSiderMenu = (): Menu[] => {
       component: <LayoutComponent />,
     },
     {
-      id: 'history',
-      icon: <HistoryOutlined style={{ fontSize: 24 }} />,
-      title: '历史',
-      component: <History />,
-    },
-    {
       id: 'component',
       icon: <AppstoreOutlined style={{ fontSize: 24 }} />,
       title: '组件',
       component: <Component />,
+    },
+    {
+      id: 'node',
+      icon: <ApartmentOutlined style={{ fontSize: 24 }} />,
+      title: '节点树',
+      component: <NodeTree />,
+    },
+    {
+      id: 'history',
+      icon: <HistoryOutlined style={{ fontSize: 24 }} />,
+      title: '历史',
+      component: <History />,
     },
   ];
 };
