@@ -1,38 +1,52 @@
-import { Pages } from 'src/model';
+import { PageObject, Pages, ProjectObject } from 'src/model';
 import PageService from './page';
 import Keyboard from '../keyboard-event';
-import { Options } from '../const';
+import AppService, { defaultOptions } from './app';
+import { Options } from 'src/controller';
 
 export default class PagesService extends Pages {
-  constructor() {
+  constructor(options?: ProjectObject) {
     super();
     new Keyboard(this);
+    if (options) {
+      const { ID, currentId, idx, name, description, pages } = options;
+      this.ID = ID;
+      this.currentId = currentId;
+      Pages.idx = idx;
+      this.name = name || '';
+      this.description = description || '';
+      this.pages = Object.entries(pages).reduce((projects, [key, value]) => {
+        projects[key] = new PageService({
+          ...value,
+          selectStyle: defaultOptions.selectStyle,
+          previewStyle: defaultOptions.previewStyle,
+          update: this.update,
+        });
+        return projects;
+      }, {} as { [props: string]: PageService });
+    }
   }
-  public updateView: () => void = () => {};
-  init(setRefresh: () => void) {
-    this.updateView = setRefresh;
-  }
+
   getPages() {
     return this.pages;
   }
+
   setPages(id: string) {
     this.currentId = id;
     this.update();
   }
-  cerate(
-    options: Partial<Omit<Options, 'id' | 'update' | 'page'>> &
-      Omit<Options, 'id' | 'update' | 'name'>,
-  ) {
-    const id = `Page${this.idx}`;
+
+  ceratePage(options: Options) {
+    const id = `Page${Pages.idx}`;
     Reflect.set(
       this.pages,
       id,
       new PageService({
         id,
         update: this.update,
-        name: options.name || id,
+        name: options.name || 'Page',
         selectStyle: options.selectStyle || [],
-        page: options.page,
+        target: options.target,
         previewStyle:
           options.previewStyle.map(option => ({
             ...option,
@@ -41,9 +55,10 @@ export default class PagesService extends Pages {
       }),
     );
     this.currentId = id;
-    this.idx++;
+    Pages.idx++;
     this.update();
   }
+
   delete(id: string) {
     // delete page === current page
     if (id === this.currentId) {
@@ -59,15 +74,34 @@ export default class PagesService extends Pages {
     Reflect.deleteProperty(this.pages, id);
     this.update();
   }
+
   update = () => {
-    Promise.resolve().then(() => this.updateView());
+    Promise.resolve().then(() => AppService.updateView());
   };
+
+  updateName = (name: string) => {
+    this.name = name;
+  };
+
+  updateDescription = (description: string) => {
+    this.description = description;
+  };
+
   getCurrentPage = (): PageService => {
     return Object.values(this.pages).filter(({ id }) => id === this.currentId)[0];
   };
-  registerComponents = (components: { [props: string]: unknown }) => {
-    for (const [key, value] of Object.entries(components)) {
-      this.components.set(key, value);
-    }
+
+  toObject = (): ProjectObject => {
+    return {
+      idx: Pages.idx,
+      currentId: this.currentId,
+      ID: this.ID,
+      name: this.name,
+      description: this.description,
+      pages: Object.entries(this.pages).reduce((projects, [key, value]) => {
+        projects[key] = value.toObject();
+        return projects;
+      }, {} as { [props: string]: PageObject }),
+    };
   };
 }

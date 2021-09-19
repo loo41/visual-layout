@@ -1,0 +1,29 @@
+@import 'src/theme/_colors.scss';
+
+.newBuild {
+  height: 250px;
+  div:nth-child(1) {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: rgba($color: map-get($colors, 'background'), $alpha: 0.6);
+    span:nth-child(1) {
+      font-size: 24px;
+    }
+    span:nth-child(2) {
+      font-size: 18px;
+    }
+    &:hover {
+      background-color: rgba($color: map-get($colors, 'background'), $alpha: 1);
+    }
+  }
+}
+
+.projects {
+  height: 250px;
+}

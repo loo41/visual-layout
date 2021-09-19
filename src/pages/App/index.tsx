@@ -8,7 +8,7 @@ import { PagesProvider } from 'src/context';
 function App() {
   return (
     <PagesProvider>
-      <Layout style={{ height: 'calc(100vh - 35px)' }}>
+      <Layout style={{ height: 'calc(100vh - 40px)' }}>
         <Layout>
           <Sider />
           <Content />

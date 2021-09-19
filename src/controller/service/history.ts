@@ -1,11 +1,32 @@
-import { HistoryLog } from 'src/model';
+import { HistoryLog, HistoryObject } from 'src/model';
 import History from 'src/model/history';
+import { PageService } from '..';
 
 class HistoryService extends History {
+  constructor(options: Partial<HistoryObject>) {
+    super();
+
+    const { history, id, future } = options;
+    if (id) {
+      this.id = id;
+    }
+    this.history =
+      history?.map(({ node, ...rest }) => ({
+        ...rest,
+        node: PageService.createNode(node),
+      })) || [];
+
+    this.future =
+      future?.map(({ node, ...rest }) => ({
+        ...rest,
+        node: PageService.createNode(node),
+      })) || [];
+  }
+
   keep = (rest: Omit<HistoryLog, 'id' | 'time'>) => {
     const history = {
       id: this.id,
-      time: new Date(),
+      time: new Date().toDateString(),
       ...rest,
     };
     // return some history
@@ -58,6 +79,20 @@ class HistoryService extends History {
 
   current = (): HistoryLog => {
     return this.history[this.history.length - 1];
+  };
+
+  toObject = (): HistoryObject => {
+    return {
+      history: this.history.map(({ node, ...rest }) => ({
+        ...rest,
+        node: node.toObject(),
+      })),
+      future: this.future.map(({ node, ...rest }) => ({
+        ...rest,
+        node: node.toObject(),
+      })),
+      id: this.id,
+    };
   };
 }
 

@@ -1,9 +1,8 @@
 import { SearchOutlined } from '@ant-design/icons';
 import * as components from 'antd';
 import _, { isString } from 'lodash';
-import React, { useContext, useEffect } from 'react';
+import React, { useMemo } from 'react';
 import { useState } from 'react';
-import { PagesContext } from 'src/context';
 import { PageService } from 'src/controller';
 import { EventType } from 'src/controller/browser';
 import { AST } from 'src/model';
@@ -12,14 +11,6 @@ import styles from './index.module.scss';
 
 const Components: React.FC<{}> = () => {
   const [value, setValue] = useState('');
-  const { pagesService } = useContext(PagesContext);
-
-  useEffect(() => {
-    pagesService.registerComponents(components);
-    // eslint-disable-next-line
-  }, []);
-
-  const page = pagesService.getCurrentPage();
 
   return (
     <div className={styles.container}>
@@ -43,29 +34,33 @@ const Components: React.FC<{}> = () => {
               }))
           );
         }).map((ast, index) => (
-          <Component key={index} ast={ast} page={page} />
+          <Component key={index} ast={ast} />
         ))}
       </div>
     </div>
   );
 };
 
-const Component: React.FC<{ ast: AST; page: PageService }> = ({ ast, page }) => {
-  const node = page?.createNode(_.cloneDeep(ast));
-  const DOM = node?.createElement({ eventType: EventType.layout });
+const Component: React.FC<{ ast: AST }> = ({ ast }) => {
+  const node = useMemo(() => PageService?.createNode(_.cloneDeep(ast)), [ast]);
 
-  return (
-    <components.Tooltip
-      placement="right"
-      title={
-        typeof ast.children?.[0] === 'string'
-          ? ast.children[0]
-          : ast.children?.[0]._name
-      }
-    >
-      <div>{DOM}</div>
-    </components.Tooltip>
+  const DOM = useMemo(
+    () => (
+      <components.Tooltip
+        placement="right"
+        title={
+          typeof ast.children?.[0] === 'string'
+            ? ast.children[0]
+            : ast.children?.[0]._name
+        }
+      >
+        <div>{node?.createElement({ eventType: EventType.layout })}</div>
+      </components.Tooltip>
+    ),
+    [node, ast.children],
   );
+
+  return DOM;
 };
 
 export default Components;

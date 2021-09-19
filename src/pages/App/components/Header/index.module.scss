@@ -4,18 +4,23 @@
   background-color: map-get($colors, 'primary') !important;
   height: 40px !important;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   .item {
     display: flex;
     box-sizing: border-box;
     justify-content: center;
     align-items: center;
-    padding: 10px;
+    line-height: 20px;
+    padding: 5px 10px;
     cursor: pointer;
+    color: white;
     &:hover {
       border-radius: 5px;
       border: 1px solid map-get($colors, 'border');
     }
+  }
+  .itemHome {
+    padding: 0;
   }
 }

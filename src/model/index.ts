@@ -2,11 +2,12 @@ import Pages from './pages';
 import Page from './page';
 import Node from './node';
 import History from './history';
+import App from './app';
 import { NodeService } from 'src/controller';
 import React from 'react';
 import { Component } from 'src/controller/react/container';
 
-export { Pages, Page, Node, History };
+export { Pages, Page, Node, History, App };
 
 export interface Style {
   key: string;
@@ -35,6 +36,46 @@ export interface AST {
   hasCanChild?: boolean;
 }
 
+export type HistoryObject = {
+  history: (Omit<HistoryLog, 'node'> & {
+    node: NodeObject;
+  })[];
+  future: (Omit<HistoryLog, 'node'> & {
+    node: NodeObject;
+  })[];
+  id: number;
+};
+
+export type NodeObject = Omit<AST, 'children' | 'element'> & {
+  children?: string | Children<NodeObject | string>;
+  id: number;
+  random: number;
+  isRoot?: boolean;
+  isDelete: boolean;
+  isSelect: boolean;
+};
+
+export type ASTObject = Omit<AST, 'children' | 'element'> & {
+  children?: Children<ASTObject | string>;
+};
+
+export type PageObject = Pick<Page, 'id' | 'name'> & {
+  currentNode: NodeObject[];
+  page: NodeObject;
+  target: ASTObject;
+  history: HistoryObject;
+};
+
+export type ProjectObject = Pick<
+  Pages,
+  'ID' | 'currentId' | 'name' | 'description'
+> & {
+  pages: {
+    [props: string]: PageObject;
+  };
+  idx: number;
+};
+
 export type NodeOption = AST & {
   isRoot?: boolean;
   children?: Children<NodeService | string>;
@@ -44,7 +85,7 @@ export type NodeOption = AST & {
 
 export interface HistoryLog {
   id: number;
-  time: Date;
+  time: string;
   node: NodeService;
   description?: string;
 }

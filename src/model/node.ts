@@ -16,7 +16,7 @@ class Node extends Doc {
   public className?: string;
   public component?: Component;
   public id: number;
-  private static random: number = 1;
+  public static random: number = 1;
   constructor(Option: NodeOption) {
     super();
     const {

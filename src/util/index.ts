@@ -11,13 +11,14 @@ const getDoubleTime = (time: number) => {
   return time > 9 ? time : `0${time}`;
 };
 
-const formatTime = (time: Date = new Date()): string => {
-  const Y = time.getFullYear();
-  const M = time.getMonth() + 1;
-  const D = time.getDate();
-  const H = time.getHours();
-  const Mi = getDoubleTime(time.getMinutes());
-  const Se = getDoubleTime(time.getSeconds());
+const formatTime = (time: string = new Date().toDateString()): string => {
+  const date = new Date(time);
+  const Y = date.getFullYear();
+  const M = date.getMonth() + 1;
+  const D = date.getDate();
+  const H = date.getHours();
+  const Mi = getDoubleTime(date.getMinutes());
+  const Se = getDoubleTime(date.getSeconds());
 
   return `${Y}/${M}/${D} ${H}:${Mi}:${Se}`;
 };

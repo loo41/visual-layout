@@ -11,7 +11,7 @@ import { DataNode, Key } from 'rc-tree/lib/interface';
 import { useEffect, useMemo } from 'react';
 import { useState } from 'react';
 import { useContext } from 'react';
-import { PagesContext } from 'src/context';
+import { AppContext } from 'src/context';
 import { NodeService } from 'src/controller';
 import { cloneJsxObject } from 'src/util';
 import styles from './index.module.scss';
@@ -21,9 +21,9 @@ const NodeTree = () => {
   const [search, setSearch] = useState('');
   const [expandedKeys, setExpandedKeys] = useState<Key[]>([]);
   const [autoExpandParent, setAutoExpandParent] = useState(true);
-  const { pagesService, refresh } = useContext(PagesContext);
+  const { appService, refresh } = useContext(AppContext);
 
-  const page = pagesService.getCurrentPage();
+  const page = appService.project.getCurrentPage();
   useEffect(() => {
     setAutoExpandParent(true);
     setExpandedKeys([
@@ -34,7 +34,7 @@ const NodeTree = () => {
       ]),
     ]);
     // eslint-disable-next-line
-  }, [pagesService, page?.currentNode[0]]);
+  }, [appService.project, page?.currentNode[0]]);
 
   const trees = useMemo((): DataNode[] => {
     const getTree = (node: NodeService | string, id?: number): DataNode => {
@@ -127,7 +127,8 @@ const NodeTree = () => {
           }}
           showLine={{ showLeafIcon: false }}
           selectedKeys={
-            pagesService.getCurrentPage()?.currentNode.map(({ id }) => id) || []
+            appService.project.getCurrentPage()?.currentNode.map(({ id }) => id) ||
+            []
           }
           autoExpandParent={autoExpandParent}
           expandedKeys={expandedKeys}

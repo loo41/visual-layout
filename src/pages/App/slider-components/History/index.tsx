@@ -1,4 +1,4 @@
-import { PagesContext } from 'src/context';
+import { AppContext } from 'src/context';
 import { useContext } from 'react';
 import styles from './index.module.scss';
 import React from 'react';
@@ -8,10 +8,10 @@ import { RedoOutlined, UndoOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
 
 const History: React.FC<{}> = () => {
-  const { pagesService } = useContext(PagesContext);
+  const { appService } = useContext(AppContext);
 
-  const page = Object.values(pagesService.getPages()).filter(
-    ({ id }) => id === pagesService.currentId,
+  const page = Object.values(appService.project.getPages()).filter(
+    ({ id }) => id === appService.project.currentId,
   )[0];
 
   const renderHistory = (): React.ReactNode => {

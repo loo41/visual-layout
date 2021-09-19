@@ -33,9 +33,9 @@ export const CreateModal: React.FC<{ pagesService: PagesService }> = ({
   };
 
   const createPage = (values: Values) => {
-    pagesService.cerate({
+    pagesService.ceratePage({
       name: values.name,
-      page: {
+      target: {
         _name: 'div',
         type: 'Element',
         styles: [

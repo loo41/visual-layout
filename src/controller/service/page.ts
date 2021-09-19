@@ -1,8 +1,6 @@
-import { isObject } from 'src/util';
-import { Page, AST, Style, JSONComponent } from 'src/model';
+import { Page, AST, Style, JSONComponent, PageObject, ASTObject } from 'src/model';
 import { EventType } from '../browser';
-import { NodeService } from '..';
-import { Options } from '../const';
+import { NodeService, Options } from '..';
 import { isString } from 'src/controller/util';
 
 export interface Update {
@@ -14,15 +12,15 @@ export default class PageService extends Page {
   public update: Update;
   public options: Options;
   public updateSign: boolean = false;
-  constructor(options: Options) {
-    super(options.id, options.page);
+  constructor(options: Required<Options> & Partial<PageObject>) {
+    super(options);
     this.options = options;
     this.id = options.id;
     this.name = options.name;
     this.update = this.bindUpdate(options.update);
     NodeService.pageService = this;
 
-    this.setPage(this.createNode(options.page, true));
+    this.setPage(PageService.createNode(options.page || options.target, true));
   }
 
   setOptions(options: Partial<Options>) {
@@ -33,14 +31,14 @@ export default class PageService extends Page {
     this.update({ isKeepHistory: false });
   }
 
-  createNode = (target: AST, isRoot?: boolean): NodeService => {
+  static createNode = (target: AST, isRoot?: boolean): NodeService => {
     return new NodeService({
       ...target,
       isRoot,
       children: isString(target.children)
         ? target.children
         : target.children?.map(node =>
-            isString(node) ? node : this.createNode(node),
+            isString(node) ? node : PageService.createNode(node),
           ),
     });
   };
@@ -67,34 +65,6 @@ export default class PageService extends Page {
     });
 
     this.update({ isKeepHistory: false });
-  };
-
-  proxy = (targe: AST): AST => {
-    const getHandler = <T extends object>() => {
-      return {
-        get(target: T, propertyKey: string | symbol, receiver: ProxyConstructor) {
-          const targetValue = Reflect.get(target, propertyKey, receiver);
-          if (Array.isArray(targetValue) || isObject(targetValue)) {
-            return setProxy<object>(targetValue);
-          }
-          return targetValue;
-        },
-        set<U>(
-          target: T,
-          propertyKey: string,
-          value: U,
-          receiver: ProxyConstructor,
-        ) {
-          return Reflect.set(target, propertyKey, value, receiver);
-        },
-      };
-    };
-
-    const setProxy = <T extends object>(targe: T): T => {
-      return new Proxy(targe, getHandler());
-    };
-
-    return setProxy<AST>(targe);
   };
 
   setStyles = (styles: Style[]) => {
@@ -134,7 +104,7 @@ export default class PageService extends Page {
       this.page = history.node.copy();
     } else {
       // backOff first history
-      this.page = this.createNode(this.target, true);
+      this.page = PageService.createNode(this.target, true);
     }
     this.update({ isKeepHistory: false });
   }
@@ -153,7 +123,7 @@ export default class PageService extends Page {
       this.page = history.node.copy();
     } else {
       // backOff first history
-      this.page = this.createNode(this.target, true);
+      this.page = PageService.createNode(this.target, true);
     }
     this.update({ isKeepHistory: false });
   }
@@ -170,5 +140,27 @@ export default class PageService extends Page {
       history.node.clearEffect();
       this.page = history.node.copy();
     }
+  };
+
+  toObject = (): PageObject => {
+    return {
+      id: this.id,
+      name: this.name,
+      currentNode: [],
+      page: this.page.toObject(),
+      history: this.history.toObject(),
+      target: this.ASTtoObject(this.target),
+    };
+  };
+
+  ASTtoObject = (target: AST): ASTObject => {
+    return {
+      ...target,
+      children: isString(target.children)
+        ? target.children
+        : target.children?.map(child =>
+            isString(child) ? child : this.ASTtoObject(child),
+          ),
+    };
   };
 }

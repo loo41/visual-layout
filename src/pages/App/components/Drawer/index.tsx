@@ -1,6 +1,6 @@
 import { InputNumber, Tabs, Tooltip } from 'antd';
 import { useContext } from 'react';
-import { PagesContext } from 'src/context';
+import { AppContext } from 'src/context';
 import CssEdit from './css-edit';
 import styles from './index.module.scss';
 import ComponentEdit from './component-edit';
@@ -16,9 +16,9 @@ const DrawerWidth = 'drawer-width';
 const Drawer: React.FC<{}> = () => {
   const [width, setWidth] = useState(300);
   const [isShow, setShow] = useState(false);
-  const { pagesService } = useContext(PagesContext);
+  const { appService } = useContext(AppContext);
 
-  const page = pagesService.getCurrentPage();
+  const page = appService.project.getCurrentPage();
 
   useEffect(() => {
     setShow(!!page?.currentNode[0]);

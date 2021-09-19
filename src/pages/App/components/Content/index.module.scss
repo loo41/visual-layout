@@ -63,7 +63,7 @@
     }
   }
   .opr {
-    width: 300px;
+    width: 500px;
     border-left: 1px solid map-get($colors, 'border');
   }
 }
@@ -75,7 +75,6 @@
   align-items: center;
   .zoom {
     display: flex;
-    padding: 0 10px;
     align-items: center;
     cursor: pointer;
     .inputNumber {
@@ -83,13 +82,16 @@
       margin: 0 10px;
     }
   }
+  & > div {
+    padding: 0 10px;
+  }
 }
 
 .history {
   display: flex;
   div {
-    width: 35px;
     display: flex;
+    width: 35px;
     justify-content: center;
     align-items: center;
     cursor: pointer;
@@ -103,7 +105,6 @@
 .code,
 .eye {
   display: flex;
-  width: 35px;
   display: flex;
   justify-content: center;
   align-items: center;

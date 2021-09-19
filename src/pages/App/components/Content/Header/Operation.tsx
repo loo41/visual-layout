@@ -6,6 +6,7 @@ import { InputNumber, Tooltip } from 'antd';
 import { Options } from 'src/pages/App/components/Content/index';
 import { PagesService } from 'src/controller';
 import Preview from './component/preview';
+import Keep from './keep';
 
 const Max_Zoom = 3;
 const Min_Zoom = 1;
@@ -24,6 +25,26 @@ const Operation: React.FC<{
       </div>
       <div className={styles.eye}>
         <Preview pagesService={pagesService} />
+      </div>
+      <div className={styles.history}>
+        <div
+          onClick={() => {
+            pagesService.getCurrentPage().backOffHistory();
+          }}
+        >
+          <Tooltip placement="top" title="后退">
+            <img src={revoke} alt="" />
+          </Tooltip>
+        </div>
+        <div
+          onClick={() => {
+            pagesService.getCurrentPage().forwardHistory();
+          }}
+        >
+          <Tooltip placement="top" title="前进">
+            <img src={forward} alt="" />
+          </Tooltip>
+        </div>
       </div>
 
       <div className={styles.zoom}>
@@ -51,7 +72,6 @@ const Operation: React.FC<{
           value={options.zoom}
           step={0.5}
           onChange={value => {
-            debugger;
             setOptions({
               ...options,
               zoom: value,
@@ -78,25 +98,8 @@ const Operation: React.FC<{
           </Tooltip>
         </div>
       </div>
-      <div className={styles.history}>
-        <div
-          onClick={() => {
-            pagesService.getCurrentPage().backOffHistory();
-          }}
-        >
-          <Tooltip placement="top" title="后退">
-            <img src={revoke} alt="" />
-          </Tooltip>
-        </div>
-        <div
-          onClick={() => {
-            pagesService.getCurrentPage().forwardHistory();
-          }}
-        >
-          <Tooltip placement="top" title="前进">
-            <img src={forward} alt="" />
-          </Tooltip>
-        </div>
+      <div>
+        <Keep />
       </div>
     </div>
   );

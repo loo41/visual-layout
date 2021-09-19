@@ -1,9 +1,9 @@
 import { PageService } from 'src/controller';
-
-export type Components = Map<string, unknown>;
 export default class Pages {
   protected pages: { [key: string]: PageService } = {};
-  public idx: number = 1;
+  public static idx: number = 1;
   public currentId?: string;
-  public components: Map<string, unknown> = new Map();
+  public name: string = '';
+  public description: string = '';
+  public ID: string = `Project_${Pages.idx++}`;
 }

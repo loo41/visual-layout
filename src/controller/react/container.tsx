@@ -1,8 +1,7 @@
 import { isFunction, isString } from 'lodash';
 import React from 'react';
-import { useContext } from 'react';
-import { PagesContext } from 'src/context';
 import { NodeService } from '..';
+import AppService from '../service/app';
 
 export type Component = {
   [props: string]: unknown;
@@ -16,9 +15,7 @@ export interface Rest {
 }
 
 export function Container({ component, ...props }: Props) {
-  const { pagesService } = useContext(PagesContext);
-
-  const components = pagesService.components;
+  const components = AppService.components;
 
   const { create, getStyles } = props;
 
@@ -64,7 +61,7 @@ export function Container({ component, ...props }: Props) {
       }
     };
 
-    // element no children error
+    // element children null error
     const childrenElement =
       typeof children === 'string'
         ? children

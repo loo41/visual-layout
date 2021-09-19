@@ -1,5 +1,5 @@
 import React from 'react';
-import { JSONComponent, Node, Style } from 'src/model';
+import { JSONComponent, Node, NodeObject, Style } from 'src/model';
 import { NodeOption } from 'src/model';
 import { PageService } from '..';
 import { EventType } from '../browser';
@@ -133,5 +133,42 @@ export default class NodeService extends Node {
 
   setClassName = (className: string) => {
     this.className = className;
+  };
+
+  baseTypeObject = (node: NodeService) => {
+    const {
+      type,
+      _name,
+      hasCanChild,
+      isDelete,
+      isSelect,
+      isRoot,
+      styles,
+      className,
+      component,
+      id,
+    } = node;
+    return {
+      type,
+      _name,
+      hasCanChild,
+      isDelete,
+      isSelect,
+      isRoot,
+      styles,
+      className,
+      component,
+      id,
+    };
+  };
+
+  toObject = (): NodeObject => {
+    return Object.assign(this.baseTypeObject(this), {
+      children: isString(this.children)
+        ? this.children
+        : this.children?.map(child => (isString(child) ? child : child.toObject())),
+      random: Node.random,
+      element: null,
+    });
   };
 }
