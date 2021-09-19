@@ -354,7 +354,7 @@ const componentLayout: AST = {
           children: 'Footer',
         },
       ],
-      component: {
+      props: {
         style: { height: '100%' },
       },
     },
@@ -408,7 +408,7 @@ const componentSliderLayout: AST = {
           ],
         },
       ],
-      component: {
+      props: {
         style: { height: '100%' },
       },
     },
@@ -434,7 +434,7 @@ const componentGrid: AST = {
       type: 'Component',
       hasCanChild: true,
       styles: [],
-      component: {
+      props: {
         gutter: 6,
       },
       children: [
@@ -442,7 +442,7 @@ const componentGrid: AST = {
           _name: 'Col',
           type: 'Component',
           styles: [],
-          component: {
+          props: {
             span: 8,
           },
           children: [{ _name: 'div', type: 'Element', styles: [], children: [] }],
@@ -451,7 +451,7 @@ const componentGrid: AST = {
           _name: 'Col',
           type: 'Component',
           styles: [],
-          component: {
+          props: {
             span: 8,
           },
           children: [{ _name: 'div', type: 'Element', styles: [], children: [] }],
@@ -460,7 +460,7 @@ const componentGrid: AST = {
           _name: 'Col',
           type: 'Component',
           styles: [],
-          component: {
+          props: {
             span: 8,
           },
           children: [{ _name: 'div', type: 'Element', styles: [], children: [] }],
@@ -478,7 +478,7 @@ const Card: AST = {
     {
       _name: 'Card',
       type: 'Component',
-      component: {
+      props: {
         title: 'Title',
       },
       hasCanChild: true,

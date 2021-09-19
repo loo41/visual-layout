@@ -7,7 +7,7 @@ export const Components: AST[] = [
     type: 'Component',
     styles: [],
     children: 'Button',
-    component: {
+    props: {
       type: 'primary',
     },
   },
@@ -32,14 +32,14 @@ export const Components: AST[] = [
         children: 'Navigation Three',
       },
     ],
-    component: {},
+    props: {},
   },
   {
     _name: 'Pagination',
     type: 'Component',
     styles: [],
     children: [],
-    component: {
+    props: {
       defaultCurrent: 1,
       total: 50,
     },
@@ -53,7 +53,7 @@ export const Components: AST[] = [
         _name: 'Steps.Step',
         type: 'Component',
         children: [],
-        component: {
+        props: {
           title: 'Finished',
           description: 'This is a description.',
         },
@@ -62,13 +62,13 @@ export const Components: AST[] = [
         _name: 'Steps.Step',
         type: 'Component',
         children: [],
-        component: {
+        props: {
           title: 'In Progress',
           description: 'This is a description.',
         },
       },
     ],
-    component: {
+    props: {
       current: 1,
     },
   },
@@ -77,7 +77,7 @@ export const Components: AST[] = [
     type: 'Component',
     styles: [],
     children: null,
-    component: {
+    props: {
       options: [
         {
           value: 'zhejiang',
@@ -120,7 +120,7 @@ export const Components: AST[] = [
     type: 'Component',
     styles: [],
     children: null,
-    component: {
+    props: {
       options: ['Apple', 'Pear', 'Orange'],
     },
   },
@@ -135,7 +135,7 @@ export const Components: AST[] = [
     type: 'Component',
     styles: [],
     children: null,
-    component: {
+    props: {
       placeholder: 'Basic usage',
     },
   },
@@ -144,7 +144,7 @@ export const Components: AST[] = [
     type: 'Component',
     styles: [],
     children: null,
-    component: {
+    props: {
       defaultValue: 10,
     },
   },
@@ -157,7 +157,7 @@ export const Components: AST[] = [
         _name: 'Mentions.Option',
         type: 'Component',
         children: [],
-        component: {
+        props: {
           value: 'afc163',
           children: 'afc163',
         },
@@ -166,7 +166,7 @@ export const Components: AST[] = [
         _name: 'Mentions.Option',
         type: 'Component',
         children: [],
-        component: {
+        props: {
           value: 'zombieJ',
           children: 'zombieJ',
         },
@@ -175,13 +175,13 @@ export const Components: AST[] = [
         _name: 'Mentions.Option',
         type: 'Component',
         children: [],
-        component: {
+        props: {
           value: 'yesmeck',
           children: 'yesmeck',
         },
       },
     ],
-    component: {
+    props: {
       placeholder: 'Mentions',
     },
   },
@@ -206,7 +206,7 @@ export const Components: AST[] = [
         _name: 'Select.Option',
         type: 'Component',
         children: [],
-        component: {
+        props: {
           value: 'jack',
           children: 'jack',
         },
@@ -215,7 +215,7 @@ export const Components: AST[] = [
         _name: 'Select.Option',
         type: 'Component',
         children: [],
-        component: {
+        props: {
           value: 'lucy',
           children: 'lucy',
         },
@@ -224,14 +224,14 @@ export const Components: AST[] = [
         _name: 'Select.Option',
         type: 'Component',
         children: [],
-        component: {
+        props: {
           disabled: true,
           value: 'Disabled',
           children: 'Disabled',
         },
       },
     ],
-    component: {
+    props: {
       defaultValue: 'lucy',
     },
   },
@@ -240,7 +240,7 @@ export const Components: AST[] = [
     type: 'Component',
     styles: [],
     children: [],
-    component: {
+    props: {
       defaultValue: 30,
     },
   },
@@ -249,7 +249,7 @@ export const Components: AST[] = [
     type: 'Component',
     styles: [],
     children: [],
-    component: {
+    props: {
       defaultChecked: true,
     },
   },
@@ -264,7 +264,7 @@ export const Components: AST[] = [
     type: 'Component',
     styles: [],
     children: [],
-    component: {
+    props: {
       size: 32,
     },
   },
@@ -277,12 +277,12 @@ export const Components: AST[] = [
         _name: 'Avatar',
         type: 'Component',
         children: [],
-        component: {
+        props: {
           size: 32,
         },
       },
     ],
-    component: {
+    props: {
       count: 5,
     },
   },
@@ -291,7 +291,7 @@ export const Components: AST[] = [
     type: 'Component',
     styles: [],
     children: [],
-    component: {
+    props: {
       src: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
     },
   },

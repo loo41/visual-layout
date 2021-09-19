@@ -3,10 +3,6 @@ import React from 'react';
 import { NodeService } from '..';
 import AppService from '../service/app';
 
-export type Component = {
-  [props: string]: unknown;
-};
-
 export type Event<T> = (node: NodeService) => (ev: T) => void;
 export interface Rest {
   onClick: Event<React.MouseEvent<Element, MouseEvent>>;
@@ -20,7 +16,7 @@ export function Container({ component, ...props }: Props) {
   const { create, getStyles } = props;
 
   function render(node: NodeService, args?: Rest): React.ReactNode {
-    const { _name, type, children, hasCanChild, component } = node;
+    const { _name, type, children, hasCanChild } = node;
 
     if (type === 'Element') {
       return create(node);
@@ -35,7 +31,7 @@ export function Container({ component, ...props }: Props) {
         : Component?.to
       : _name;
 
-    const props = Object.entries(component || {}).reduce(
+    const props = Object.entries(node.props || {}).reduce(
       (props: { [props: string]: unknown }, [key, value]) => {
         const isComponent =
           value && typeof value === 'object' && (value as NodeService)?._name;

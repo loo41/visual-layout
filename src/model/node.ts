@@ -1,8 +1,7 @@
 import _ from 'lodash';
 import { NodeService } from 'src/controller';
 import { Doc } from 'src/controller/browser';
-import { Component } from 'src/controller/react/container';
-import { Children, NodeOption, Style } from '.';
+import { Children, NodeOption, Props, Style } from '.';
 class Node extends Doc {
   public type: 'Element' | 'Component';
   public _name: string;
@@ -14,7 +13,7 @@ class Node extends Doc {
   public isRoot?: boolean = false;
   private _styles?: Style[];
   public className?: string;
-  public component?: Component;
+  public props?: Props;
   public id: number;
   public static random: number = 1;
   constructor(Option: NodeOption) {
@@ -26,7 +25,7 @@ class Node extends Doc {
       _name,
       element,
       className,
-      component,
+      props,
       id,
       hasCanChild,
       isRoot = false,
@@ -37,7 +36,7 @@ class Node extends Doc {
     this.children = children;
     this.element = element;
     this.isRoot = isRoot;
-    this.component = component;
+    this.props = props;
     this.id = id || Node.Random();
     this.hasCanChild = hasCanChild;
     this.className = className;

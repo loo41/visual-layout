@@ -5,7 +5,6 @@ import History from './history';
 import App from './app';
 import { NodeService } from 'src/controller';
 import React from 'react';
-import { Component } from 'src/controller/react/container';
 
 export { Project, Page, Node, History, App };
 
@@ -23,7 +22,7 @@ export type JSONComponent = Pick<
 > & {
   children: Children<JSONComponent | string>;
   _type: 'Element' | 'Component';
-} & Component;
+} & Props;
 
 export interface AST {
   _name: string;
@@ -31,7 +30,7 @@ export interface AST {
   children?: Children<AST | string>;
   styles?: Style[];
   element?: React.ReactElement;
-  component?: Component;
+  props?: Props;
   className?: string;
   hasCanChild?: boolean;
 }
@@ -88,4 +87,8 @@ export interface HistoryLog {
   time: string;
   node: NodeService;
   description?: string;
+}
+
+export interface Props {
+  [props: string]: unknown;
 }

@@ -1,9 +1,8 @@
 import React from 'react';
-import { JSONComponent, Node, NodeObject, Style } from 'src/model';
+import { JSONComponent, Node, NodeObject, Props, Style } from 'src/model';
 import { NodeOption } from 'src/model';
 import { PageService } from '..';
 import { EventType } from '../browser';
-import { Component } from 'src/controller/react/container';
 import { isString } from 'src/controller/util';
 import { isNull } from 'lodash';
 
@@ -26,7 +25,7 @@ export default class NodeService extends Node {
       element,
       _name,
       className,
-      component,
+      props,
       isRoot,
       hasCanChild,
     } = node || this;
@@ -37,7 +36,7 @@ export default class NodeService extends Node {
       _name,
       isRoot,
       className,
-      component,
+      props,
       hasCanChild,
       children: isString(children)
         ? children
@@ -71,7 +70,7 @@ export default class NodeService extends Node {
     const { _name, children, _type, styles, className, hasCanChild, ...props } =
       component;
     this._name = _name;
-    this.component = props;
+    this.props = props;
     this.type = _type;
     this.styles = styles || [];
     this.className = className;
@@ -86,7 +85,7 @@ export default class NodeService extends Node {
         styles: styles,
         className: className,
         hasCanChild: hasCanChild,
-        component: rest,
+        props: rest,
         children: isString(children)
           ? children
           : children?.map(child =>
@@ -100,14 +99,14 @@ export default class NodeService extends Node {
       : children?.map(child => (isString(child) ? child : newNodeService(child)));
   };
 
-  getComponentConfig = (node: NodeService = this): Component => {
+  getComponentConfig = (node: NodeService = this): Props => {
     return {
       _name: node._name,
       _type: node.type,
       styles: node.styles,
       className: node.className,
       hasCanChild: node.hasCanChild,
-      ...node.component,
+      ...node.props,
       children: isString(node.children)
         ? node.children
         : node.children?.map(child =>
@@ -145,7 +144,7 @@ export default class NodeService extends Node {
       isRoot,
       styles,
       className,
-      component,
+      props,
       id,
     } = node;
     return {
@@ -157,7 +156,7 @@ export default class NodeService extends Node {
       isRoot,
       styles,
       className,
-      component,
+      props,
       id,
     };
   };
