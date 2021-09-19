@@ -3,7 +3,7 @@ import { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { PreviewStyle, SelectStyle } from 'src/const';
 import { models } from 'src/const/container';
-import { PagesService } from 'src/controller';
+import { ProjectService } from 'src/controller';
 import Size from './component/size';
 
 export interface Values {
@@ -20,8 +20,8 @@ export interface Canvas {
   key: string;
 }
 
-export const CreateModal: React.FC<{ pagesService: PagesService }> = ({
-  pagesService,
+export const CreateModal: React.FC<{ projectService: ProjectService }> = ({
+  projectService,
 }) => {
   const [visible, setVisible] = useState(true);
 
@@ -33,7 +33,7 @@ export const CreateModal: React.FC<{ pagesService: PagesService }> = ({
   };
 
   const createPage = (values: Values) => {
-    pagesService.ceratePage({
+    projectService.ceratePage({
       name: values.name,
       target: {
         _name: 'div',
@@ -116,7 +116,7 @@ export const CreateModal: React.FC<{ pagesService: PagesService }> = ({
   );
 };
 
-export const openNewBuildModal = (props: { pagesService: PagesService }) => {
+export const openNewBuildModal = (props: { projectService: ProjectService }) => {
   return new Promise<boolean>(() => {
     const el = document.createElement('div');
     ReactDOM.render(<CreateModal {...props} />, el);

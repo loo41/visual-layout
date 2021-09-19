@@ -1,7 +1,7 @@
 import { PreviewStyle, SelectStyle } from 'src/const';
 import { phone } from 'src/const/container';
 import { cloneDeep } from 'src/util';
-import PagesService from './pages';
+import ProjectService from './project';
 import App from 'src/model/app';
 import { Options } from 'src/controller';
 import * as components from 'antd';
@@ -30,7 +30,7 @@ export default class AppService extends App {
   init = () => {
     const project = this.appStorage.getHistoryProject();
     if (project) {
-      this.project = new PagesService(project);
+      this.project = new ProjectService(project);
     } else {
       this.new(defaultOptions);
     }
@@ -46,7 +46,7 @@ export default class AppService extends App {
   set = (id: string) => {
     const project = this.appStorage.get(id);
     if (project) {
-      this.project = new PagesService(project);
+      this.project = new ProjectService(project);
       this.update();
     }
   };
@@ -58,7 +58,7 @@ export default class AppService extends App {
   };
 
   new = (options?: Options) => {
-    const project = new PagesService();
+    const project = new ProjectService();
     project.ceratePage(options || defaultOptions);
     this.project = project;
     this.update();

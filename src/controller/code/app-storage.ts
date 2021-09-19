@@ -1,6 +1,6 @@
 import proxy from 'src/controller/util/proxy';
 import { ProjectObject } from 'src/model';
-import PagesService from '../service/pages';
+import ProjectService from '../service/project';
 
 const PROJECT_IDS = 'projectIds';
 
@@ -42,7 +42,7 @@ export default class AppStorage {
     }
   };
 
-  keep = (project: PagesService) => {
+  keep = (project: ProjectService) => {
     this.projectID.push(project.ID);
     const projectObject = project.toObject();
     this.projects.set(project.ID, projectObject);

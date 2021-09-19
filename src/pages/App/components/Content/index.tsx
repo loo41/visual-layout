@@ -23,11 +23,11 @@ export default () => {
   return (
     <Content className={styles.content}>
       <Header
-        pagesService={appService.project}
+        projectService={appService.project}
         options={options}
         setOptions={setOptions}
       />
-      <Body pagesService={appService.project} options={options} />
+      <Body projectService={appService.project} options={options} />
     </Content>
   );
 };

@@ -1,10 +1,12 @@
 import { EyeOutlined } from '@ant-design/icons';
 import { Checkbox, Popover, Row } from 'antd';
 import { CheckboxValueType } from 'antd/lib/checkbox/Group';
-import { PagesService } from 'src/controller';
+import { ProjectService } from 'src/controller';
 
-const Preview: React.FC<{ pagesService: PagesService }> = ({ pagesService }) => {
-  const page = pagesService.getCurrentPage();
+const Preview: React.FC<{ projectService: ProjectService }> = ({
+  projectService,
+}) => {
+  const page = projectService.getCurrentPage();
   const options = page?.options;
 
   return (

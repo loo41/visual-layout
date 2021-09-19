@@ -1,4 +1,4 @@
-import PagesService from './service/pages';
+import ProjectService from './service/project';
 import PageService from './service/page';
 import NodeService from './service/node';
 import HistoryService from './service/history';
@@ -14,4 +14,4 @@ export interface Options {
   previewStyle: (Style & { isCanUse?: boolean })[];
 }
 
-export { PagesService, NodeService, PageService, HistoryService, AppService };
+export { ProjectService, NodeService, PageService, HistoryService, AppService };

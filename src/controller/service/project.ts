@@ -1,10 +1,10 @@
-import { PageObject, Pages, ProjectObject } from 'src/model';
+import { PageObject, Project, ProjectObject } from 'src/model';
 import PageService from './page';
 import Keyboard from '../keyboard-event';
 import AppService, { defaultOptions } from './app';
 import { Options } from 'src/controller';
 
-export default class PagesService extends Pages {
+export default class ProjectService extends Project {
   constructor(options?: ProjectObject) {
     super();
     new Keyboard(this);
@@ -12,7 +12,7 @@ export default class PagesService extends Pages {
       const { ID, currentId, idx, name, description, pages } = options;
       this.ID = ID;
       this.currentId = currentId;
-      Pages.idx = idx;
+      Project.idx = idx;
       this.name = name || '';
       this.description = description || '';
       this.pages = Object.entries(pages).reduce((projects, [key, value]) => {
@@ -37,7 +37,7 @@ export default class PagesService extends Pages {
   }
 
   ceratePage(options: Options) {
-    const id = `Page${Pages.idx}`;
+    const id = `Page${Project.idx}`;
     Reflect.set(
       this.pages,
       id,
@@ -55,7 +55,7 @@ export default class PagesService extends Pages {
       }),
     );
     this.currentId = id;
-    Pages.idx++;
+    Project.idx++;
     this.update();
   }
 
@@ -93,7 +93,7 @@ export default class PagesService extends Pages {
 
   toObject = (): ProjectObject => {
     return {
-      idx: Pages.idx,
+      idx: Project.idx,
       currentId: this.currentId,
       ID: this.ID,
       name: this.name,

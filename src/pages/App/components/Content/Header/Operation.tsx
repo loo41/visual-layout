@@ -4,7 +4,7 @@ import styles from '../index.module.scss';
 import { CodeOutlined, ZoomInOutlined, ZoomOutOutlined } from '@ant-design/icons';
 import { InputNumber, Tooltip } from 'antd';
 import { Options } from 'src/pages/App/components/Content/index';
-import { PagesService } from 'src/controller';
+import { ProjectService } from 'src/controller';
 import Preview from './component/preview';
 import Keep from './keep';
 
@@ -14,8 +14,8 @@ const Min_Zoom = 1;
 const Operation: React.FC<{
   options: Options;
   setOptions: (options: Options) => void;
-  pagesService: PagesService;
-}> = ({ options, setOptions, pagesService }) => {
+  projectService: ProjectService;
+}> = ({ options, setOptions, projectService }) => {
   return (
     <div className={styles.operation}>
       <div className={styles.code}>
@@ -24,12 +24,12 @@ const Operation: React.FC<{
         </Tooltip>
       </div>
       <div className={styles.eye}>
-        <Preview pagesService={pagesService} />
+        <Preview projectService={projectService} />
       </div>
       <div className={styles.history}>
         <div
           onClick={() => {
-            pagesService.getCurrentPage().backOffHistory();
+            projectService.getCurrentPage().backOffHistory();
           }}
         >
           <Tooltip placement="top" title="后退">
@@ -38,7 +38,7 @@ const Operation: React.FC<{
         </div>
         <div
           onClick={() => {
-            pagesService.getCurrentPage().forwardHistory();
+            projectService.getCurrentPage().forwardHistory();
           }}
         >
           <Tooltip placement="top" title="前进">

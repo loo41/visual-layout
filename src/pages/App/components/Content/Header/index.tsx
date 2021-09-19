@@ -1,30 +1,32 @@
 import styles from '../index.module.scss';
 import { Button, Popconfirm } from 'antd';
-import { PagesService } from 'src/controller';
+import { ProjectService } from 'src/controller';
 import Operation from './Operation';
 import { CloseCircleOutlined } from '@ant-design/icons';
 import { Options } from 'src/pages/App/components/Content/index';
 import { openNewBuildModal } from './new-build';
 
 const Header: React.FC<{
-  pagesService: PagesService;
+  projectService: ProjectService;
   options: Options;
   setOptions: (options: Options) => void;
-}> = ({ pagesService, options, setOptions }) => {
+}> = ({ projectService, options, setOptions }) => {
   return (
     <div className={styles.header}>
       <div className={styles.pagesWarper}>
         <div className={styles.pages}>
-          {Object.values(pagesService.getPages()).map(({ name, id }) => {
+          {Object.values(projectService.getPages()).map(({ name, id }) => {
             const style = {
-              border: `1px solid ${id === pagesService.currentId ? '#1890ff' : ''}`,
+              border: `1px solid ${
+                id === projectService.currentId ? '#1890ff' : ''
+              }`,
             };
             return (
               <div key={id} className={styles.page} style={style}>
-                <span onClick={() => pagesService.setPages(id)}>{name}</span>
+                <span onClick={() => projectService.setPages(id)}>{name}</span>
                 <Popconfirm
                   title="确定删除?"
-                  onConfirm={() => pagesService.delete(id)}
+                  onConfirm={() => projectService.delete(id)}
                   onCancel={() => {}}
                   okText="是"
                   cancelText="否"
@@ -41,7 +43,7 @@ const Header: React.FC<{
           <Button
             onClick={() => {
               openNewBuildModal({
-                pagesService,
+                projectService,
               });
             }}
           >
@@ -53,7 +55,7 @@ const Header: React.FC<{
         <Operation
           options={options}
           setOptions={setOptions}
-          pagesService={pagesService}
+          projectService={projectService}
         />
       </div>
     </div>
