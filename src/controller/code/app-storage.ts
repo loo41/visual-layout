@@ -43,7 +43,9 @@ export default class AppStorage {
   };
 
   keep = (project: ProjectService) => {
-    this.projectID.push(project.ID);
+    if (!this.projectID.includes(project.ID)) {
+      this.projectID.push(project.ID);
+    }
     const projectObject = project.toObject();
     this.projects.set(project.ID, projectObject);
     this.setItem(project.ID, projectObject);
