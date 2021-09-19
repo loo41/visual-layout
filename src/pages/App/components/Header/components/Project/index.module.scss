@@ -29,8 +29,8 @@
       background-color: map-get($colors, 'status');
     }
     div {
-      margin: 0 10px;
       .item {
+        margin: 0 10px;
         height: 30px;
         width: 30px;
         border-radius: 50%;

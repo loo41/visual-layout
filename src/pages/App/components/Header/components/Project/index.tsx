@@ -63,11 +63,11 @@ const Project: React.FC<{
       <div className={styles.info}>
         <div>
           <span>项目名: </span>
-          <span>{project.name}</span>
+          <span>{project.name ? project.name : '--'}</span>
         </div>
         <div>
           <span>项目描述: </span>
-          <span>{project.description}</span>
+          <span>{project.description ? project.description : '--'}</span>
         </div>
       </div>
     </div>
