@@ -1,8 +1,6 @@
-import { ProjectService } from 'src/controller';
-
-export type Components = Map<string, unknown>;
+import { Components, ProjectService } from 'src/controller';
 
 export default class App {
   public project!: ProjectService;
-  public static components: Map<string, unknown> = new Map();
+  public static components: Components = new Map();
 }

@@ -31,8 +31,8 @@ export function Container({ component, ...props }: Props) {
     // support HTML label
     const C = /^[A-Z]/.test(_name)
       ? /\./.test(_name) // support two level component
-        ? (Component as any)?.[_name.split('.')[1]]
-        : Component
+        ? (Component?.to as any)?.[_name.split('.')[1]]
+        : Component?.to
       : _name;
 
     const props = Object.entries(component || {}).reduce(

@@ -1,6 +1,6 @@
 import { AST } from 'src/model';
 
-const phone: AST = {
+const computer: AST = {
   _name: 'div',
   type: 'Element',
   styles: [
@@ -68,4 +68,4 @@ const models = [
   },
 ];
 
-export { phone, models };
+export { computer, models };

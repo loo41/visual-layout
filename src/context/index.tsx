@@ -1,7 +1,8 @@
 import { createContext, useState } from 'react';
 import { AppService } from 'src/controller';
+import appConfig from 'src/project-config';
 
-const appService = new AppService();
+const appService = new AppService(appConfig);
 export const AppContext = createContext<{
   appService: AppService;
   refresh: boolean;

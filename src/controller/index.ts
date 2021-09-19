@@ -14,4 +14,23 @@ export interface Options {
   previewStyle: (Style & { isCanUse?: boolean })[];
 }
 
+export type ComponentValue = {
+  from: string;
+  to: unknown;
+};
+export type Components = Map<string, ComponentValue>;
+
+export type ProjectOptions = Pick<
+  Options,
+  'target' | 'selectStyle' | 'previewStyle'
+>;
+export interface ProjectConfig {
+  options: ProjectOptions;
+}
+
+export interface AppConfig {
+  project: ProjectConfig;
+  components: Components;
+}
+
 export { ProjectService, NodeService, PageService, HistoryService, AppService };

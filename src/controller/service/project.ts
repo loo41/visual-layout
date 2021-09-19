@@ -1,25 +1,35 @@
 import { PageObject, Project, ProjectObject } from 'src/model';
 import PageService from './page';
 import Keyboard from '../keyboard-event';
-import AppService, { defaultOptions } from './app';
-import { Options } from 'src/controller';
+import AppService from './app';
+import { Options, ProjectOptions } from 'src/controller';
 
 export default class ProjectService extends Project {
-  constructor(options?: ProjectObject) {
+  constructor(options?: ProjectObject & ProjectOptions) {
     super();
     new Keyboard(this);
     if (options) {
-      const { ID, currentId, idx, name, description, pages } = options;
+      const {
+        ID,
+        currentId,
+        idx,
+        name,
+        description,
+        pages,
+        selectStyle,
+        previewStyle,
+      } = options;
+      Project.idx = idx;
+
       this.ID = ID;
       this.currentId = currentId;
-      Project.idx = idx;
       this.name = name || '';
       this.description = description || '';
       this.pages = Object.entries(pages).reduce((projects, [key, value]) => {
         projects[key] = new PageService({
           ...value,
-          selectStyle: defaultOptions.selectStyle,
-          previewStyle: defaultOptions.previewStyle,
+          selectStyle,
+          previewStyle,
           update: this.update,
         });
         return projects;
