@@ -9,32 +9,32 @@ const Keep: React.FC<{}> = () => {
   const { appService } = useContext(AppContext);
 
   const project = appService.project;
-  const historyProject = appService.projects.get(project.ID);
+
   const pages = project.getPages();
-  const pagesLen = Object.keys(pages).length;
 
   const [name, setName] = useState(project.name);
   const [description, setDescription] = useState(project.description);
 
-  const isDisable = useMemo(() => {
-    const pageIds = Object.values(historyProject?.pages || {}).map(page => page.id);
+  const historyProject = appService.projects.get(project.ID);
 
-    return (
-      name === project.name &&
-      description === project.description &&
-      Object.values(pages).every(page => {
-        const curPageId = page.history.history.slice(-1).pop()?.id;
+  const isSome = useMemo(() => {
+    return name === project.name && description === project.description;
+  }, [name, description, project.name, project.description]);
 
-        const historyPageId = Object.values(historyProject?.pages || {})
-          .find(({ id }) => id === page.id)
-          ?.history.history.slice(-1)
-          .pop()?.id;
+  const pageIds = useMemo(() => {
+    return Object.values(historyProject?.pages || {}).map(page => page.id);
+  }, [historyProject]);
 
-        return pageIds.includes(page.id) ? curPageId === historyPageId : false;
-      })
-    );
-    // eslint-disable-next-line
-  }, [historyProject, project, name, description, pages, pagesLen]);
+  const isDisable = Object.values(pages).every(page => {
+    const curPageId = page.history.history.slice(-1).pop()?.id;
+
+    const historyPageId = Object.values(historyProject?.pages || {})
+      .find(({ id }) => id === page.id)
+      ?.history.history.slice(-1)
+      .pop()?.id;
+
+    return pageIds.includes(page.id) ? curPageId === historyPageId : false;
+  });
 
   useEffect(() => {
     setName(project.name);
@@ -68,7 +68,7 @@ const Keep: React.FC<{}> = () => {
       title="项目信息"
     >
       <Button
-        disabled={isDisable}
+        disabled={isDisable && isSome}
         onClick={() => {
           project.updateName(name);
           project.updateDescription(description);
