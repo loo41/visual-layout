@@ -43,10 +43,15 @@ export default class AppStorage {
   };
 
   keep = (project: ProjectService) => {
-    if (!this.projectID.includes(project.ID)) {
+    if (this.projectID.includes(project.ID)) {
+      const index = this.projectID.findIndex(id => id === project.ID);
+      this.projectID.splice(index, 1);
+      this.projectID.push(project.ID);
+    } else {
       this.projectID.push(project.ID);
     }
     const projectObject = project.toObject();
+    this.projects.delete(project.ID);
     this.projects.set(project.ID, projectObject);
     this.setItem(project.ID, projectObject);
   };
