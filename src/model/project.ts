@@ -1,17 +1,17 @@
 import { AppService, PageService, ProjectOptions } from 'src/controller';
-import { ProjectObject } from '.';
+import { App, ProjectObject } from '.';
 export default class Project {
   protected pages: { [key: string]: PageService } = {};
   public _idx: number = 1;
   public currentId?: string;
   public name: string = '';
   public description: string = '';
-  public ID: string = `Project_${this.idx}`;
+  public id: string = String(App.idx);
 
   constructor(options?: ProjectObject & ProjectOptions) {
     if (options) {
       const {
-        ID,
+        id,
         currentId,
         idx,
         name,
@@ -21,12 +21,7 @@ export default class Project {
         previewStyle,
       } = options;
       this.idx = idx;
-
-      // set max ID
-      if (this.ID < ID) {
-        this.ID = ID;
-      }
-
+      this.id = id;
       this.currentId = currentId;
       this.name = name || '';
       this.description = description || '';

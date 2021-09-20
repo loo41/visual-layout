@@ -15,7 +15,7 @@ const Keep: React.FC<{}> = () => {
   const [name, setName] = useState(project.name);
   const [description, setDescription] = useState(project.description);
 
-  const historyProject = appService.projects.get(project.ID);
+  const historyProject = appService.projects.get(project.id);
 
   const isSome = useMemo(() => {
     return name === project.name && description === project.description;

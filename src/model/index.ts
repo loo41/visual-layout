@@ -67,7 +67,7 @@ export type PageObject = Pick<Page, 'idx' | 'id' | 'name'> & {
 
 export type ProjectObject = Pick<
   Project,
-  'ID' | 'currentId' | 'name' | 'description'
+  'id' | 'currentId' | 'name' | 'description'
 > & {
   pages: {
     [props: string]: PageObject;

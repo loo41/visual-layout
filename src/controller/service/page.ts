@@ -139,7 +139,7 @@ export default class PageService extends Page {
   toObject = (): PageObject => {
     return {
       id: this.id,
-      idx: this.idx,
+      idx: this._idx,
       name: this.name,
       currentNode: [],
       page: this.page.toObject(),

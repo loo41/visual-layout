@@ -40,7 +40,7 @@ const Home: React.FC<{}> = () => {
                 </div>
               </Col>
               {projects.map(project => (
-                <Col className={styles.projects} span={4} key={project.ID}>
+                <Col className={styles.projects} span={4} key={project.id}>
                   <Project
                     project={project}
                     appService={appService}

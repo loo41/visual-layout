@@ -70,9 +70,9 @@ export default class ProjectService extends Project {
 
   toObject = (): ProjectObject => {
     return {
-      idx: this.idx,
+      idx: this._idx,
       currentId: this.currentId,
-      ID: this.ID,
+      id: this.id,
       name: this.name,
       description: this.description,
       pages: Object.entries(this.pages).reduce((projects, [key, value]) => {

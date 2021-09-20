@@ -22,7 +22,8 @@ export default class AppService extends App {
   }
 
   init = () => {
-    const project = this.appStorage.getHistoryProject();
+    const projectId = [...this.appStorage.projectID].pop();
+    const project = typeof projectId === 'string' && this.projects.get(projectId);
     if (project) {
       this.project = new ProjectService({
         ...this.appConfig.project.options,
@@ -30,6 +31,10 @@ export default class AppService extends App {
       });
     } else {
       this.new(this.appConfig.project.options);
+    }
+    if (this.projects.size) {
+      App.idx =
+        Math.max(...Array.from(this.projects.keys()).map(_ => Number(_))) + 1;
     }
   };
 

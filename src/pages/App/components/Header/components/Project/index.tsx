@@ -16,7 +16,7 @@ const Project: React.FC<{
         <div
           className={styles.item}
           onClick={() => {
-            appService.set(project.ID);
+            appService.set(project.id);
             setVisible(false);
           }}
         >
@@ -37,7 +37,7 @@ const Project: React.FC<{
       icon: (
         <Popconfirm
           title="确定删除项目"
-          onConfirm={() => appService.delete(project.ID)}
+          onConfirm={() => appService.delete(project.id)}
           onCancel={() => {}}
           okText="是"
           cancelText="否"
@@ -50,7 +50,7 @@ const Project: React.FC<{
     },
   ];
 
-  const isSelect = appService.project.ID === project.ID;
+  const isSelect = appService.project.id === project.id;
 
   return (
     <div className={styles.container}>

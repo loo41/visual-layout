@@ -43,17 +43,18 @@ export default class AppStorage {
   };
 
   keep = (project: ProjectService) => {
-    if (this.projectID.includes(project.ID)) {
-      const index = this.projectID.findIndex(id => id === project.ID);
+    const idString = String(project.id);
+    if (this.projectID.includes(idString)) {
+      const index = this.projectID.findIndex(id => id === idString);
       this.projectID.splice(index, 1);
-      this.projectID.push(project.ID);
+      this.projectID.push(idString);
     } else {
-      this.projectID.push(project.ID);
+      this.projectID.push(idString);
     }
     const projectObject = project.toObject();
-    this.projects.delete(project.ID);
-    this.projects.set(project.ID, projectObject);
-    this.setItem(project.ID, projectObject);
+    this.projects.delete(idString);
+    this.projects.set(idString, projectObject);
+    this.setItem(idString, projectObject);
   };
 
   setItem<T>(id: string, data: T) {
@@ -83,10 +84,5 @@ export default class AppStorage {
 
   get = (id: string) => {
     return this.projects.get(id);
-  };
-
-  getHistoryProject = (): ProjectObject | false | undefined => {
-    const projectId = Array.from(this.projectID).pop();
-    return typeof projectId === 'string' && this.projects.get(projectId);
   };
 }
