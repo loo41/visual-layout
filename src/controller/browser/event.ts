@@ -72,7 +72,7 @@ class DocEvent {
       draggable: true,
       onDragStart: (ev: React.DragEvent) => {
         // fix self drag
-        Reflect.set(DocEvent.dragData, id, node.copy());
+        Reflect.set(DocEvent.dragData, id, node.copy({}));
         ev.dataTransfer?.setData(DragEleId, id);
         if (ev.dataTransfer?.dropEffect) {
           ev.dataTransfer.dropEffect = 'move';

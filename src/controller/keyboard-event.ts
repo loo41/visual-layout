@@ -16,7 +16,7 @@ export default class Keyboard {
       console.log('Paste');
       this.projectService.getCurrentPage().currentNode.forEach(node => {
         !isString(node.children) &&
-          node.children?.push(...this.copyNode.map(node => node.copy()));
+          node.children?.push(...this.copyNode.map(node => node.copy({})));
       });
       this.projectService.getCurrentPage().update({ description: '复制元素' });
     });

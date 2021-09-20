@@ -22,17 +22,17 @@ export default class NodeService extends Node {
     return this.create({ node: this, eventType });
   };
 
-  copy = (node?: NodeService): NodeService => {
-    const { children, element, id } = node || this;
+  copy = ({ isCopyID }: { isCopyID?: boolean }): NodeService => {
+    const { children, element, id } = this;
     return new NodeService(
       {
-        ...this.getBaseAttribute(node || this),
+        ...this.getBaseAttribute(this),
         element,
-        id,
+        id: isCopyID ? id : this.pageService.getIdx(),
         children: isString(children)
           ? children
           : children?.map(children =>
-              isString(children) ? children : children.copy(),
+              isString(children) ? children : children.copy({ isCopyID }),
             ),
       },
       this.pageService,

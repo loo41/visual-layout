@@ -41,7 +41,7 @@ export default class PageService extends Page {
     return ({ description, isKeepHistory = true }) => {
       if (isKeepHistory) {
         this.history.keep({
-          node: this.page.copy(),
+          node: this.page.copy({ isCopyID: true }),
           description,
         });
       }
@@ -95,7 +95,7 @@ export default class PageService extends Page {
     const history = this.history.current();
     if (history) {
       history.node.clearEffect();
-      this.page = history.node.copy();
+      this.page = history.node.copy({ isCopyID: true });
     } else {
       // backOff first history
       this.page = this.newNode(this.target, true);
@@ -114,7 +114,7 @@ export default class PageService extends Page {
     const history = this.history.current();
     if (history) {
       history.node.clearEffect();
-      this.page = history.node.copy();
+      this.page = history.node.copy({ isCopyID: true });
     } else {
       // backOff first history
       this.page = this.newNode(this.target, true);
@@ -132,7 +132,7 @@ export default class PageService extends Page {
     const history = this.history.current();
     if (history) {
       history.node.clearEffect();
-      this.page = history.node.copy();
+      this.page = history.node.copy({ isCopyID: true });
     }
   };
 
