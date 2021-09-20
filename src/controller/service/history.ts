@@ -26,7 +26,7 @@ class HistoryService extends History {
   keep = (rest: Omit<HistoryLog, 'id' | 'time'>) => {
     const history = {
       id: this.id,
-      time: new Date().toDateString(),
+      time: new Date().toUTCString(),
       ...rest,
     };
     // return some history
