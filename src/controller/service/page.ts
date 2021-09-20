@@ -20,7 +20,7 @@ export default class PageService extends Page {
     this.update = this.bindUpdate(options.update);
     NodeService.pageService = this;
 
-    this.setPage(PageService.createNode(options.page || options.target, true));
+    this.setPage(this.newNode(options.page || options.target, true));
   }
 
   setOptions(options: Partial<Options>) {
@@ -30,18 +30,6 @@ export default class PageService extends Page {
     };
     this.update({ isKeepHistory: false });
   }
-
-  static createNode = (target: AST, isRoot?: boolean): NodeService => {
-    return new NodeService({
-      ...target,
-      isRoot,
-      children: isString(target.children)
-        ? target.children
-        : target.children?.map(node =>
-            isString(node) ? node : PageService.createNode(node),
-          ),
-    });
-  };
 
   bindUpdate = (update: () => void): Update => {
     return ({ description, isKeepHistory = true }) => {
@@ -78,7 +66,7 @@ export default class PageService extends Page {
   };
 
   setComponent = (component: JSONComponent) => {
-    this.currentNode.map(node => node.setComponent(component));
+    this.currentNode.map(node => node.setComponent(component, this));
     this.update({ description: '更新组件' });
   };
 
@@ -104,7 +92,7 @@ export default class PageService extends Page {
       this.page = history.node.copy();
     } else {
       // backOff first history
-      this.page = PageService.createNode(this.target, true);
+      this.page = this.newNode(this.target, true);
     }
     this.update({ isKeepHistory: false });
   }
@@ -123,7 +111,7 @@ export default class PageService extends Page {
       this.page = history.node.copy();
     } else {
       // backOff first history
-      this.page = PageService.createNode(this.target, true);
+      this.page = this.newNode(this.target, true);
     }
     this.update({ isKeepHistory: false });
   }
@@ -145,6 +133,7 @@ export default class PageService extends Page {
   toObject = (): PageObject => {
     return {
       id: this.id,
+      idx: this.idx,
       name: this.name,
       currentNode: [],
       page: this.page.toObject(),

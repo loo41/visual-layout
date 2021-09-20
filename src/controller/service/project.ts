@@ -1,40 +1,12 @@
 import { PageObject, Project, ProjectObject } from 'src/model';
 import PageService from './page';
 import Keyboard from '../keyboard-event';
-import AppService from './app';
 import { Options, ProjectOptions } from 'src/controller';
 
 export default class ProjectService extends Project {
   constructor(options?: ProjectObject & ProjectOptions) {
-    super();
+    super(options);
     new Keyboard(this);
-    if (options) {
-      const {
-        ID,
-        currentId,
-        idx,
-        name,
-        description,
-        pages,
-        selectStyle,
-        previewStyle,
-      } = options;
-      Project.idx = idx;
-
-      this.ID = ID;
-      this.currentId = currentId;
-      this.name = name || '';
-      this.description = description || '';
-      this.pages = Object.entries(pages).reduce((projects, [key, value]) => {
-        projects[key] = new PageService({
-          ...value,
-          selectStyle,
-          previewStyle,
-          update: this.update,
-        });
-        return projects;
-      }, {} as { [props: string]: PageService });
-    }
   }
 
   getPages() {
@@ -47,7 +19,7 @@ export default class ProjectService extends Project {
   }
 
   ceratePage(options: Options) {
-    const id = `Page${Project.idx}`;
+    const id = `Page${this.idx}`;
     Reflect.set(
       this.pages,
       id,
@@ -65,7 +37,6 @@ export default class ProjectService extends Project {
       }),
     );
     this.currentId = id;
-    Project.idx++;
     this.update();
   }
 
@@ -85,10 +56,6 @@ export default class ProjectService extends Project {
     this.update();
   }
 
-  update = () => {
-    Promise.resolve().then(() => AppService.updateView());
-  };
-
   updateName = (name: string) => {
     this.name = name;
   };
@@ -103,7 +70,7 @@ export default class ProjectService extends Project {
 
   toObject = (): ProjectObject => {
     return {
-      idx: Project.idx,
+      idx: this.idx,
       currentId: this.currentId,
       ID: this.ID,
       name: this.name,

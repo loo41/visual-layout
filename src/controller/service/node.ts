@@ -27,6 +27,7 @@ export default class NodeService extends Node {
       className,
       props,
       isRoot,
+      id,
       hasCanChild,
     } = node || this;
     return new NodeService({
@@ -37,6 +38,7 @@ export default class NodeService extends Node {
       isRoot,
       className,
       props,
+      id,
       hasCanChild,
       children: isString(children)
         ? children
@@ -66,7 +68,7 @@ export default class NodeService extends Node {
     }
   };
 
-  setComponent = (component: JSONComponent) => {
+  setComponent = (component: JSONComponent, _this: PageService) => {
     const { _name, children, _type, styles, className, hasCanChild, ...props } =
       component;
     this._name = _name;
@@ -86,6 +88,7 @@ export default class NodeService extends Node {
         className: className,
         hasCanChild: hasCanChild,
         props: rest,
+        id: _this.idx,
         children: isString(children)
           ? children
           : children?.map(child =>

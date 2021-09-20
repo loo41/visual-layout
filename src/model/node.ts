@@ -37,13 +37,9 @@ class Node extends Doc {
     this.element = element;
     this.isRoot = isRoot;
     this.props = props;
-    this.id = id || Node.Random();
+    this.id = id;
     this.hasCanChild = hasCanChild;
     this.className = className;
-  }
-
-  static Random() {
-    return Node.random++;
   }
 
   set styles(styles: Style[]) {

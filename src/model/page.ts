@@ -9,13 +9,15 @@ export default class Page {
   public _page!: NodeService;
   public currentNode: NodeService[] = [];
   public history: HistoryService;
+  protected _idx: number = 1;
   protected target: AST;
   constructor(options: Required<Options> & Partial<PageObject>) {
-    const { id, name, target, history } = options;
+    const { id, name, target, history, idx } = options;
     this.id = id;
+    this.idx = idx || 1;
     this.name = name;
     this.target = target;
-    this.history = new HistoryService(history? history: {});
+    this.history = new HistoryService(history ? history : {}, this);
   }
   setPage(target: NodeService) {
     this._page = target;
@@ -29,6 +31,14 @@ export default class Page {
   get page() {
     this.clearDeleteNode(this._page);
     return this._page;
+  }
+
+  get idx() {
+    return this._idx++;
+  }
+
+  set idx(idx: number) {
+    this._idx = idx;
   }
 
   clearDeleteNode = (node: NodeService): NodeService | null => {
@@ -45,5 +55,16 @@ export default class Page {
             .filter(_ => _) as NodeService[]);
       return node;
     }
+  };
+
+  newNode = (target: AST, isRoot?: boolean): NodeService => {
+    return new NodeService({
+      ...target,
+      isRoot,
+      id: this.idx,
+      children: isString(target.children)
+        ? target.children
+        : target.children?.map(node => (isString(node) ? node : this.newNode(node))),
+    });
   };
 }

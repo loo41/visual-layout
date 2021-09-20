@@ -58,7 +58,7 @@ export type ASTObject = Omit<AST, 'children' | 'element'> & {
   children?: Children<ASTObject | string>;
 };
 
-export type PageObject = Pick<Page, 'id' | 'name'> & {
+export type PageObject = Pick<Page, 'idx' | 'id' | 'name'> & {
   currentNode: NodeObject[];
   page: NodeObject;
   target: ASTObject;
@@ -76,9 +76,9 @@ export type ProjectObject = Pick<
 };
 
 export type NodeOption = AST & {
+  id: number;
   isRoot?: boolean;
   children?: Children<NodeService | string>;
-  id?: number;
   content?: string;
 };
 

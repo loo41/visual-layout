@@ -1,9 +1,8 @@
-import { HistoryLog, HistoryObject } from 'src/model';
+import { HistoryLog, HistoryObject, Page } from 'src/model';
 import History from 'src/model/history';
-import { PageService } from '..';
 
 class HistoryService extends History {
-  constructor(options: Partial<HistoryObject>) {
+  constructor(options: Partial<HistoryObject>, _this: Page) {
     super();
 
     const { history, id, future } = options;
@@ -13,13 +12,13 @@ class HistoryService extends History {
     this.history =
       history?.map(({ node, ...rest }) => ({
         ...rest,
-        node: PageService.createNode(node),
+        node: _this.newNode(node),
       })) || [];
 
     this.future =
       future?.map(({ node, ...rest }) => ({
         ...rest,
-        node: PageService.createNode(node),
+        node: _this.newNode(node),
       })) || [];
   }
 
