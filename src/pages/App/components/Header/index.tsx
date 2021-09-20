@@ -1,5 +1,6 @@
-import { GithubOutlined } from '@ant-design/icons';
+import { ExpandOutlined, GithubOutlined } from '@ant-design/icons';
 import { Layout } from 'antd';
+import screenFull from 'screenfull';
 import Home from './components/Home';
 import styles from './index.module.scss';
 
@@ -7,9 +8,18 @@ const { Header } = Layout;
 
 // eslint-disable-next-line
 export default () => {
+  const requestFullScreen = () => {
+    if (screenFull.isEnabled) {
+      screenFull.request();
+    }
+  };
+
   return (
     <Header className={styles.header}>
-      <div>
+      <div className={styles.leftWarper}>
+        <div className={styles.item} onClick={e => requestFullScreen()}>
+          <ExpandOutlined />
+        </div>
         <div className={`${styles.item} ${styles.itemHome}`}>
           <Home />
         </div>

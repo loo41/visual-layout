@@ -32,7 +32,7 @@ const Body: React.FC<{ appService: AppService; options: Options }> = ({
       {pages.map(page => {
         const style = { display: page.id === curPage.id ? 'block' : 'none' };
         return (
-          <div key={page.id} style={style}>
+          <div key={page.id} style={style} className={styles.innerBody}>
             <Container page={page} options={options} curPage={curPage} />
           </div>
         );

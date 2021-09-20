@@ -6,6 +6,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  .leftWarper {
+    display: flex;
+  }
   .item {
     display: flex;
     box-sizing: border-box;
