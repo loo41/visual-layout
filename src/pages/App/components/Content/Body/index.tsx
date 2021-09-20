@@ -1,24 +1,31 @@
-import { PageService, ProjectService } from 'src/controller';
+import { AppService, PageService } from 'src/controller';
 import styles from './index.module.scss';
 import Container from './container';
 import { Options } from '..';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useRef } from 'react';
 
-const Body: React.FC<{ projectService: ProjectService; options: Options }> = ({
-  projectService,
+const Body: React.FC<{ appService: AppService; options: Options }> = ({
+  appService,
   options,
 }) => {
   const [pages, setPages] = useState<PageService[]>([]);
+  const project = useRef(appService.project);
 
-  const curPage = projectService.getCurrentPage();
+  const curPage = appService.project.getCurrentPage();
 
   useEffect(() => {
-    if (curPage && pages.every(({ id }) => id !== curPage.id)) {
-      setPages(pages.concat([curPage]));
+    if (appService.project === project.current) {
+      if (curPage && pages.every(({ id }) => id !== curPage.id)) {
+        setPages(pages.concat([curPage]));
+      }
+    } else {
+      project.current = appService.project;
+      setPages([curPage]);
     }
     // eslint-disable-next-line
-  }, [curPage]);
+  }, [curPage, appService.project]);
 
   return (
     <div className={styles.body}>

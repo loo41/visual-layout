@@ -27,7 +27,7 @@ export default () => {
         options={options}
         setOptions={setOptions}
       />
-      <Body projectService={appService.project} options={options} />
+      <Body appService={appService} options={options} />
     </Content>
   );
 };
