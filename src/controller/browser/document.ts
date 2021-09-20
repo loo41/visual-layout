@@ -78,6 +78,7 @@ class Doc extends DocEvent {
         : React.createElement(
             node._name,
             {
+              key: node.id,
               style: getStyles(node),
               className: className,
               ...props,

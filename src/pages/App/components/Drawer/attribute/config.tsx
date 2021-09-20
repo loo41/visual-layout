@@ -9,15 +9,15 @@ export interface CssProps {
 const Css = [
   {
     key: 'width',
-    component: (props: CssProps) => <Width {...props} />,
+    component: (props: CssProps) => <Width {...props} key="width" />,
   },
   {
     key: 'height',
-    component: (props: CssProps) => <Height {...props} />,
+    component: (props: CssProps) => <Height {...props} key="height" />,
   },
   {
     key: 'display',
-    component: (props: CssProps) => <Display {...props} />,
+    component: (props: CssProps) => <Display {...props} key="display" />,
   },
 ];
 
