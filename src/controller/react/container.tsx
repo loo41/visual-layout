@@ -16,7 +16,7 @@ export function Container({ component, ...props }: Props) {
   const { create, getStyles } = props;
 
   function render(node: NodeService, args?: Rest): React.ReactNode {
-    const { _name, type, children, hasCanChild } = node;
+    const { _name, type, children, hasCanChild, id } = node;
 
     if (type === 'Element') {
       return create(node);
@@ -66,6 +66,7 @@ export function Container({ component, ...props }: Props) {
     // component? component: string
     return (
       <C
+        key={id}
         {...props}
         {...(hasCanChild
           ? {
