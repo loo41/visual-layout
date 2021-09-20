@@ -1,7 +1,8 @@
-import { Page, AST, Style, JSONComponent, PageObject, ASTObject } from 'src/model';
+import { AST, Style, JSONComponent, PageObject, ASTObject } from 'src/model';
 import { EventType } from '../browser';
 import { HistoryService, NodeService, Options } from '..';
 import { isString } from 'src/controller/util';
+import Page from 'src/model/page';
 
 export interface Update {
   // eslint-disable-next-line

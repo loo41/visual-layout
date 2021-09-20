@@ -1,10 +1,11 @@
 import React from 'react';
-import { JSONComponent, Node, NodeObject, Props, Style } from 'src/model';
+import { JSONComponent, NodeObject, Props, Style } from 'src/model';
 import { NodeOption } from 'src/model';
 import { PageService } from '..';
 import { EventType } from '../browser';
 import { isString } from 'src/controller/util';
 import { isNull } from 'lodash';
+import Node from 'src/model/node';
 
 export type NodePageService = Pick<
   PageService,

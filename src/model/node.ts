@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { NodeService } from 'src/controller';
-import { Doc } from 'src/controller/browser';
-import { Children, NodeOption, Props, Style } from '.';
+import { Children, NodeOption, Props, Style } from './index';
+import Doc from 'src/controller/browser/document';
 class Node extends Doc {
   public type: 'Element' | 'Component';
   public _name: string;
