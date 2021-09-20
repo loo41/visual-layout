@@ -1,8 +1,9 @@
-import { HistoryLog, HistoryObject, Page } from 'src/model';
+import { HistoryLog, HistoryObject } from 'src/model';
 import History from 'src/model/history';
+import PageService from './page';
 
 class HistoryService extends History {
-  constructor(options: Partial<HistoryObject>, _this: Page) {
+  constructor(options: Partial<HistoryObject>, _this: PageService) {
     super();
 
     const { history, id, future } = options;

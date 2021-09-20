@@ -1,5 +1,4 @@
 import { NodeService, Options } from 'src/controller';
-import HistoryService from 'src/controller/service/history';
 import { isString } from 'src/controller/util';
 import { AST, PageObject } from '.';
 
@@ -8,16 +7,14 @@ export default class Page {
   public name: string;
   public _page!: NodeService;
   public currentNode: NodeService[] = [];
-  public history: HistoryService;
   protected _idx: number = 1;
   protected target: AST;
   constructor(options: Required<Options> & Partial<PageObject>) {
-    const { id, name, target, history, idx } = options;
+    const { id, name, target, idx } = options;
     this.id = id;
     this.idx = idx || 1;
     this.name = name;
     this.target = target;
-    this.history = new HistoryService(history ? history : {}, this);
   }
   setPage(target: NodeService) {
     this._page = target;
@@ -55,16 +52,5 @@ export default class Page {
             .filter(_ => _) as NodeService[]);
       return node;
     }
-  };
-
-  newNode = (target: AST, isRoot?: boolean): NodeService => {
-    return new NodeService({
-      ...target,
-      isRoot,
-      id: this.idx,
-      children: isString(target.children)
-        ? target.children
-        : target.children?.map(node => (isString(node) ? node : this.newNode(node))),
-    });
   };
 }

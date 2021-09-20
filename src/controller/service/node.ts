@@ -6,11 +6,16 @@ import { EventType } from '../browser';
 import { isString } from 'src/controller/util';
 import { isNull } from 'lodash';
 
+export type NodePageService = Pick<
+  PageService,
+  'options' | 'currentNode' | 'setCurrentNode' | 'getIdx' | 'update'
+>;
 export default class NodeService extends Node {
-  public static pageService?: PageService;
+  public pageService: NodePageService;
   // eslint-disable-next-line
-  constructor(Options: NodeOption) {
+  constructor(Options: NodeOption, pageService: NodePageService) {
     super(Options);
+    this.pageService = pageService;
   }
 
   createElement = ({ eventType }: { eventType: EventType }): React.ReactElement => {
@@ -18,34 +23,20 @@ export default class NodeService extends Node {
   };
 
   copy = (node?: NodeService): NodeService => {
-    const {
-      type,
-      styles,
-      children,
-      element,
-      _name,
-      className,
-      props,
-      isRoot,
-      id,
-      hasCanChild,
-    } = node || this;
-    return new NodeService({
-      type,
-      styles,
-      element,
-      _name,
-      isRoot,
-      className,
-      props,
-      id,
-      hasCanChild,
-      children: isString(children)
-        ? children
-        : children?.map(children =>
-            isString(children) ? children : children.copy(),
-          ),
-    });
+    const { children, element, id } = node || this;
+    return new NodeService(
+      {
+        ...this.getBaseAttribute(node || this),
+        element,
+        id,
+        children: isString(children)
+          ? children
+          : children?.map(children =>
+              isString(children) ? children : children.copy(),
+            ),
+      },
+      this.pageService,
+    );
   };
 
   setStyles = (styles: Style[]) => {
@@ -81,20 +72,23 @@ export default class NodeService extends Node {
     const newNodeService = (options: JSONComponent): NodeService => {
       const { _name, children, _type, styles, className, hasCanChild, ...rest } =
         options;
-      return new NodeService({
-        _name: options._name,
-        type: _type,
-        styles: styles,
-        className: className,
-        hasCanChild: hasCanChild,
-        props: rest,
-        id: _this.idx,
-        children: isString(children)
-          ? children
-          : children?.map(child =>
-              isString(child) ? child : newNodeService(child),
-            ),
-      });
+      return new NodeService(
+        {
+          _name: options._name,
+          type: _type,
+          styles: styles,
+          className: className,
+          hasCanChild: hasCanChild,
+          props: rest,
+          id: _this.idx,
+          children: isString(children)
+            ? children
+            : children?.map(child =>
+                isString(child) ? child : newNodeService(child),
+              ),
+        },
+        this.pageService,
+      );
     };
 
     this.children = isString(children)
@@ -137,7 +131,7 @@ export default class NodeService extends Node {
     this.className = className;
   };
 
-  baseTypeObject = (node: NodeService) => {
+  getBaseAttribute = (node: NodeService) => {
     const {
       type,
       _name,
@@ -165,7 +159,7 @@ export default class NodeService extends Node {
   };
 
   toObject = (): NodeObject => {
-    return Object.assign(this.baseTypeObject(this), {
+    return Object.assign(this.getBaseAttribute(this), {
       children: isString(this.children)
         ? this.children
         : this.children?.map(child => (isString(child) ? child : child.toObject())),

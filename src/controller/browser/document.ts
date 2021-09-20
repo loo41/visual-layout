@@ -30,11 +30,11 @@ class Doc extends DocEvent {
       const { styles, isSelect } = node;
 
       const previewStyle =
-        NodeService.pageService?.options.previewStyle.filter(
+        node.pageService?.options.previewStyle.filter(
           ({ isCanUse }) => !eventType || !iscContainer || isCanUse,
         ) || [];
       return previewStyle
-        .concat(isSelect ? NodeService.pageService?.options.selectStyle || [] : [])
+        .concat(isSelect ? node.pageService?.options.selectStyle || [] : [])
         .concat(styles)
         .reduce((styles: { [props: string]: string }, style) => {
           const { key, value } = style;

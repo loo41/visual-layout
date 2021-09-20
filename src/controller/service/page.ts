@@ -1,6 +1,6 @@
 import { Page, AST, Style, JSONComponent, PageObject, ASTObject } from 'src/model';
 import { EventType } from '../browser';
-import { NodeService, Options } from '..';
+import { HistoryService, NodeService, Options } from '..';
 import { isString } from 'src/controller/util';
 
 export interface Update {
@@ -11,14 +11,16 @@ export interface Update {
 export default class PageService extends Page {
   public update: Update;
   public options: Options;
+  public history: HistoryService;
   public updateSign: boolean = false;
   constructor(options: Required<Options> & Partial<PageObject>) {
     super(options);
+    const { id, name, history } = options;
     this.options = options;
-    this.id = options.id;
-    this.name = options.name;
+    this.id = id;
+    this.name = name;
     this.update = this.bindUpdate(options.update);
-    NodeService.pageService = this;
+    this.history = new HistoryService(history ? history : {}, this);
 
     this.setPage(this.newNode(options.page || options.target, true));
   }
@@ -30,6 +32,10 @@ export default class PageService extends Page {
     };
     this.update({ isKeepHistory: false });
   }
+
+  getIdx = () => {
+    return this.idx;
+  };
 
   bindUpdate = (update: () => void): Update => {
     return ({ description, isKeepHistory = true }) => {
@@ -151,5 +157,27 @@ export default class PageService extends Page {
             isString(child) ? child : this.ASTtoObject(child),
           ),
     };
+  };
+
+  newNode = (target: AST, isRoot?: boolean): NodeService => {
+    return new NodeService(
+      {
+        ...target,
+        isRoot,
+        id: this.idx,
+        children: isString(target.children)
+          ? target.children
+          : target.children?.map(node =>
+              isString(node) ? node : this.newNode(node),
+            ),
+      },
+      {
+        options: this.options,
+        currentNode: this.currentNode,
+        setCurrentNode: this.setCurrentNode,
+        getIdx: this.getIdx,
+        update: this.update,
+      },
+    );
   };
 }

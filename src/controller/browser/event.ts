@@ -34,7 +34,7 @@ class DocEvent {
         }
       }
 
-      NodeService.pageService?.update({ description: '添加元素' });
+      node.pageService?.update({ description: '添加元素' });
     }
   };
 
@@ -50,9 +50,8 @@ class DocEvent {
       ev.stopPropagation();
       // some node click return
       if (
-        NodeService.pageService?.currentNode
-          .map(node => node.toString())
-          .join(';') === node.toString()
+        node.pageService?.currentNode.map(node => node.toString()).join(';') ===
+        node.toString()
       ) {
         return;
       }
@@ -60,7 +59,7 @@ class DocEvent {
       if (node.type !== 'Component' && ev.currentTarget !== ev.target) {
         // component no click event
       }
-      NodeService.pageService?.setCurrentNode([node]);
+      node.pageService?.setCurrentNode([node]);
     } catch (err) {
       console.error(`onClick Event Error ${err?.message}`);
     }

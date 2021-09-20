@@ -30,14 +30,14 @@ export default class Project {
       this.currentId = currentId;
       this.name = name || '';
       this.description = description || '';
-      this.pages = Object.entries(pages).reduce((projects, [key, value]) => {
-        projects[key] = new PageService({
+      this.pages = Object.entries(pages).reduce((pages, [key, value]) => {
+        pages[key] = new PageService({
           ...value,
           selectStyle,
           previewStyle,
           update: this.update,
         });
-        return projects;
+        return pages;
       }, {} as { [props: string]: PageService });
     }
   }
