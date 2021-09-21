@@ -18,7 +18,7 @@ const Home: React.FC<{}> = () => {
       {({ visible, setVisible }) => (
         <>
           <Drawer
-            title="Project Home"
+            title="项目 Home"
             placement="top"
             height={'calc(100% - 40px)'}
             mask={false}
@@ -36,7 +36,7 @@ const Home: React.FC<{}> = () => {
                   <span>
                     <PlusCircleOutlined />
                   </span>
-                  <span>New Project</span>
+                  <span>新建项目</span>
                 </div>
               </Col>
               {projects.map(project => (
@@ -54,7 +54,7 @@ const Home: React.FC<{}> = () => {
             onClick={() => setVisible(!visible)}
             style={{ height: '100%', width: '100%', padding: '5px 10px' }}
           >
-            Project
+            项目
             <FolderAddOutlined
               style={{ color: 'white', fontSize: 16, marginLeft: 5 }}
             />
