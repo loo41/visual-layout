@@ -184,13 +184,7 @@ export default class PageService extends Page {
               isString(node) ? node : this.newNode(node),
             ),
       },
-      {
-        options: this.options,
-        currentNode: this.currentNode,
-        setCurrentNode: this.setCurrentNode,
-        getIdx: this.getIdx,
-        update: this.update,
-      },
+      () => this,
     );
   };
 }

@@ -7,16 +7,13 @@ import { isString } from 'src/controller/util';
 import { isNull } from 'lodash';
 import Node from 'src/model/node';
 
-export type NodePageService = Pick<
-  PageService,
-  'options' | 'currentNode' | 'setCurrentNode' | 'getIdx' | 'update'
->;
+export type GetPageServiceInstance = () => PageService;
 export default class NodeService extends Node {
-  public pageService: NodePageService;
+  public getPageServiceInstance: GetPageServiceInstance;
   // eslint-disable-next-line
-  constructor(Options: NodeOption, pageService: NodePageService) {
+  constructor(Options: NodeOption, getPageServiceInstance: GetPageServiceInstance) {
     super(Options);
-    this.pageService = pageService;
+    this.getPageServiceInstance = getPageServiceInstance;
   }
 
   createElement = ({ eventType }: { eventType: EventType }): React.ReactElement => {
@@ -29,14 +26,14 @@ export default class NodeService extends Node {
       {
         ...this.getBaseAttribute(this),
         element,
-        id: isCopyID ? id : this.pageService.getIdx(),
+        id: isCopyID ? id : this.getPageServiceInstance().getIdx(),
         children: isString(children)
           ? children
           : children?.map(children =>
               isString(children) ? children : children.copy({ isCopyID }),
             ),
       },
-      this.pageService,
+      this.getPageServiceInstance,
     );
   };
 
@@ -88,7 +85,7 @@ export default class NodeService extends Node {
                 isString(child) ? child : newNodeService(child),
               ),
         },
-        this.pageService,
+        this.getPageServiceInstance,
       );
     };
 

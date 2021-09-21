@@ -29,12 +29,14 @@ class Doc extends DocEvent {
     const getStyles = (node: NodeService) => {
       const { styles, isSelect } = node;
 
-      const previewStyle =
-        node.pageService?.options.previewStyle.filter(
+      const { selectStyle, previewStyle } = node.getPageServiceInstance().options;
+
+      const usePreviewStyle =
+        previewStyle.filter(
           ({ isCanUse }) => !eventType || !iscContainer || isCanUse,
         ) || [];
-      return previewStyle
-        .concat(isSelect ? node.pageService?.options.selectStyle || [] : [])
+      return usePreviewStyle
+        .concat(isSelect ? selectStyle || [] : [])
         .concat(styles)
         .reduce((styles: { [props: string]: string }, style) => {
           const { key, value } = style;
