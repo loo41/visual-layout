@@ -29,13 +29,6 @@ class HistoryService extends History {
       time: new Date().toUTCString(),
       ...rest,
     };
-    // return some history
-    if (
-      history?.node.toString() ===
-      this.history[this.history.length - 1]?.node.toString()
-    ) {
-      return;
-    }
     this.history.push(history);
     // clear future history
     this.future = [];
