@@ -1,4 +1,11 @@
-import { AST, Style, JSONComponent, PageObject, ASTObject } from 'src/model';
+import {
+  AST,
+  Style,
+  JSONComponent,
+  PageObject,
+  ASTObject,
+  CodeConfig,
+} from 'src/model';
 import { EventType } from '../browser';
 import { HistoryService, NodeService, Options } from '..';
 import { isString } from 'src/controller/util';
@@ -80,6 +87,11 @@ export default class PageService extends Page {
   setClassName = (className: string) => {
     this.currentNode.map(node => node.setClassName(className));
     this.update({ description: '设置Class' });
+  };
+
+  setCodeConfig = (codeConfig: CodeConfig) => {
+    this.currentNode.map(node => node.setCodeConfig(codeConfig));
+    this.update({ description: '设置组件配置' });
   };
 
   createView = () => {

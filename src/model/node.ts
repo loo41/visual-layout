@@ -1,7 +1,14 @@
 import _ from 'lodash';
 import { NodeService } from 'src/controller';
-import { Children, NodeOption, Props, Style } from './index';
+import { Children, CodeConfig, NodeOption, Props, Style } from './index';
 import Doc from 'src/controller/browser/document';
+
+export const DEFAULT = {
+  codeConfig: {
+    isComponent: false,
+    componentName: '',
+  },
+};
 class Node extends Doc {
   public type: 'Element' | 'Component';
   public _name: string;
@@ -9,6 +16,7 @@ class Node extends Doc {
   public children?: Children<NodeService | string>;
   public isDelete: boolean = false;
   public isSelect: boolean = false;
+  public codeConfig: CodeConfig = DEFAULT.codeConfig;
   public element?: React.ReactElement;
   public isRoot?: boolean = false;
   private _styles?: Style[];
@@ -28,6 +36,9 @@ class Node extends Doc {
       props,
       id,
       hasCanChild,
+      codeConfig,
+      isSelect,
+      isDelete,
       isRoot = false,
     } = Option;
     this.type = type;
@@ -40,6 +51,9 @@ class Node extends Doc {
     this.id = id;
     this.hasCanChild = hasCanChild;
     this.className = className;
+    this.isSelect = isSelect || false;
+    this.codeConfig = codeConfig || DEFAULT.codeConfig;
+    this.isDelete = isDelete || false;
   }
 
   set styles(styles: Style[]) {

@@ -2,6 +2,7 @@ import { PageService } from 'src/controller';
 import Collapse from 'src/pages/components/Collapse';
 import ClassName from './components/className';
 import Content from './components/content';
+import Component from './components/component';
 import styles from './index.module.scss';
 
 const BaseAttribute: React.FC<{ page: PageService }> = ({ page }) => {
@@ -13,6 +14,7 @@ const BaseAttribute: React.FC<{ page: PageService }> = ({ page }) => {
         </div>
       }
     >
+      <Component page={page} />
       <ClassName page={page} />
       <Content page={page} />
     </Collapse>

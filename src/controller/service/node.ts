@@ -1,5 +1,5 @@
 import React from 'react';
-import { JSONComponent, NodeObject, Props, Style } from 'src/model';
+import { CodeConfig, JSONComponent, NodeObject, Props, Style } from 'src/model';
 import { NodeOption } from 'src/model';
 import { PageService } from '..';
 import { EventType } from '../browser';
@@ -132,6 +132,10 @@ export default class NodeService extends Node {
     this.className = className;
   };
 
+  setCodeConfig = (codeConfig: CodeConfig) => {
+    this.codeConfig = codeConfig;
+  };
+
   getBaseAttribute = (node: NodeService) => {
     const {
       type,
@@ -140,6 +144,7 @@ export default class NodeService extends Node {
       isDelete,
       isSelect,
       isRoot,
+      codeConfig,
       styles,
       className,
       props,
@@ -153,6 +158,7 @@ export default class NodeService extends Node {
       isSelect,
       isRoot,
       styles,
+      codeConfig,
       className,
       props,
       id,

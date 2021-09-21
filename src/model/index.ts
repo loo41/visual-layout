@@ -45,13 +45,18 @@ export type HistoryObject = {
   id: number;
 };
 
+export interface CodeConfig {
+  isComponent: boolean;
+  componentName: string;
+}
+
 export type NodeObject = Omit<AST, 'children' | 'element'> & {
   children?: string | Children<NodeObject | string>;
   id: number;
-  random: number;
   isRoot?: boolean;
   isDelete: boolean;
   isSelect: boolean;
+  codeConfig: CodeConfig;
 };
 
 export type ASTObject = Omit<AST, 'children' | 'element'> & {
@@ -78,8 +83,10 @@ export type ProjectObject = Pick<
 export type NodeOption = AST & {
   id: number;
   isRoot?: boolean;
+  isDelete?: boolean;
+  isSelect?: boolean;
+  codeConfig?: CodeConfig;
   children?: Children<NodeService | string>;
-  content?: string;
 };
 
 export interface HistoryLog {

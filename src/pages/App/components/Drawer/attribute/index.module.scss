@@ -15,3 +15,12 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.rightContainer {
+  display: flex;
+  align-items: center;
+  input {
+    width: 100px;
+    margin-left: 10px;
+  }
+}
