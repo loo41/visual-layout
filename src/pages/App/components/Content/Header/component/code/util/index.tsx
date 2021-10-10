@@ -6,11 +6,12 @@ import {
 } from 'src/controller';
 import { randomChart } from 'src/util';
 import { isElement } from 'src/controller/util';
-import { CodeConfig } from '..';
+import { CodeConfig, getInitCodeConfig } from '..';
 import { isString } from 'lodash';
 import { html_beautify, css_beautify } from 'js-beautify';
 import _ from 'lodash';
 import { getTemplate } from './template';
+import { saveAs } from 'file-saver';
 import JSZip from 'jszip';
 
 export enum templateType {
@@ -262,7 +263,10 @@ const generateCodeFiles = (
   });
 };
 
-const exportCode = (project: ProjectService, codeConfig: CodeConfig) => {
+const exportCode = (
+  project: ProjectService,
+  codeConfig: CodeConfig = getInitCodeConfig(),
+) => {
   const zip = new JSZip();
   Object.values(project.getPages()).forEach(page => {
     const files = generateCodeFiles(page, codeConfig);

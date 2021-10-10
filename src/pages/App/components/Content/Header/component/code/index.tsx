@@ -18,15 +18,19 @@ export interface CodeConfig {
   cssModule: boolean;
 }
 
+export const getInitCodeConfig = (project?: ProjectService): CodeConfig => ({
+  cssLocation: 'link',
+  page: (project && Object.values(project.getPages())[0].id) || '',
+  fileSuffix: 'jsx',
+  component: templateType.functionComponent,
+  cssFileSuffix: 'css',
+  cssModule: true,
+});
+
 const Code: React.FC<{ project: ProjectService }> = ({ project }) => {
-  const [codeConfig, setCodeConfig] = useState<CodeConfig>({
-    cssLocation: 'link',
-    page: Object.values(project.getPages())[0].id,
-    fileSuffix: 'jsx',
-    component: templateType.functionComponent,
-    cssFileSuffix: 'css',
-    cssModule: true,
-  });
+  const [codeConfig, setCodeConfig] = useState<CodeConfig>(
+    getInitCodeConfig(project),
+  );
 
   return (
     <Visible>

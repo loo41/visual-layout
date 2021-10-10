@@ -2,6 +2,7 @@ import { ArrowDownOutlined, DeleteOutlined, EditOutlined } from '@ant-design/ico
 import { Popconfirm } from 'antd';
 import { AppService } from 'src/controller';
 import { ProjectObject } from 'src/model';
+import { exportCode } from '../../../Content/Header/component/code/util';
 import styles from './index.module.scss';
 
 const Project: React.FC<{
@@ -27,7 +28,12 @@ const Project: React.FC<{
     {
       key: 'ArrowDownOutlined',
       icon: (
-        <div className={styles.item}>
+        <div
+          className={styles.item}
+          onClick={() => {
+            exportCode(appService.project);
+          }}
+        >
           <ArrowDownOutlined />
         </div>
       ),
