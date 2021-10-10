@@ -26,7 +26,7 @@ const Width: React.FC<CssProps> = ({ style = [], onChange }) => {
   }, [style]);
 
   const setStyle = () => {
-    if (width?.value !== `${value}${option}`) {
+    if (width?.value !== `${value}${option}` && value) {
       onChange?.([
         {
           key: KEY,

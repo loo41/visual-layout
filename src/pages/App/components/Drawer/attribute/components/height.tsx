@@ -13,10 +13,10 @@ const Height: React.FC<CssProps> = ({ style = [], onChange }) => {
   const [value, setValue] = useState('');
   const unitValue = useRef<{ [props: string]: string }>();
 
-  const width = style.filter(css => css.key === KEY)[0];
+  const height = style.filter(css => css.key === KEY)[0];
 
   useEffect(() => {
-    const [, pixel, unit] = width?.value.trim().match(/^([0-9]*)(%|px)/) || [];
+    const [, pixel, unit] = height?.value.trim().match(/^([0-9]*)(%|px)/) || [];
     setOption(unit || 'px');
     setValue(pixel || '');
     unitValue.current = {
@@ -26,7 +26,7 @@ const Height: React.FC<CssProps> = ({ style = [], onChange }) => {
   }, [style]);
 
   const setStyle = () => {
-    if (width?.value !== `${value}${option}`) {
+    if (height?.value !== `${value}${option}` && value) {
       onChange?.([
         {
           key: KEY,
