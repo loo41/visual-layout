@@ -1,12 +1,13 @@
 import revoke from 'src/static/img/revoke.png';
 import forward from 'src/static/img/forward.png';
 import styles from '../index.module.scss';
-import { CodeOutlined, ZoomInOutlined, ZoomOutOutlined } from '@ant-design/icons';
+import { ZoomInOutlined, ZoomOutOutlined } from '@ant-design/icons';
 import { InputNumber, Tooltip } from 'antd';
 import { Options } from 'src/pages/App/components/Content/index';
 import { ProjectService } from 'src/controller';
 import Preview from './component/preview';
 import Keep from './keep';
+import Code from './component/code';
 
 const Max_Zoom = 3;
 const Min_Zoom = 1;
@@ -19,9 +20,7 @@ const Operation: React.FC<{
   return (
     <div className={styles.operation}>
       <div className={styles.code}>
-        <Tooltip placement="top" title="代码">
-          <CodeOutlined style={{ fontSize: 20 }} />
-        </Tooltip>
+        <Code project={projectService} />
       </div>
       <div className={styles.eye}>
         <Preview projectService={projectService} />

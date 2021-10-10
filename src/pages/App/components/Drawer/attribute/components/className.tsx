@@ -27,7 +27,7 @@ const ClassName: React.FC<{ page: PageService }> = ({ page }) => {
         onChange={e => setValue(e.target.value)}
         value={value}
         onBlur={() => updateClass()}
-        placeholder={'类名，默认是随机'}
+        placeholder={'类名，默认随机生成'}
       />
     </div>
   );

@@ -16,4 +16,8 @@ function isString<T>(
   return typeof children === 'string';
 }
 
-export { strikeToCamel, isFunction, isString };
+const isElement = (value: unknown) => {
+  return value && typeof value === 'object' && (value as NodeService)?._name;
+};
+
+export { strikeToCamel, isFunction, isString, isElement };

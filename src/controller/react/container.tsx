@@ -2,6 +2,7 @@ import { isFunction, isString } from 'lodash';
 import React from 'react';
 import { NodeService } from '..';
 import AppService from '../service/app';
+import { isElement } from 'src/controller/util';
 
 export type Event<T> = (node: NodeService) => (ev: T) => void;
 export interface Rest {
@@ -33,8 +34,7 @@ export function Container({ component, ...props }: Props) {
 
     const props = Object.entries(node.props || {}).reduce(
       (props: { [props: string]: unknown }, [key, value]) => {
-        const isComponent =
-          value && typeof value === 'object' && (value as NodeService)?._name;
+        const isComponent = isElement(value);
 
         props[key] = isComponent ? render(value as NodeService, args) : value;
         return props;

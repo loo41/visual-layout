@@ -1816,6 +1816,11 @@
   resolved "https://registry.nlark.com/@types/estree/download/@types/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
   integrity sha1-4Xfmme4bjCLSMXTKqnQiZEOJUJ8=
 
+"@types/file-saver@^2.0.3":
+  version "2.0.3"
+  resolved "http://r.tnpm.oa.com/@types%2ffile-saver/-/file-saver-2.0.3.tgz#b734c4f5a04d20615eaed3dc106e2ab321082009"
+  integrity sha512-MBIou8pd/41jkff7s97B47bc9+p0BszqqDJsO51yDm49uUxeKzrfuNl5fSLC6BpLEWKA8zlwyqALVmXrFwoBHQ==
+
 "@types/glob@^7.1.1":
   version "7.1.4"
   resolved "https://registry.nlark.com/@types/glob/download/@types/glob-7.1.4.tgz#ea59e21d2ee5c517914cb4bc8e4153b99e566672"
@@ -1870,6 +1875,11 @@
   dependencies:
     jest-diff "^26.0.0"
     pretty-format "^26.0.0"
+
+"@types/js-beautify@^1.13.3":
+  version "1.13.3"
+  resolved "http://r.tnpm.oa.com/@types%2fjs-beautify/-/js-beautify-1.13.3.tgz#53839bb5b766d0fb45e87386100bb3bcbb7dca9d"
+  integrity sha512-ucIPw5gmNyvRKi6mpeojlqp+T+6ZBJeU+kqMDnIEDlijEU4QhLTon90sZ3cz9HZr+QTwXILjNsMZImzA7+zuJA==
 
 "@types/json-schema@*", "@types/json-schema@^7.0.3", "@types/json-schema@^7.0.5", "@types/json-schema@^7.0.7", "@types/json-schema@^7.0.8":
   version "7.0.9"
@@ -3656,7 +3666,7 @@ combined-stream@^1.0.6, combined-stream@^1.0.8, combined-stream@~1.0.6:
   dependencies:
     delayed-stream "~1.0.0"
 
-commander@^2.20.0:
+commander@^2.19.0, commander@^2.20.0:
   version "2.20.3"
   resolved "https://registry.nlark.com/commander/download/commander-2.20.3.tgz?cache=0&sync_timestamp=1627358203890&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcommander%2Fdownload%2Fcommander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
   integrity sha1-/UhehMA+tIgcIHIrpIA16FMa6zM=
@@ -3727,6 +3737,14 @@ concat-stream@^1.5.0:
     inherits "^2.0.3"
     readable-stream "^2.2.2"
     typedarray "^0.0.6"
+
+config-chain@^1.1.12:
+  version "1.1.13"
+  resolved "http://r.tnpm.oa.com/config-chain/-/config-chain-1.1.13.tgz#fad0795aa6a6cdaff9ed1b68e9dff94372c232f4"
+  integrity sha512-qj+f8APARXHrM0hraqXYb2/bOVSV4PvJQlNZ/DVj0QrmNM2q2euizkeuVckQ57J+W0mRH6Hvi+k50M4Jul2VRQ==
+  dependencies:
+    ini "^1.3.4"
+    proto-list "~1.2.1"
 
 confusing-browser-globals@^1.0.10:
   version "1.0.10"
@@ -4591,6 +4609,16 @@ ecc-jsbn@~0.1.1:
     jsbn "~0.1.0"
     safer-buffer "^2.1.0"
 
+editorconfig@^0.15.3:
+  version "0.15.3"
+  resolved "http://r.tnpm.oa.com/editorconfig/-/editorconfig-0.15.3.tgz#bef84c4e75fb8dcb0ce5cee8efd51c15999befc5"
+  integrity sha512-M9wIMFx96vq0R4F+gRpY3o2exzb8hEj/n9S8unZtHSvYjibBp/iMufSzvmOcV/laG0ZtuTVGtiJggPOSW2r93g==
+  dependencies:
+    commander "^2.19.0"
+    lru-cache "^4.1.5"
+    semver "^5.6.0"
+    sigmund "^1.0.1"
+
 ee-first@1.1.1:
   version "1.1.1"
   resolved "https://registry.npm.taobao.org/ee-first/download/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
@@ -5306,6 +5334,11 @@ file-loader@6.1.1:
   dependencies:
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
+
+file-saver@^2.0.5:
+  version "2.0.5"
+  resolved "http://r.tnpm.oa.com/file-saver/-/file-saver-2.0.5.tgz#d61cfe2ce059f414d899e9dd6d4107ee25670c38"
+  integrity sha512-P9bmyZ3h/PRG+Nzga+rbdI4OEpNDzAVyy74uVO9ATgzLK6VtAsYybF/+TOCvrc0MO793d6+42lLyZTw7/ArVzA==
 
 file-uri-to-path@1.0.0:
   version "1.0.0"
@@ -6126,6 +6159,11 @@ ignore@^5.1.4:
   resolved "https://registry.npm.taobao.org/ignore/download/ignore-5.1.8.tgz#f150a8b50a34289b33e22f5889abd4d8016f0e57"
   integrity sha1-8VCotQo0KJsz4i9YiavU2AFvDlc=
 
+immediate@~3.0.5:
+  version "3.0.6"
+  resolved "http://r.tnpm.oa.com/immediate/-/immediate-3.0.6.tgz#9db1dbd0faf8de6fbe0f5dd5e56bb606280de69b"
+  integrity sha1-nbHb0Pr43m++D13V5Wu2BigN5ps=
+
 immer@8.0.1:
   version "8.0.1"
   resolved "https://registry.nlark.com/immer/download/immer-8.0.1.tgz?cache=0&sync_timestamp=1625499852354&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fimmer%2Fdownload%2Fimmer-8.0.1.tgz#9c73db683e2b3975c424fb0572af5889877ae656"
@@ -6220,7 +6258,7 @@ inherits@2.0.3:
   resolved "https://registry.nlark.com/inherits/download/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
   integrity sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=
 
-ini@^1.3.5:
+ini@^1.3.4, ini@^1.3.5:
   version "1.3.8"
   resolved "https://registry.nlark.com/ini/download/ini-1.3.8.tgz#a29da425b48806f34767a4efce397269af28432c"
   integrity sha1-op2kJbSIBvNHZ6Tvzjlyaa8oQyw=
@@ -7133,6 +7171,16 @@ js-base64@^2.1.8:
   resolved "http://r.tnpm.oa.com/js-base64/-/js-base64-2.6.4.tgz#f4e686c5de1ea1f867dbcad3d46d969428df98c4"
   integrity sha512-pZe//GGmwJndub7ZghVHz7vjb2LgC1m8B07Au3eYqeqv9emhESByMXxaEgkUkEqJe87oBbSniGYoQNIBklc7IQ==
 
+js-beautify@^1.14.0:
+  version "1.14.0"
+  resolved "http://r.tnpm.oa.com/js-beautify/-/js-beautify-1.14.0.tgz#2ce790c555d53ce1e3d7363227acf5dc69024c2d"
+  integrity sha512-yuck9KirNSCAwyNJbqW+BxJqJ0NLJ4PwBUzQQACl5O3qHMBXVkXb/rD0ilh/Lat/tn88zSZ+CAHOlk0DsY7GuQ==
+  dependencies:
+    config-chain "^1.1.12"
+    editorconfig "^0.15.3"
+    glob "^7.1.3"
+    nopt "^5.0.0"
+
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.nlark.com/js-tokens/download/js-tokens-4.0.0.tgz?cache=0&sync_timestamp=1619345098261&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fjs-tokens%2Fdownload%2Fjs-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -7289,6 +7337,16 @@ jsprim@^1.2.2:
     array-includes "^3.1.2"
     object.assign "^4.1.2"
 
+jszip@^3.7.1:
+  version "3.7.1"
+  resolved "http://r.tnpm.oa.com/jszip/-/jszip-3.7.1.tgz#bd63401221c15625a1228c556ca8a68da6fda3d9"
+  integrity sha512-ghL0tz1XG9ZEmRMcEN2vt7xabrDdqHHeykgARpmZ0BiIctWxM47Vt63ZO2dnp4QYt/xJVLLy5Zv1l/xRdh2byg==
+  dependencies:
+    lie "~3.3.0"
+    pako "~1.0.2"
+    readable-stream "~2.3.6"
+    set-immediate-shim "~1.0.1"
+
 keyboardjs@^2.6.4:
   version "2.6.4"
   resolved "http://r.tnpm.oa.com/keyboardjs/-/keyboardjs-2.6.4.tgz#28dccd9787c8f37e7c017df2f87294ca21143436"
@@ -7373,6 +7431,13 @@ levn@~0.3.0:
   dependencies:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
+
+lie@~3.3.0:
+  version "3.3.0"
+  resolved "http://r.tnpm.oa.com/lie/-/lie-3.3.0.tgz#dcf82dee545f46074daf200c7c1c5a08e0f40f6a"
+  integrity sha512-UaiMJzeWRlEujzAuw5LokY1L5ecNQYZKfmyZ9L7wDHb/p5etKaxXhohBcrw0EYby+G/NA52vRSN4N39dxHAIwQ==
+  dependencies:
+    immediate "~3.0.5"
 
 lines-and-columns@^1.1.6:
   version "1.1.6"
@@ -7517,6 +7582,14 @@ lower-case@^2.0.2:
   integrity sha1-b6I3xj29xKgsoP2ILkci3F5jTig=
   dependencies:
     tslib "^2.0.3"
+
+lru-cache@^4.1.5:
+  version "4.1.5"
+  resolved "http://r.tnpm.oa.com/lru-cache/-/lru-cache-4.1.5.tgz#8bbe50ea85bed59bc9e33dcab8235ee9bcf443cd"
+  integrity sha512-sWZlbEP2OsHNkXrMl5GYk/jKk70MBng6UU4YI/qGDYbgf6YbP4EvmqISbXCoJiRKs+1bSpFHVgQxvJ17F2li5g==
+  dependencies:
+    pseudomap "^1.0.2"
+    yallist "^2.1.2"
 
 lru-cache@^5.1.1:
   version "5.1.1"
@@ -7863,10 +7936,10 @@ monaco-editor-webpack-plugin@^4.1.2:
   dependencies:
     loader-utils "^2.0.0"
 
-monaco-editor@^0.26.1:
-  version "0.26.1"
-  resolved "http://r.tnpm.oa.com/monaco-editor/-/monaco-editor-0.26.1.tgz#62bb5f658bc95379f8abb64b147632bd1c019d73"
-  integrity sha512-mm45nUrBDk0DgZKgbD7+bhDOtcAFNGPJJRAdS6Su1kTGl6XEgC7U3xOmDUW/0RrLf+jlvCGaqLvD4p2VjwuwwQ==
+monaco-editor@*:
+  version "0.28.0"
+  resolved "http://r.tnpm.oa.com/monaco-editor/-/monaco-editor-0.28.0.tgz#eda159cf64d9ad96b60e78525d6f822aa943170c"
+  integrity sha512-Mo0Mn2rZubXqjiy8AUs/0hGnY2y3oc4UPAP2hgVqrMX0E5Np9aCCz+BeHKzkl4D3n6xeR7mB4JuvOumD5kwC/A==
 
 move-concurrently@^1.0.1:
   version "1.0.1"
@@ -8459,7 +8532,7 @@ p-try@^2.0.0:
   resolved "https://registry.nlark.com/p-try/download/p-try-2.2.0.tgz#cb2868540e313d61de58fafbe35ce9004d5540e6"
   integrity sha1-yyhoVA4xPWHeWPr741zpAE1VQOY=
 
-pako@~1.0.5:
+pako@~1.0.2, pako@~1.0.5:
   version "1.0.11"
   resolved "https://registry.nlark.com/pako/download/pako-1.0.11.tgz#6c9599d340d54dfd3946380252a35705a6b992bf"
   integrity sha1-bJWZ00DVTf05RjgCUqNXBaa5kr8=
@@ -9471,6 +9544,11 @@ prop-types@^15.7.2:
     object-assign "^4.1.1"
     react-is "^16.8.1"
 
+proto-list@~1.2.1:
+  version "1.2.4"
+  resolved "http://r.tnpm.oa.com/proto-list/-/proto-list-1.2.4.tgz#212d5bfe1318306a420f6402b8e26ff39647a849"
+  integrity sha1-IS1b/hMYMGpCD2QCuOJv85ZHqEk=
+
 proxy-addr@~2.0.5:
   version "2.0.7"
   resolved "https://registry.nlark.com/proxy-addr/download/proxy-addr-2.0.7.tgz#f19fe69ceab311eeb94b42e70e8c2070f9ba1025"
@@ -9483,6 +9561,11 @@ prr@~1.0.1:
   version "1.0.1"
   resolved "https://registry.nlark.com/prr/download/prr-1.0.1.tgz#d3fc114ba06995a45ec6893f484ceb1d78f5f476"
   integrity sha1-0/wRS6BplaRexok/SEzrHXj19HY=
+
+pseudomap@^1.0.2:
+  version "1.0.2"
+  resolved "http://r.tnpm.oa.com/pseudomap/-/pseudomap-1.0.2.tgz#f052a28da70e618917ef0a8ac34c1ae5a68286b3"
+  integrity sha1-8FKijacOYYkX7wqKw0wa5aaChrM=
 
 psl@^1.1.28, psl@^1.1.33:
   version "1.8.0"
@@ -10048,12 +10131,12 @@ react-is@^17.0.1:
   resolved "https://registry.nlark.com/react-is/download/react-is-17.0.2.tgz?cache=0&sync_timestamp=1629390170748&other_urls=https%3A%2F%2Fregistry.nlark.com%2Freact-is%2Fdownload%2Freact-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha1-5pHUqOnHiTZWVVOas3J2Kw77VPA=
 
-react-monaco-editor@^0.44.0:
-  version "0.44.0"
-  resolved "http://r.tnpm.oa.com/react-monaco-editor/-/react-monaco-editor-0.44.0.tgz#9f966fd00b6c30e8be8873a3fbc86f14a0da2ba4"
-  integrity sha512-GPheXTIpBXpwv857H7/jA8HX5yae4TJ7vFwDJ5iTvy05LxIQTsD3oofXznXGi66lVA93ST/G7wRptEf4CJ9dOg==
+react-monaco-editor@0.40.0:
+  version "0.40.0"
+  resolved "http://r.tnpm.oa.com/react-monaco-editor/-/react-monaco-editor-0.40.0.tgz#f1b021b32952cfc63a4bf2661fd20f61b2b8309f"
+  integrity sha512-IG322vOwKc/yjhn91xbqHONyAVxjv5L0YOUBU+hDwfswlglm/sGsqGhK9n1lD5d3l3kegMO/ZeZaMHC2LGgNRw==
   dependencies:
-    monaco-editor "^0.26.1"
+    monaco-editor "*"
     prop-types "^15.7.2"
 
 react-refresh@^0.8.3:
@@ -10803,6 +10886,11 @@ set-blocking@^2.0.0, set-blocking@~2.0.0:
   resolved "https://registry.nlark.com/set-blocking/download/set-blocking-2.0.0.tgz#045f9782d011ae9a6803ddd382b24392b3d890f7"
   integrity sha1-BF+XgtARrppoA93TgrJDkrPYkPc=
 
+set-immediate-shim@~1.0.1:
+  version "1.0.1"
+  resolved "http://r.tnpm.oa.com/set-immediate-shim/-/set-immediate-shim-1.0.1.tgz#4b2b1b27eb808a9f8dcc481a58e5e56f599f3f61"
+  integrity sha1-SysbJ+uAip+NzEgaWOXlb1mfP2E=
+
 set-value@^2.0.0, set-value@^2.0.1:
   version "2.0.1"
   resolved "https://registry.nlark.com/set-value/download/set-value-2.0.1.tgz#a18d40530e6f07de4228c7defe4227af8cad005b"
@@ -10883,6 +10971,11 @@ side-channel@^1.0.4:
     call-bind "^1.0.0"
     get-intrinsic "^1.0.2"
     object-inspect "^1.9.0"
+
+sigmund@^1.0.1:
+  version "1.0.1"
+  resolved "http://r.tnpm.oa.com/sigmund/-/sigmund-1.0.1.tgz#3ff21f198cad2175f9f3b781853fd94d0d19b590"
+  integrity sha1-P/IfGYytIXX587eBhT/ZTQ0ZtZA=
 
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.3"
@@ -12571,6 +12664,11 @@ y18n@^4.0.0:
   version "4.0.3"
   resolved "https://registry.npm.taobao.org/y18n/download/y18n-4.0.3.tgz?cache=0&sync_timestamp=1617822684820&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fy18n%2Fdownload%2Fy18n-4.0.3.tgz#b5f259c82cd6e336921efd7bfd8bf560de9eeedf"
   integrity sha1-tfJZyCzW4zaSHv17/Yv1YN6e7t8=
+
+yallist@^2.1.2:
+  version "2.1.2"
+  resolved "http://r.tnpm.oa.com/yallist/-/yallist-2.1.2.tgz#1c11f9218f076089a47dd512f93c6699a6a81d52"
+  integrity sha1-HBH5IY8HYImkfdUS+TxmmaaoHVI=
 
 yallist@^3.0.2:
   version "3.1.1"
