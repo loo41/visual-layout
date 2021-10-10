@@ -6,17 +6,23 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { formatTime } from 'src/util';
 import { JSONComponent } from 'src/model';
+import styles from './index.module.scss';
 import { isString } from 'lodash';
 
 const ComponentEdit: React.FC<{ page: PageService }> = ({ page }) => {
   const [errorMessage, setErrorMessage] = useState<string>('');
 
-  const timer = useRef<number>();
   const messageTimer = useRef<number>();
 
   const component = page?.currentNode[0]?.getComponentConfig();
 
   const value = JSON.stringify(component, null, 2) || '';
+
+  const [code, setCode] = useState(value);
+
+  useEffect(() => {
+    setCode(value);
+  }, [value]);
 
   useEffect(() => {
     messageTimer.current = window.setTimeout(() => {
@@ -26,22 +32,22 @@ const ComponentEdit: React.FC<{ page: PageService }> = ({ page }) => {
     }, 2000);
   }, [errorMessage]);
 
-  const updateComponent = (code: string) => {
+  const update = (code: string) => {
     clear();
-    timer.current = window.setTimeout(() => {
-      if (isTrueComponent(code)) {
-        const component = JSON.parse(code);
-        page?.setComponent(component);
-      }
-    }, 2000);
+    if (isTrueComponent(code)) {
+      const component = JSON.parse(code);
+      page?.setComponent(component);
+    }
 
     return () => clear();
   };
 
+  const reset = () => {
+    setCode(value);
+  };
+
   const clear = () => {
-    window.clearTimeout(timer.current);
     window.clearTimeout(messageTimer.current);
-    timer.current = undefined;
   };
 
   const isTrueComponent = (code: string) => {
@@ -91,18 +97,24 @@ const ComponentEdit: React.FC<{ page: PageService }> = ({ page }) => {
           type="error"
         />
       )}
-      <MonacoEditor
-        height="100%"
-        language="javascript"
-        theme="vs"
-        value={value}
-        options={{
-          language: 'json',
-          scrollBeyondLastLine: false,
-          automaticLayout: true,
-        }}
-        onChange={code => updateComponent(code)}
-      />
+      <>
+        <div className={styles.opr}>
+          <div onClick={() => update(code)}>更新</div>
+          <div onClick={() => reset()}>重置</div>
+        </div>
+        <MonacoEditor
+          height="100%"
+          language="javascript"
+          theme="vs"
+          value={code}
+          options={{
+            language: 'json',
+            scrollBeyondLastLine: false,
+            automaticLayout: true,
+          }}
+          onChange={code => setCode(code)}
+        />
+      </>
     </>
   );
 };

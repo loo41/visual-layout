@@ -59,3 +59,25 @@
     }
   }
 }
+
+.opr {
+  margin: 10px 0;
+  display: flex;
+  justify-content: flex-end;
+  border: 1px solid map-get($colors, 'border');
+  div {
+    height: 100%;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    cursor: pointer;
+    &:hover {
+      background-color: map-get($colors, 'background');
+    }
+  }
+  div:nth-child(1) {
+    border-right: 1px solid map-get($colors, 'border');
+  }
+}
