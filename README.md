@@ -25,17 +25,16 @@
 
 ## Features
 
-- Support Keyboard Event ✅
+- Keyboard Event ✅
   - [Ctrl + c] (Copy Select)
   - [Ctrl + v] (Paste Select)
   - [Ctrl + Backspace] (Delete Select)
   - [Ctrl + z] (Step Back)
   - [Ctrl + y] (Step Forward)
-- Support Multi Page ✅
-- Support Layout ✅
-- Support History Operation ✅
-- Support Visual Component ✅
-- Support Visual Styles
-- Support Export Code
-- Support Css unit (Rem, Vw)
-- Support History
+- Multi Page ✅
+- Layout ✅
+- History Operation ✅
+- Visual Component ✅
+- Visual Styles
+- Export Code
+- History
