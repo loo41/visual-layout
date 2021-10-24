@@ -1,54 +1,25 @@
-## Files Overview
+# Visual Layout
 
-```txt
-.github ----> github Action config
-.vscode ----> vscode config(prettier)
-  src   ---|
-           |
-           |
-         context    ---> global context (Inject Page Context)
-         model      ---> model layer
-         controller ---> controller layer (Controller Service)
-         pages      ---> view layer (UI View)
-         theme      ---> theme .scss file
-```
+Low Code Platform, Create visible UI code.
 
-## Framework
+[![](https://img.shields.io/badge/language-typescript-orange.svg)](https://img.shields.io/badge/language-typescript-orange.svg) [![](https://img.shields.io/badge/author-TCYong-1890ff.svg)](https://img.shields.io/badge/author-TCYong-1890ff.svg) [![](https://img.shields.io/badge/License-MIT-1890ff.svg)](https://img.shields.io/badge/License-MIT-1890ff.svg)
 
-```txt
-        Model ---- Update --> View
-          ↑                     |
-        Change              Interactive
-          |                     |
-          <————— Controller —————
-```
+<a href="https://v.qq.com/x/page/b33041vt6vj.html" target="_blank" style="color: #40a9ff">「 Function Display Video 」</a>
 
-## Project layer
+Documentation: [中文 🇨🇳](./docs/zh/index.md) | [English 🇺🇸]()
 
-```txt
-         ______________________
-        |       Project        |
-        |   ________________   |
-        |  |  Page |  Page |   |
-        |  | _____ | _____ |   |
-        |  || Node||| Node||   |
-        |  ||_Node_||_Node||   |
-        |  |_______|_______|   |
-        |______________________|
-```
+Use(Secondary development): [中文 🇨🇳]() | [English 🇺🇸]()
 
-## Features
+Case: [中文 🇨🇳](./docs/zh/case.md) | [English 🇺🇸](./docs/en/case.md)
 
-- Keyboard Event ✅
-  - [Ctrl + c] (Copy Select)
-  - [Ctrl + v] (Paste Select)
-  - [Ctrl + Backspace] (Delete Select)
-  - [Ctrl + z] (Step Back)
-  - [Ctrl + y] (Step Forward)
-- Multi Page ✅
-- Layout ✅
-- History Operation ✅
-- Visual Component ✅
-- Visual Styles
-- Export Code
-- History
+## 🚀 Features
+
+| Feature           | Explain                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Keyboard Event    | <table> <thead> <tr><th>Operation</th> <th>Explain</th> </tr> </thead> <tbody> <tr> <td>Ctrl + c </td> <td><code>「 Copy 」</code></td> </tr><tr><td>Ctrl + v</td><td><code>「 Paste 」 </code></td> </tr> <tr> <td>Ctrl + Backspace</td> <td><code>「 Delete 」</code></td> </tr> <tr> <td>Ctrl + z</td> <td><code>「 Back 」</code> </tr> <tr> <td>Ctrl + y</td> <td><code>「 Forward 」</code></td></tr> </tbody> </table> |
+| Multi Page        | -                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Layout            | -                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| History Operation | -                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Visual Component  | -                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Visual Styles     | -                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Export Code       | -                                                                                                                                                                                                                                                                                                                                                                                                                             |
